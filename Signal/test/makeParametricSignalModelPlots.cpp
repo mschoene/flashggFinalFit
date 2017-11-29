@@ -568,7 +568,7 @@ int main(int argc, char *argv[]){
     exit(1);
   }
 
-  RooRealVar *mass= (RooRealVar*)hggWS->var("CMS_hgg_mass");
+  RooRealVar *mass= (RooRealVar*)hggWS->var("h_mass");
 
   RooRealVar *mh = (RooRealVar*)hggWS->var("MH");
   mh->setVal(m_hyp_);

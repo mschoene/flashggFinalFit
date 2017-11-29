@@ -19,22 +19,22 @@ WSTFileWrapper::WSTFileWrapper( std::string files, std::string wsname ) {
       std::cout << "[WSTFileWrapper] got that this file is a zombie: " << (*fn) << std::endl;
     } else {
       // this is very verbose otherwise!
-			//std::cout << "[WSTFileWrapper] successfully opened this file: " << (*fn) << std::endl;
+      std::cout << "[WSTFileWrapper] successfully opened this file: " << (*fn) << std::endl;
     }
     wsList.push_back((RooWorkspace*)fileList.back()->Get(wsname.c_str()));
     if (wsList.back() == 0) {
       std::cout << "[WSTFileWrapper] on file " << (*fn) << " failed to obtain workspace named: " << wsname << std::endl;
     } else {
       // this is very verbose otherwise!
-      //std::cout << "[WSTFileWrapper] on file " << (*fn) << " opened workspace named: " << wsname << std::endl;
+      std::cout << "[WSTFileWrapper] on file " << (*fn) << " opened workspace named: " << wsname << std::endl;
     }
   }
 }
 
 WSTFileWrapper::WSTFileWrapper( TFile *tf ,RooWorkspace *inWS ) {
-wsList.push_back(inWS);
-fileList.push_back(tf);
-fnList.push_back("current file");
+  wsList.push_back(inWS);
+  fileList.push_back(tf);
+  fnList.push_back("current file");
 }
 
 std::list<RooAbsData*> WSTFileWrapper::allData() {
@@ -48,10 +48,10 @@ std::list<RooAbsData*> WSTFileWrapper::allData() {
 }
 
 WSTFileWrapper::WSTFileWrapper( RooWorkspace *inWS ) {
-TFile *outF = new TFile("WSTFileWrapper.root","RECREATE");
-wsList.push_back(inWS);
-fileList.push_back(outF);
-fnList.push_back("current file");
+  TFile *outF = new TFile("WSTFileWrapper.root","RECREATE");
+  wsList.push_back(inWS);
+  fileList.push_back(outF);
+  fnList.push_back("current file");
 }
 
 
@@ -63,10 +63,13 @@ RooRealVar* WSTFileWrapper::var(std::string varName) {
 RooAbsData* WSTFileWrapper::data(std::string dataName) {
   RooAbsData* result = 0;
   bool complained_yet = 0;
+
   assert(wsList.size() == fileList.size());
   for (unsigned int i = 0 ; i < wsList.size() ; i++) {
     fileList[i]->cd();
+
     RooAbsData* this_result = (RooAbsData*)wsList[i]->data(dataName.c_str());
+
     if (result && this_result && !complained_yet) {
       std::cout << "[WSTFileWrapper] Uh oh, multiple RooAbsDatas from the file list with the same name: " <<  dataName << std::endl;
       complained_yet = true;
@@ -74,10 +77,12 @@ RooAbsData* WSTFileWrapper::data(std::string dataName) {
     if (this_result) {
       result = this_result;
       std::cout << "[WSTFileWrapper] Got non-zero RooAbsData from " << fnList[i] << " with name " << dataName << std::endl;
+      result->Print();
     }
   }
+
   if (!result) {
-    //std::cout << "[WSTFileWrapper] Uh oh, never got a good RooAbsData with name " << dataName << std::endl;
+    std::cout << "[WSTFileWrapper] Uh oh, never got a good RooAbsData with name " << dataName << std::endl;
   }
   return result;
 }
@@ -97,9 +102,9 @@ RooAbsPdf* WSTFileWrapper::pdf(std::string pdfName) {
       std::cout << "[WSTFileWrapper] Got non-zero RooAbsPdf from " << fnList[i] << " with name " << pdfName << std::endl;
     }
   }
-  if (!result) {
+  //if (!result) {
     //std::cout << "[WSTFileWrapper] Uh oh, never got a good RooAbsPdf with name " << pdfName << std::endl;
-  }
+  //}
   return result;
 }
 
@@ -144,26 +149,27 @@ RooAbsReal* WSTFileWrapper::function(std::string functionName) {
   }
   return result;
 }
+
 /*
-TObject* WSTFileWrapper::Get(std::string namecycle) {
+  TObject* WSTFileWrapper::Get(std::string namecycle) {
   TObject* result = 0;
   bool complained_yet = 0;
   for (unsigned int i = 0 ; i < fileList.size() ; i++) {
-    TObject* this_result = fileList[i]->Get(namecycle.c_str());
-    if (result && this_result && !complained_yet) {
-      std::cout << " WSTFileWrapper: Uh oh, multiple TObjects from the file list with the same name: " <<  namecycle << std::endl;
-      complained_yet = true;
-    }
-    if (this_result) {
-      result = this_result;
-      std::cout << " WSTFileWrapper: Got non-zero TObject from " << fnList[i] << std::endl;
-    }
+  TObject* this_result = fileList[i]->Get(namecycle.c_str());
+  if (result && this_result && !complained_yet) {
+  std::cout << " WSTFileWrapper: Uh oh, multiple TObjects from the file list with the same name: " <<  namecycle << std::endl;
+  complained_yet = true;
+  }
+  if (this_result) {
+  result = this_result;
+  std::cout << " WSTFileWrapper: Got non-zero TObject from " << fnList[i] << std::endl;
+  }
   }
   if (!result) {
-    std::cout << " WSTFileWrapper: Uh oh, never got a good TObject " << std::endl;
+  std::cout << " WSTFileWrapper: Uh oh, never got a good TObject " << std::endl;
   }
   return result;
-}
+  }
 */
 
 void WSTFileWrapper::Close() {
@@ -181,9 +187,9 @@ RooArgSet WSTFileWrapper::allVars(){
     RooArgSet this_result = wsList[i]->allVars();
     result.add(this_result);
   }
- // if (!result) {
- //   std::cout << "[WSTFileWrapper] Uh oh, never got a good RooAbsReal with name " << functionName << std::endl;
-//  }
+  //if (!result) {
+  //  std::cout << "[WSTFileWrapper] Uh oh, never got a good RooAbsReal with name " << functionName << std::endl;
+  //}
   return result;
 }
 

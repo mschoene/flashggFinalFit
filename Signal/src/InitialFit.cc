@@ -111,7 +111,9 @@ void InitialFit::buildSumOfGaussians(string name, int nGaussians, bool recursive
         coeffs->add(*recFrac);
       }
     }
+
     assert(gaussians->getSize()==nGaussians && coeffs->getSize()==nGaussians-(1*!forceFracUnity));
+
     RooAddPdf *tempSumOfGaussians = new RooAddPdf(Form("%s_mh%d",name.c_str(),mh),Form("%s_mh%d",name.c_str(),mh),*gaussians,*coeffs,recursive);
     sumOfGaussians.insert(pair<int,RooAddPdf*>(mh,tempSumOfGaussians));
     fitParams.insert(pair<int,map<string,RooRealVar*> >(mh,tempFitParams));
@@ -173,159 +175,160 @@ map<int,map<string,RooRealVar*> > InitialFit::getFitParams(){
 }
 
 void InitialFit::printFitParams(){
-	cout << "[INFO] Printing fit param map: " << endl;
-	for (map<int,map<string,RooRealVar*> >::iterator it = fitParams.begin(); it != fitParams.end(); it++){
-		for (map<string,RooRealVar*>::iterator it2 = it->second.begin(); it2 != it->second.end(); it2++){
-			cout << it->first << " : " << it2->first << " -- " << it2->second->getVal() << endl; 
-		}
-	}
+  cout << "[INFO] Printing fit param map: " << endl;
+  for (map<int,map<string,RooRealVar*> >::iterator it = fitParams.begin(); it != fitParams.end(); it++){
+    for (map<string,RooRealVar*>::iterator it2 = it->second.begin(); it2 != it->second.end(); it2++){
+      cout << it->first << " : " << it2->first << " -- " << it2->second->getVal() << endl; 
+    }
+  }
 }
 
 void InitialFit::runFits(int ncpu){
 
   int ngausmax = 10; //we assume that we never use more than 10 (very safe) gaussians for a single dataset
-    float n_sigma_constraint = 2.; //constrain sigmas of gaussians at mh!=125 to the values fitted at mh=125, within n_sigma_constraint times the fit uncertainty
-    //middle point is assumed to be 125 GeV
-    int mh = allMH_[(allMH_.size()+1)/2 - 1];
-    //  int mh = 125;
+  float n_sigma_constraint = 2.; //constrain sigmas of gaussians at mh!=125 to the values fitted at mh=125, within n_sigma_constraint times the fit uncertainty
+  //middle point is assumed to be 125 GeV
+  int mh = allMH_[(allMH_.size()+1)/2 - 1];
+  //  int mh = 125;
+  std::cout<<"RUNNING FITS with middle point mh = "<<mh<<std::endl;
+  MH->setConstant(false);
+  MH->setVal(mh);
+  MH->setConstant(true);
+  assert(sumOfGaussians.find(mh)!=sumOfGaussians.end());
+  assert(datasets.find(mh)!=datasets.end());
+  RooAddPdf *fitModel125 = sumOfGaussians[mh];
+  //RooDataSet *data125 = datasets[mh];
+  RooAbsData *data125;
+  if (binnedFit_){
+    data125 = datasets[mh]->binnedClone();
+  } else {
+    data125 = datasets[mh];
+  }
+  // help when dataset has no entries
+  if (data125->sumEntries()<1.e-5) {
+    mass->setVal(mh);
+    data125->add(RooArgSet(*mass),1.e-5);
+  }
+  //fitModel125->Print();
+  //data125->Print();
+  RooFitResult *fitRes125;
+  mass->setBins(bins_);
+  verbosity_ >=3 ?
+    fitRes125 = fitModel125->fitTo(*data125,NumCPU(ncpu),RooFit::Minimizer("Minuit","minimize"),SumW2Error(true),Save(true)) :
+    verbosity_ >=2 ?
+    fitRes125 = fitModel125->fitTo(*data125,NumCPU(ncpu),RooFit::Minimizer("Minuit","minimize"),SumW2Error(true),Save(true),PrintLevel(-1)) :
+    fitRes125 = fitModel125->fitTo(*data125,NumCPU(ncpu),RooFit::Minimizer("Minuit","minimize"),SumW2Error(true),Save(true),PrintLevel(-1),PrintEvalErrors(-1));
+  fitResults.insert(pair<int,RooFitResult*>(mh,fitRes125));
+  mass->setBins(160); //return to default 
+    
+  //fitRes125->floatParsFinal().Print("V");
+    
+  for (unsigned int i=0; i<allMH_.size(); i++){
+    //int mh = allMH_[i];
+    if( i == (allMH_.size()+1)/2 -1 ) continue;
+    // if( allMH_[i] == 125 ) continue;
+    mh = allMH_[i];
     std::cout<<"RUNNING FITS for mh = "<<mh<<std::endl;
     MH->setConstant(false);
     MH->setVal(mh);
     MH->setConstant(true);
     assert(sumOfGaussians.find(mh)!=sumOfGaussians.end());
     assert(datasets.find(mh)!=datasets.end());
-    RooAddPdf *fitModel125 = sumOfGaussians[mh];
-    //RooDataSet *data125 = datasets[mh];
-    RooAbsData *data125;
-    if (binnedFit_){
-       data125 = datasets[mh]->binnedClone();
-     } else {
-         data125 = datasets[mh];
-       }
-    // help when dataset has no entries
-     if (data125->sumEntries()<1.e-5) {
-         mass->setVal(mh);
-         data125->add(RooArgSet(*mass),1.e-5);
-       }
-    //fitModel125->Print();
-    //data125->Print();
-    RooFitResult *fitRes125;
-    mass->setBins(bins_);
-    verbosity_ >=3 ?
-       fitRes125 = fitModel125->fitTo(*data125,NumCPU(ncpu),RooFit::Minimizer("Minuit","minimize"),SumW2Error(true),Save(true)) :
-       verbosity_ >=2 ?
-       fitRes125 = fitModel125->fitTo(*data125,NumCPU(ncpu),RooFit::Minimizer("Minuit","minimize"),SumW2Error(true),Save(true),PrintLevel(-1)) :
-       fitRes125 = fitModel125->fitTo(*data125,NumCPU(ncpu),RooFit::Minimizer("Minuit","minimize"),SumW2Error(true),Save(true),PrintLevel(-1),PrintEvalErrors(-1));
-    fitResults.insert(pair<int,RooFitResult*>(mh,fitRes125));
-    mass->setBins(160); //return to default 
-
-    //fitRes125->floatParsFinal().Print("V");
-
-    for (unsigned int i=0; i<allMH_.size(); i++){
-      //int mh = allMH_[i];
-      if( i == (allMH_.size()+1)/2 -1 ) continue;
-      // if( allMH_[i] == 125 ) continue;
-      mh = allMH_[i];
-      std::cout<<"RUNNING FITS for mh = "<<mh<<std::endl;
-      MH->setConstant(false);
-      MH->setVal(mh);
-      MH->setConstant(true);
-      assert(sumOfGaussians.find(mh)!=sumOfGaussians.end());
-      assert(datasets.find(mh)!=datasets.end());
-      RooAddPdf *fitModel = sumOfGaussians[mh];
-      //RooDataSet *data = datasets[mh];
-
-
-
-         //fitModel->Print();
-         RooArgSet* comps = fitModel->getComponents();
-         TIterator* iter = comps->createIterator();
-         RooGaussian* nextg = (RooGaussian*)iter->Next();
-         //    while(nextg){
-            //std::cout<<"Print:"<<std::endl;
-           //nextg->Print();
-           RooArgSet* formulaMean = nextg->getParameters(*mass);
-          // std::cout<<"Print formulamean:"<<std::endl;
-          // formulaMean->Print();
-           for(int ng=0; ng<ngausmax; ng++){
+    RooAddPdf *fitModel = sumOfGaussians[mh];
+    //RooDataSet *data = datasets[mh];
       
-        //  RooAbsArg* dm = formulaMean->find(Form("dm_mh%d_g%d",mh,ng ));
+      
+      
+    //fitModel->Print();
+    RooArgSet* comps = fitModel->getComponents();
+    TIterator* iter = comps->createIterator();
+    RooGaussian* nextg = (RooGaussian*)iter->Next();
+    //    while(nextg){
+    //std::cout<<"Print:"<<std::endl;
+    //nextg->Print();
+    RooArgSet* formulaMean = nextg->getParameters(*mass);
+    // std::cout<<"Print formulamean:"<<std::endl;
+    // formulaMean->Print();
+    for(int ng=0; ng<ngausmax; ng++){
+	
+      //  RooAbsArg* dm = formulaMean->find(Form("dm_mh%d_g%d",mh,ng ));
       // if(dm!=NULL){
-        //    dm->Print();
+      //    dm->Print();
       // }
-       RooRealVar* sigma = (RooRealVar*)formulaMean->find(Form("sigma_mh%d_g%d",mh,ng ));
+      RooRealVar* sigma = (RooRealVar*)formulaMean->find(Form("sigma_mh%d_g%d",mh,ng ));
       if(sigma!=NULL){
-          //sigma->Print();
-         float mh125_sigma_val = ((RooRealVar*)fitRes125->floatParsFinal().find(  Form("sigma_mh125_g%d",ng )  ))->getVal();
-         float mh125_sigmaerr =((RooRealVar*)fitRes125->floatParsFinal().find(  Form("sigma_mh125_g%d",ng ))) ->getError() ;
-         sigma->setVal( mh125_sigma_val );
-         float allowedRange = n_sigma_constraint*mh125_sigmaerr;
-         if (n_sigma_constraint*mh125_sigmaerr > 0.05* mh125_sigma_val) {allowedRange= 0.05* mh125_sigma_val;}
-
-         sigma->setRange( TMath::Max(mh125_sigma_val - allowedRange,sigma->getMin()) ,TMath::Min(mh125_sigma_val + allowedRange,sigma->getMax()));
-         // std::cout <<"[INFO] MH " << mh << ": fit params sigma for gaussian_"<< ng << " set to be 125 value " << mh125_sigma_val << " + "<< mh125_sigmaerr << " - "<< mh125_sigmaerr  << std::endl;   
-         //sigma->Print();
-        }
+	//sigma->Print();
+	float mh125_sigma_val = ((RooRealVar*)fitRes125->floatParsFinal().find(  Form("sigma_mh125_g%d",ng )  ))->getVal();
+	float mh125_sigmaerr =((RooRealVar*)fitRes125->floatParsFinal().find(  Form("sigma_mh125_g%d",ng ))) ->getError() ;
+	sigma->setVal( mh125_sigma_val );
+	float allowedRange = n_sigma_constraint*mh125_sigmaerr;
+	std::cout<<"Sigma125 error is " << mh125_sigmaerr <<" nsigmas constraint" <<n_sigma_constraint <<std::endl;
+	if (n_sigma_constraint*mh125_sigmaerr > 0.05* mh125_sigma_val) {allowedRange= 0.05* mh125_sigma_val;}
+	  
+	sigma->setRange( TMath::Max(mh125_sigma_val - allowedRange,sigma->getMin()) ,TMath::Min(mh125_sigma_val + allowedRange,sigma->getMax()));
+	// std::cout <<"[INFO] MH " << mh << ": fit params sigma for gaussian_"<< ng << " set to be 125 value " << mh125_sigma_val << " + "<< mh125_sigmaerr << " - "<< mh125_sigmaerr  << std::endl;   
+	//sigma->Print();
+      }
       else{
-          std::cout<<"Constraints set on sigmas of "<<ng-1<<" gaussians of this model"<<std::endl;
-         break;
-        }
-       
-       RooRealVar* dm = (RooRealVar*)formulaMean->find(Form("dm_mh%d_g%d",mh,ng ));
+	std::cout<<"Constraints set on sigmas of "<<ng-1<<" gaussians of this model"<<std::endl;
+	break;
+      }
+	
+      RooRealVar* dm = (RooRealVar*)formulaMean->find(Form("dm_mh%d_g%d",mh,ng ));
       if(dm!=NULL){
-         //dm->Print();
-         float mh125_dm_val = ((RooRealVar*)fitRes125->floatParsFinal().find(  Form("dm_mh125_g%d",ng )  ))->getVal();
-         float mh125_dmerr =((RooRealVar*)fitRes125->floatParsFinal().find(  Form("dm_mh125_g%d",ng ))) ->getError() ;
-         //if (mh125_dmerr >3.0) { mh125_dmerr=3.0 ;}
-         dm->setVal( mh125_dm_val );
-         //dm->setRange( mh125_dm_val - n_sigma_constraint*mh125_dmerr ,  mh125_dm_val + n_sigma_constraint*mh125_dmerr);
-         float allowedRange = n_sigma_constraint*mh125_dmerr;
-         if (n_sigma_constraint*mh125_dmerr > 0.05* mh125_dm_val) {allowedRange= 0.05* mh125_dm_val;}
-
-         dm->setRange( TMath::Max(mh125_dm_val - allowedRange,dm->getMin()) ,TMath::Min(mh125_dm_val + allowedRange,dm->getMax()));
-         // std::cout <<" [INFO] MH " << mh << ": fit params dm for gaussian_"<< ng << " set to be 125 value " << mh125_dm_val << " + "<< mh125_dmerr << " - "<< mh125_dmerr  << std::endl;   
-         //dm->Print();
-        }
+	//dm->Print();
+	float mh125_dm_val = ((RooRealVar*)fitRes125->floatParsFinal().find(  Form("dm_mh125_g%d",ng )  ))->getVal();
+	float mh125_dmerr =((RooRealVar*)fitRes125->floatParsFinal().find(  Form("dm_mh125_g%d",ng ))) ->getError() ;
+	//if (mh125_dmerr >3.0) { mh125_dmerr=3.0 ;}
+	dm->setVal( mh125_dm_val );
+	//dm->setRange( mh125_dm_val - n_sigma_constraint*mh125_dmerr ,  mh125_dm_val + n_sigma_constraint*mh125_dmerr);
+	float allowedRange = n_sigma_constraint*mh125_dmerr;
+	if (n_sigma_constraint*mh125_dmerr > 0.05* mh125_dm_val) {allowedRange= 0.05* mh125_dm_val;}
+	  
+	dm->setRange( TMath::Max(mh125_dm_val - allowedRange,dm->getMin()) ,TMath::Min(mh125_dm_val + allowedRange,dm->getMax()));
+	// std::cout <<" [INFO] MH " << mh << ": fit params dm for gaussian_"<< ng << " set to be 125 value " << mh125_dm_val << " + "<< mh125_dmerr << " - "<< mh125_dmerr  << std::endl;   
+	//dm->Print();
+      }
       else{
-          std::cout<<"Constraints set on dms of "<<ng-1<<" gaussians of this model"<<std::endl;
-         break;
-        }
-       
-       
-       RooRealVar* frac = (RooRealVar*)formulaMean->find(Form("frac_mh%d_g%d",mh,ng ));
+	std::cout<<"Constraints set on dms of "<<ng-1<<" gaussians of this model"<<std::endl;
+	break;
+      }
+	
+	
+      RooRealVar* frac = (RooRealVar*)formulaMean->find(Form("frac_mh%d_g%d",mh,ng ));
       if(frac!=NULL){
-          //frac->Print();
-         float mh125_frac_val = ((RooRealVar*)fitRes125->floatParsFinal().find(  Form("frac_mh125_g%d",ng )  ))->getVal();
-         float mh125_fracerr =((RooRealVar*)fitRes125->floatParsFinal().find(  Form("frac_mh125_g%d",ng ))) ->getError() ;
-         if (mh125_fracerr >0.5) { mh125_fracerr=.5 ;}
-         frac->setVal( mh125_frac_val );
-         //frac->setRange( mh125_frac_val - n_sigma_constraint*mh125_fracerr ,  mh125_frac_val + n_sigma_constraint*mh125_fracerr);
-         float allowedRange = n_sigma_constraint*mh125_fracerr;
-         if (n_sigma_constraint*mh125_fracerr > 0.05* mh125_frac_val) {allowedRange= 0.05* mh125_frac_val;}
-         frac->setRange( TMath::Max(mh125_frac_val - allowedRange,frac->getMin()) ,TMath::Min(mh125_frac_val + allowedRange,frac->getMax()));
-          //std::cout <<"[INFO] MH " << mh << ": fit params frac for gaussian_"<< ng << " set to be 125 value " << mh125_frac_val << " + "<< mh125_fracerr << " - "<< mh125_fracerr  << std::endl;   
-         //frac->Print();
-        }
+	//frac->Print();
+	float mh125_frac_val = ((RooRealVar*)fitRes125->floatParsFinal().find(  Form("frac_mh125_g%d",ng )  ))->getVal();
+	float mh125_fracerr =((RooRealVar*)fitRes125->floatParsFinal().find(  Form("frac_mh125_g%d",ng ))) ->getError() ;
+	if (mh125_fracerr >0.5) { mh125_fracerr=.5 ;}
+	frac->setVal( mh125_frac_val );
+	//frac->setRange( mh125_frac_val - n_sigma_constraint*mh125_fracerr ,  mh125_frac_val + n_sigma_constraint*mh125_fracerr);
+	float allowedRange = n_sigma_constraint*mh125_fracerr;
+	if (n_sigma_constraint*mh125_fracerr > 0.05* mh125_frac_val) {allowedRange= 0.05* mh125_frac_val;}
+	frac->setRange( TMath::Max(mh125_frac_val - allowedRange,frac->getMin()) ,TMath::Min(mh125_frac_val + allowedRange,frac->getMax()));
+	//std::cout <<"[INFO] MH " << mh << ": fit params frac for gaussian_"<< ng << " set to be 125 value " << mh125_frac_val << " + "<< mh125_fracerr << " - "<< mh125_fracerr  << std::endl;   
+	//frac->Print();
+      }
       else{
-          std::cout<<"Constraints set on fracs of "<<ng-1<<" gaussians of this model"<<std::endl;
-         break;
-        }
-           }
-     
-            
-      //      RooArgSet* actualvars = formulaMean->getComponents();
-     //      TIterator* iterFormula = actualvars->createIterator();
-     //      RooAbsReal* nextVar = (RooAbsReal*)iterFormula->Next();
-     //      while(nextVar){
-      //  nextVar->Print();
-     // nextVar = (RooAbsReal*)iterFormula->Next();
-     //  
-        //      }
+	std::cout<<"Constraints set on fracs of "<<ng-1<<" gaussians of this model"<<std::endl;
+	break;
+      }
+    }
+      
+      
+    //      RooArgSet* actualvars = formulaMean->getComponents();
+    //      TIterator* iterFormula = actualvars->createIterator();
+    //      RooAbsReal* nextVar = (RooAbsReal*)iterFormula->Next();
+    //      while(nextVar){
+    //  nextVar->Print();
+    // nextVar = (RooAbsReal*)iterFormula->Next();
+    //  
+    //      }
     //      nextg = (RooGaussian*)iter->Next();
     //    }
-
-
-
+      
+      
+      
     RooAbsData *data;
     if (binnedFit_){
       data = datasets[mh]->binnedClone();
@@ -337,8 +340,8 @@ void InitialFit::runFits(int ncpu){
       mass->setVal(mh);
       data->add(RooArgSet(*mass),1.e-5);
     }
-    //fitModel->Print();
-    //data->Print();
+    fitModel->Print();
+    data->Print();
     RooFitResult *fitRes;
     mass->setBins(bins_);
     verbosity_ >=3 ?
@@ -348,7 +351,7 @@ void InitialFit::runFits(int ncpu){
       fitRes = fitModel->fitTo(*data,NumCPU(ncpu),RooFit::Minimizer("Minuit","minimize"),SumW2Error(true),Save(true),PrintLevel(-1),PrintEvalErrors(-1));
     fitResults.insert(pair<int,RooFitResult*>(mh,fitRes));
     mass->setBins(160); //return to default 
-    }
+  }
 }
 
 void InitialFit::setFitParams(std::map<int,std::map<std::string,RooRealVar*> >& pars )
@@ -368,7 +371,7 @@ void InitialFit::setFitParams(std::map<int,std::map<std::string,RooRealVar*> >& 
 
 
 void InitialFit::plotFits(string name, string rvwv){
-
+  
   TCanvas *canv = new TCanvas();
   RooPlot *plot = mass->frame(Range(mhLow_-10,mhHigh_+10));
   TPaveText *pt = new TPaveText(.65,.6,.97,.95,"NDC");
@@ -387,8 +390,8 @@ void InitialFit::plotFits(string name, string rvwv){
     //RooDataHist *data = datasets[mh]->binnedClone();
     //data->plotOn(plot,Binning(160),MarkerColor(kBlue+10*i));
     if (i>  colorList.size() ){
-    std::cout << "ERROR you need to add more colors in InitialFit::plotFits because you have a lot of mH points!" << std::endl;
-    exit(1);
+      std::cout << "ERROR you need to add more colors in InitialFit::plotFits because you have a lot of mH points!" << std::endl;
+      exit(1);
     }
     data->plotOn(plot,MarkerColor(colorList[i]));
     fitModel->plotOn(plot,LineColor(colorList[i]));

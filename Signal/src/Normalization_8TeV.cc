@@ -24,12 +24,14 @@ int Normalization_8TeV::Init(int sqrtS){
     TPython::Eval(Form("buildSMHiggsSignalXSBR.Init%dTeV()", sqrtS));
     
     for (double mH=120;mH<=135.0;mH+=0.1){ // Do we need this up to 250 ?
-	double valBR    =  (double)TPython::Eval(Form("buildSMHiggsSignalXSBR.getBR(%f)",mH));
-	double valXSggH =  (double)TPython::Eval(Form("buildSMHiggsSignalXSBR.getXS(%f,'%s')",mH,"ggH"));
-	double valXSqqH =  (double)TPython::Eval(Form("buildSMHiggsSignalXSBR.getXS(%f,'%s')",mH,"qqH"));
-	double valXSttH =  (double)TPython::Eval(Form("buildSMHiggsSignalXSBR.getXS(%f,'%s')",mH,"ttH"));
-	double valXSWH  =  (double)TPython::Eval(Form("buildSMHiggsSignalXSBR.getXS(%f,'%s')",mH,"WH"));
-	double valXSZH  =  (double)TPython::Eval(Form("buildSMHiggsSignalXSBR.getXS(%f,'%s')",mH,"ZH"));
+
+	double valBR    =  (double)TPython::Eval(Form("buildSMHiggsSignalXSBR.getBR(%f)",125.0));
+	double valXSggH =  (double)TPython::Eval(Form("buildSMHiggsSignalXSBR.getXS(%f,'%s')",125.0,"ggH"));
+	double valXSqqH =  (double)TPython::Eval(Form("buildSMHiggsSignalXSBR.getXS(%f,'%s')",125.0,"qqH"));
+	double valXSttH =  (double)TPython::Eval(Form("buildSMHiggsSignalXSBR.getXS(%f,'%s')",125.0,"ttH"));
+	double valXSWH  =  (double)TPython::Eval(Form("buildSMHiggsSignalXSBR.getXS(%f,'%s')",125.0,"WH"));
+	double valXSZH  =  (double)TPython::Eval(Form("buildSMHiggsSignalXSBR.getXS(%f,'%s')",125.0,"ZH"));
+
 	BranchingRatioMap[mH]	= valBR;
         XSectionMap_ggh[mH]	= valXSggH; 	
         XSectionMap_vbf[mH]	= valXSqqH; 	
@@ -37,13 +39,48 @@ int Normalization_8TeV::Init(int sqrtS){
         XSectionMap_wh[mH]	= valXSWH; 	
         XSectionMap_zh[mH]	= valXSZH;	
         XSectionMap_wzh[mH]	= valXSWH+valXSZH;	
-	
+
+	XSectionMap_higgs[mH]	= valXSWH+valXSZH+valXSttH+valXSqqH+valXSggH;		
+
+	// double valBR    =  (double)TPython::Eval(Form("buildSMHiggsSignalXSBR.getBR(%f)",mH));
+	// double valXSggH =  (double)TPython::Eval(Form("buildSMHiggsSignalXSBR.getXS(%f,'%s')",mH,"ggH"));
+	// double valXSqqH =  (double)TPython::Eval(Form("buildSMHiggsSignalXSBR.getXS(%f,'%s')",mH,"qqH"));
+	// double valXSttH =  (double)TPython::Eval(Form("buildSMHiggsSignalXSBR.getXS(%f,'%s')",mH,"ttH"));
+	// double valXSWH  =  (double)TPython::Eval(Form("buildSMHiggsSignalXSBR.getXS(%f,'%s')",mH,"WH"));
+	// double valXSZH  =  (double)TPython::Eval(Form("buildSMHiggsSignalXSBR.getXS(%f,'%s')",mH,"ZH"));
+	// BranchingRatioMap[mH]	= valBR;
+        // XSectionMap_ggh[mH]	= valXSggH; 	
+        // XSectionMap_vbf[mH]	= valXSqqH; 	
+        // XSectionMap_tth[mH]	= valXSttH; 	
+        // XSectionMap_wh[mH]	= valXSWH; 	
+        // XSectionMap_zh[mH]	= valXSZH;	
+        // XSectionMap_wzh[mH]	= valXSWH+valXSZH;	
+
+
+
+	// double valBR_125    =  (double)TPython::Eval(Form("buildSMHiggsSignalXSBR.getBR(%f)",125));
+	// double valXSggH_125  =  (double)TPython::Eval(Form("buildSMHiggsSignalXSBR.getXS(%f,'%s')",125,"ggH"));
+	// double valXSqqH_125  =  (double)TPython::Eval(Form("buildSMHiggsSignalXSBR.getXS(%f,'%s')",125,"qqH"));
+	// double valXSttH_125  =  (double)TPython::Eval(Form("buildSMHiggsSignalXSBR.getXS(%f,'%s')",125,"ttH"));
+	// double valXSWH_125   =  (double)TPython::Eval(Form("buildSMHiggsSignalXSBR.getXS(%f,'%s')",125,"WH"));
+	// double valXSZH_125   =  (double)TPython::Eval(Form("buildSMHiggsSignalXSBR.getXS(%f,'%s')",125,"ZH"));
+
+	// BranchingRatioMap_125[mH]	= valBR_125;
+        // XSectionMap_ggh_125[mH]	= valXSggH_125; 	
+        // XSectionMap_vbf_125[mH]	= valXSqqH_125; 	
+        // XSectionMap_tth_125[mH]	= valXSttH_125; 	
+        // XSectionMap_wh_125[mH]	= valXSWH_125; 	
+        // XSectionMap_zh_125[mH]	= valXSZH_125;	
+        // XSectionMap_wzh_125[mH]	= valXSWH_125+valXSZH_125;	
+
+	// XSectionMap_higgs[mH]	= valXSWH_125+valXSZH_125+valXSttH_125+valXSqqH_125+valXSggH_125;		
+
     }
 
     //Graviton X-Sections - assume the same as SM
     for (std::map<double, double>::const_iterator iter = XSectionMap_ggh.begin(); iter != XSectionMap_ggh.end(); ++iter)
       XSectionMap_sm[iter->first]=iter->second+XSectionMap_vbf[iter->first]+XSectionMap_wzh[iter->first]+XSectionMap_tth[iter->first];
- return 1;
+    return 1;
 }
 
 
@@ -150,12 +187,20 @@ TGraph * Normalization_8TeV::GetSigmaGraph(TString process)
 		XSectionMap = &XSectionMap_wzh;
 	} else if ( process == "tth") {
 		XSectionMap = &XSectionMap_tth;
-	} else if ( process == "wh") {
-		XSectionMap = &XSectionMap_wh;
+		//} else if ( process == "wh") {
+		//		XSectionMap = &XSectionMap_wh;
 	} else if ( process == "zh") {
 		XSectionMap = &XSectionMap_zh;
 	} else if (process.Contains("grav")){
 		XSectionMap = &XSectionMap_sm;
+	} else if (process.Contains("higgs")){
+		XSectionMap = &XSectionMap_higgs;
+	} else if (process.Contains("sig")){
+		XSectionMap = &XSectionMap_higgs;
+	} else if (process.Contains("sms")){
+		XSectionMap = &XSectionMap_higgs;
+	} else if (process.Contains("SMS")){
+		XSectionMap = &XSectionMap_higgs;
 	} else {
 		std::cout << "[WARNING] Warning ggh, vbf, wh, zh, wzh, tth or grav not found in histname!!!!" << std::endl;
 		//exit(1);
@@ -202,6 +247,31 @@ double Normalization_8TeV::GetBR(double mass) {
 }
 
 
+// double Normalization_8TeV::GetBR_SUSY(double mass) {
+
+// 	for (std::map<double, double>::const_iterator iter = BranchingRatioMap_125.begin();  iter != BranchingRatioMap_125.end(); ++iter) {
+// 		if (mass==iter->first) return iter->second;
+// 		if (mass>iter->first) {
+// 			double lowmass = iter->first;
+// 			double lowbr = iter->second;
+// 			++iter;
+// 			if (mass<iter->first) {
+// 				double highmass = iter->first;
+// 				double highbr = iter->second;
+// 				double br = (highbr-lowbr)/(highmass-lowmass)*(mass-lowmass)+lowbr;
+// 				return br;
+// 			}
+// 			--iter;
+// 		}
+// 	}
+
+// 	std::cout << "[WARNING] Warning branching ratio outside range of 90-250GeV!!!!" << std::endl;
+// 	//std::exit(1);
+// 	return -1;
+
+// }
+
+
 double Normalization_8TeV::GetXsection(double mass, TString HistName) {
 
 	std::map<double,double> *XSectionMap;
@@ -212,8 +282,8 @@ double Normalization_8TeV::GetXsection(double mass, TString HistName) {
 		XSectionMap = &XSectionMap_vbf;
 	} else if (HistName.Contains("vbfold")) {
 		XSectionMap = &XSectionMap_vbfold;
-	} else if (HistName.Contains("wh") && !HistName.Contains("wzh")) {
-		XSectionMap = &XSectionMap_wh;
+		//	} else if (HistName.Contains("wh") && !HistName.Contains("wzh")) {
+		//		XSectionMap = &XSectionMap_wh;
 	} else if (HistName.Contains("zh") && !HistName.Contains("wzh")) {
 		XSectionMap = &XSectionMap_zh;
 	} else if (HistName.Contains("wzh")) {
@@ -222,8 +292,16 @@ double Normalization_8TeV::GetXsection(double mass, TString HistName) {
 		XSectionMap = &XSectionMap_tth;
 	} else if (HistName.Contains("grav")) {
 		XSectionMap = &XSectionMap_sm;
+	} else if (HistName.Contains("higgs")) {
+		XSectionMap = &XSectionMap_higgs;
+	} else if (HistName.Contains("sig")) {
+		XSectionMap = &XSectionMap_higgs;
+	} else if (HistName.Contains("sms")) {
+		XSectionMap = &XSectionMap_higgs;
+	} else if (HistName.Contains("SMS")) {
+		XSectionMap = &XSectionMap_higgs;
 	} else {
-		std::cout << "[WARNING] Warning ggh, vbf, wh, zh, wzh, tth or grav not found in " << HistName << std::endl;
+		std::cout << "[WARNING] Warning ggh, vbf, wh, zh, wzh, tth or grav not found in name= " << HistName << std::endl;
 		//exit(1);
 	}
 
@@ -268,6 +346,9 @@ TString Normalization_8TeV::GetProcess(int ty){
 		else if (process == 600) return "gg_grav";
 		else if (process == 610) return "gg_spin0";
 		else if (process == 650) return "qq_grav";
+		else if (process == 700) return "higgs";
+		else if (process == 1001) return "sms";
+		else if (process == 1001) return "sig";
 		else {
 			std::cout << "[ERROR] Error -- No signal process known " << process << std::endl;
 			assert(0);

@@ -24,6 +24,7 @@ class Normalization_8TeV {
 	int Init(int sqrtS);
 	
 	double GetBR(double);
+	//	double GetBR_SUSY(double);
 	// double GetBR(int);
 	double GetXsection(double,TString);
 	double GetXsection(double);
@@ -52,6 +53,7 @@ class Normalization_8TeV {
 	std::map<double,double> XSectionMap_wzh;
 	std::map<double,double> XSectionMap_tth;
   	std::map<double,double> XSectionMap_sm;
+  	std::map<double,double> XSectionMap_higgs;
 
 	std::map<int,std::pair<TString,double > > SignalTypeMap;
 	

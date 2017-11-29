@@ -6,7 +6,7 @@
 ###############################################################################
 ## IMPORTS ####################################################################
 ###############################################################################
-import os,sys,copy,math
+import os,sys,copy,math,re
 ###############################################################################
 
 ###############################################################################
@@ -30,37 +30,48 @@ class WSTFileWrapper:
    #self.wsList = [] #workspace list
 
    def __init__(self, files,wsname):
-    self.fnList = files.split(",") # [1]       
-    self.fileList = []
-    self.wsList = [] #now list of ws names...
+      self.fnList = files.split(",") # [1]       
+      self.fileList = []
+      self.wsList = [] #now list of ws names...
     #print files
-    for fn in self.fnList: # [2]
-        f = r.TFile.Open(fn) 
-        self.fileList.append(f)
-        thing = f.Get(wsname)
-        self.wsList.append(self.fileList[-1].Get(wsname))
-        f.Close()
+      for fn in self.fnList: # [2]
+         f = r.TFile.Open(fn) 
+         self.fileList.append(f)
+         thing = f.Get(wsname)
+         self.wsList.append(self.fileList[-1].Get(wsname))
+         f.Close()
 
    def data(self,dataName):
-        result = None
-        complained_yet =0 
-        for i in range(len(self.fnList)):
-          this_result_obj = self.wsList[i].data(dataName);
-          if ( result and this_result_obj and (not complained_yet) ):
+      result = None
+      complained_yet =0 
+      for i in range(len(self.fnList)):
+         this_result_obj = self.wsList[i].data(dataName);
+         if ( result and this_result_obj and (not complained_yet) ):
             complained_yet = true;
-          if this_result_obj: # [3]
-             result = this_result_obj
-        return result 
+            if this_result_obj: # [3]
+               result = this_result_obj
+               return result 
+   
+   def pdf(self,dataName):
+      result = None
+      complained_yet =0 
+      for i in range(len(self.fnList)):
+         this_result_obj = self.wsList[i].pdf(dataName);
+         if ( result and this_result_obj and (not complained_yet) ):
+            complained_yet = true;
+            if this_result_obj: # [3]
+               result = this_result_obj
+               return result 
    
    def var(self,varName):
-        result = None
-        complained_yet =0 
-        for i in range(len(self.fnList)):
-          this_result_obj = self.wsList[i].var(varName);
-          if this_result_obj: # [3]
-             result = this_result_obj
-                
-        return result 
+      result = None
+      complained_yet =0 
+      for i in range(len(self.fnList)):
+         this_result_obj = self.wsList[i].var(varName);
+         if this_result_obj: # [3]
+            result = this_result_obj
+            
+            return result 
 
 
 ###############################################################################
@@ -74,7 +85,13 @@ parser = OptionParser()
 parser.add_option("-i","--infilename", help="Input file (binned signal from flashgg)")
 parser.add_option("-o","--outfilename",default="cms_hgg_datacard.txt",help="Name of card to print (default: %default)")
 parser.add_option("-p","--procs",default="ggh,vbf,wh,zh,tth",help="String list of procs (default: %default)")
-parser.add_option("-c","--cats",default="UntaggedTag_0,UntaggedTag_1,UntaggedTag_2,UntaggedTag_3,UntaggedTag_4,VBFTag_0,VBFTag_1,VBFTag_2",help="Flashgg Categories (default: %default)")
+#parser.add_option("-c","--cats",default="is1El_pT1,is1Mu_pT1,is1El_pT0,is1Mu_pT0,diLepZ,diBBZ_pT0,diBBZ_pT1,diBBH_pT0,diBBH_pT1,HT0toInf_j1to3_b0_pT0_loMT2,HT0toInf_j1to3_b0_pT0_hiMT2,HT0toInf_j1to3_b0_pT1_loMT2,HT0toInf_j1to3_b0_pT1_hiMT2,HT0toInf_j1to3_b1_pT0_loMT2,HT0toInf_j1to3_b1_pT0_hiMT2,HT0toInf_j1to3_b1_pT1_loMT2,HT0toInf_j1to3_b1_pT1_hiMT2,HT0toInf_j4toInf_b0_pT0_loMT2,HT0toInf_j4toInf_b0_pT0_hiMT2,HT0toInf_j4toInf_b0_pT1_loMT2,HT0toInf_j4toInf_b0_pT1_hiMT2,HT0toInf_j4toInf_b1_pT0_loMT2,HT0toInf_j4toInf_b1_pT0_hiMT2,HT0toInf_j4toInf_b1_pT1_loMT2,HT0toInf_j4toInf_b1_pT1_hiMT2,HT0toInf_j0_b0toInf_pT0_loPt,HT0toInf_j0_b0toInf_pT0_hiPt,HT0toInf_j0_b0toInf_pT1_loPt,HT0toInf_j0_b0toInf_pT1_hiPt,HT0toInf_j1to3_b2toInf_pT0_loMT2,HT0toInf_j1to3_b2toInf_pT0_hiMT2,HT0toInf_j1to3_b2toInf_pT1,HT0toInf_j4toInf_b2toInf_pT0,HT0toInf_j4toInf_b2toInf_pT1",help="Flashgg Categories (default: %default)")
+
+parser.add_option("-c","--cats",default="HT0toInf_j0_b0toInf_pT0,HT0toInf_j0_b0toInf_pT1,HT0toInf_j1to3_b0_pT0,HT0toInf_j1to3_b0_pT1,HT0toInf_j4toInf_b0_pT0,HT0toInf_j4toInf_b0_pT1,HT0toInf_j1to3_b1_pT0,HT0toInf_j1to3_b1_pT1,HT0toInf_j1to3_b2toInf_pT0,HT0toInf_j1to3_b2toInf_pT1,HT0toInf_j4toInf_b1_pT0,HT0toInf_j4toInf_b1_pT1,HT0toInf_j4toInf_b2toInf_pT0,HT0toInf_j4toInf_b2toInf_pT1",help="Flashgg Categories (default: %default)")
+
+#parser.add_option("-c","--cats",default="is1El_pT0,is1Mu_pT0,is1El_pT1,is1Mu_pT1,diBBH_pT0,diBBH_pT1,diBBZ_pT0,diBBZ_pT1,diLepZ,HT0toInf_j0_b0toInf_pT0,HT0toInf_j0_b0toInf_pT1,HT0toInf_j1to3_b0_pT0,HT0toInf_j1to3_b0_pT1,HT0toInf_j4toInf_b0_pT0,HT0toInf_j4toInf_b0_pT1,HT0toInf_j1to3_b1_pT0,HT0toInf_j1to3_b1_pT1,HT0toInf_j1to3_b2toInf_pT0,HT0toInf_j1to3_b2toInf_pT1,HT0toInf_j4toInf_b1_pT0,HT0toInf_j4toInf_b1_pT1,HT0toInf_j4toInf_b2toInf_pT0,HT0toInf_j4toInf_b2toInf_pT1",help="Flashgg Categories (default: %default)")
+
+#parser.add_option("-c","--cats",default="UntaggedTag_0,UntaggedTag_1,UntaggedTag_2,UntaggedTag_3,UntaggedTag_4,VBFTag_0,VBFTag_1,VBFTag_2",help="Flashgg Categories (default: %default)")
 parser.add_option("--batch",default="LSF",help="Batch system  (default: %default)")
 parser.add_option("--photonCatScales",default="HighR9EE,LowR9EE,HighR9EB,LowR9EB",help="String list of photon scale nuisance names - WILL NOT correlate across years (default: %default)")
 parser.add_option("--photonCatScalesCorr",default="MaterialCentral,MaterialForward,FNUFEE,FNUFEB,ShowerShapeHighR9EE,ShowerShapeHighR9EB,ShowerShapeLowR9EE,ShowerShapeLowR9EB",help="String list of photon scale nuisance names - WILL correlate across years (default: %default)")
@@ -96,7 +113,7 @@ parser.add_option("--intLumi",type="float",default=3.71,help="Integrated Lumi (d
 (options,args)=parser.parse_args()
 allSystList=[]
 if options.submitSelf :
-  options.justThisSyst="batch_split"
+   options.justThisSyst="batch_split"
 if (options.theoryNormFactors != ""):
    #import options.theoryNormFactors as th_norm
    print "[INFO] IMPORTING theory norm factors ", options.theoryNormFactors
@@ -115,16 +132,74 @@ outFile = open(options.outfilename,'w')
 ## PROCS HANDLING & DICT ######################################################
 ###############################################################################
 # convert flashgg style to combine style process
-combProc = {'ggH':'ggH_hgg','VBF':'qqH_hgg','ggh':'ggH_hgg','vbf':'qqH_hgg','wzh':'VH','wh':'WH_hgg','zh':'ZH_hgg','tth':'ttH_hgg','bkg_mass':'bkg_mass','gg_grav':'ggH_hgg_ALT','qq_grav':'qqbarH_ALT'}
-flashggProc = {'ggH_hgg':'ggh','qqH_hgg':'vbf','VH':'wzh','WH_hgg':'wh','ZH_hgg':'zh','ttH_hgg':'tth','bkg_mass':'bkg_mass','ggH_hgg_ALT':'gg_grav','qqbarH_ALT':'qq_grav'}
-procId = {'ggH_hgg':0,'qqH_hgg':-1,'VH':-2,'WH_hgg':-2,'ZH_hgg':-3,'ttH_hgg':-4,'ggH_hgg_ALT':-5,'qqbarH_ALT':-6,'bkg_mass':1}
+##combProc = {'ggH':'ggH_hgg','VBF':'qqH_hgg','ggh':'ggH_hgg','vbf':'qqH_hgg','wzh':'VH','wh':'WH_hgg','zh':'ZH_hgg','tth':'ttH_hgg','bkg_mass':'bkg_mass','gg_grav':'ggH_hgg_ALT','qq_grav':'qqbarH_ALT','higgs':'higgs'}
+##flashggProc = {'ggH_hgg':'ggh','qqH_hgg':'vbf','VH':'wzh','WH_hgg':'wh','ZH_hgg':'zh','ttH_hgg':'tth','bkg_mass':'bkg_mass','ggH_hgg_ALT':'gg_grav','qqbarH_ALT':'qq_grav','higgs':'higgs','sig':'sig'}
+##procId = {'ggH_hgg':0,'qqH_hgg':-1,'VH':-2,'WH_hgg':-2,'ZH_hgg':-3,'ttH_hgg':-4,'ggH_hgg_ALT':-5,'qqbarH_ALT':-6,'bkg_mass':1,'higgs':1}
+
+
+
+
+
+
+
+# for f in {"SMS_TChiHZ_HToGG_m127","SMS_TChiHZ_HToGG_m150","SMS_TChiHZ_HToGG_m175","SMS_TChiHZ_HToGG_m200","SMS_TChiHZ_HToGG_m225","SMS_TChiHZ_HToGG_m250","SMS_TChiHZ_HToGG_m275","SMS_TChiHZ_HToGG_m300","SMS_TChiHZ_HToGG_m325","SMS_TChiHZ_HToGG_m350","SMS_TChiHZ_HToGG_m375","SMS_TChiHZ_HToGG_m400","SMS_TChiHZ_HToGG_m425","SMS_TChiHZ_HToGG_m450","SMS_TChiHZ_HToGG_m475","SMS_TChiHZ_HToGG_m500","SMS_TChiHZ_HToGG_m525","SMS_TChiHZ_HToGG_m550","SMS_TChiHZ_HToGG_m575","SMS_TChiHZ_HToGG_m600","SMS_TChiHZ_HToGG_m625","SMS_TChiHZ_HToGG_m650","SMS_TChiHZ_HToGG_m675","SMS_TChiHZ_HToGG_m700","SMS_TChiHZ_HToGG_m725","SMS_TChiHZ_HToGG_m750","SMS_TChiHZ_HToGG_m775","SMS_TChiHZ_HToGG_m800","SMS_TChiHZ_HToGG_m825","SMS_TChiHZ_HToGG_m850","SMS_TChiHZ_HToGG_m875","SMS_TChiHZ_HToGG_m900","SMS_TChiHZ_HToGG_m925","SMS_TChiHZ_HToGG_m950","SMS_TChiHZ_HToGG_m1000"}; do ./makeParametricModelDatacardFLASHgg.py  -i /shome/mschoene/9_2_4_gg/src/myMT2Analysis/analysis/EventYields_data_diPhoton_Oct15_HZmix/WS/ws_SMS_TChiHZ_HToGG.root -o dataCards_TChi_oct15_HZmix/Datacard_13TeV_$f.txt -p $f,higgs -c  HT0toInf_j0_b0toInf_pT0,HT0toInf_j0_b0toInf_pT1,HT0toInf_j1to3_b0_pT0,HT0toInf_j1to3_b0_pT1,HT0toInf_j4toInf_b0_pT0,HT0toInf_j4toInf_b0_pT1,HT0toInf_j1to3_b1_pT0,HT0toInf_j1to3_b1_pT1,HT0toInf_j4toInf_b1toInf_pT0,HT0toInf_j4toInf_b1toInf_pT1,HT0toInf_j1to3_b2toInf_pT0,HT0toInf_j1to3_b2toInf_pT1  --isMultiPdf --mass 125 --intLumi 0.0359  ; done
+
+
+
+
+
+# for f in {"SMS_TChiHH_HToGG_m127","SMS_TChiHH_HToGG_m150","SMS_TChiHH_HToGG_m175","SMS_TChiHH_HToGG_m200","SMS_TChiHH_HToGG_m225","SMS_TChiHH_HToGG_m250","SMS_TChiHH_HToGG_m275","SMS_TChiHH_HToGG_m300","SMS_TChiHH_HToGG_m325","SMS_TChiHH_HToGG_m350","SMS_TChiHH_HToGG_m375","SMS_TChiHH_HToGG_m400","SMS_TChiHH_HToGG_m425","SMS_TChiHH_HToGG_m450","SMS_TChiHH_HToGG_m475","SMS_TChiHH_HToGG_m500","SMS_TChiHH_HToGG_m525","SMS_TChiHH_HToGG_m550","SMS_TChiHH_HToGG_m575","SMS_TChiHH_HToGG_m600","SMS_TChiHH_HToGG_m625","SMS_TChiHH_HToGG_m650","SMS_TChiHH_HToGG_m675","SMS_TChiHH_HToGG_m700","SMS_TChiHH_HToGG_m725","SMS_TChiHH_HToGG_m750","SMS_TChiHH_HToGG_m775","SMS_TChiHH_HToGG_m800","SMS_TChiHH_HToGG_m825","SMS_TChiHH_HToGG_m850","SMS_TChiHH_HToGG_m875","SMS_TChiHH_HToGG_m900","SMS_TChiHH_HToGG_m925","SMS_TChiHH_HToGG_m950","SMS_TChiHH_HToGG_m975","SMS_TChiHH_HToGG_m1000"}; do ./makeParametricModelDatacardFLASHgg.py  -i /shome/mschoene/9_2_4_gg/src/myMT2Analysis/analysis/EventYields_data_diPhoton_Oct04_MT2bin/WS/ws_SMS_TChiHH_HToGG.root -o dataCards_TChiHH_oct04_mt2bin/Datacard_13TeV_$f.txt -p $f,higgs       -c  HT0toInf_j1to3_b0_pT0_loMT2,HT0toInf_j1to3_b0_pT0_hiMT2,HT0toInf_j1to3_b0_pT1_loMT2,HT0toInf_j1to3_b0_pT1_hiMT2,HT0toInf_j1to3_b1_pT0_loMT2,HT0toInf_j1to3_b1_pT0_hiMT2,HT0toInf_j1to3_b1_pT1_loMT2,HT0toInf_j1to3_b1_pT1_hiMT2,HT0toInf_j4toInf_b0_pT0_loMT2,HT0toInf_j4toInf_b0_pT0_hiMT2,HT0toInf_j4toInf_b0_pT1_loMT2,HT0toInf_j4toInf_b0_pT1_hiMT2,HT0toInf_j0_b0toInf_pT0_loPt,HT0toInf_j0_b0toInf_pT0_hiPt,HT0toInf_j0_b0toInf_pT1_loPt,HT0toInf_j0_b0toInf_pT1_hiPt,HT0toInf_j1to3_b2toInf_pT0_loMT2,HT0toInf_j1to3_b2toInf_pT0_hiMT2,HT0toInf_j1to3_b2toInf_pT1,HT0toInf_j4toInf_b1toInf_pT0_loMT2,HT0toInf_j4toInf_b1toInf_pT0_hiMT2,HT0toInf_j4toInf_b1toInf_pT1_loMT2,HT0toInf_j4toInf_b1toInf_pT1_hiMT2    --isMultiPdf --mass 125 --intLumi 0.0359  ; done
+
+
+
+# for f in {"SMS_T2bH_mSbottom250_mLSP100","SMS_T2bH_mSbottom250_mLSP1","SMS_T2bH_mSbottom250_mLSP50","SMS_T2bH_mSbottom300_mLSP100","SMS_T2bH_mSbottom300_mLSP150","SMS_T2bH_mSbottom300_mLSP1","SMS_T2bH_mSbottom300_mLSP50","SMS_T2bH_mSbottom350_mLSP100","SMS_T2bH_mSbottom350_mLSP150","SMS_T2bH_mSbottom350_mLSP1","SMS_T2bH_mSbottom350_mLSP200","SMS_T2bH_mSbottom350_mLSP50","SMS_T2bH_mSbottom400_mLSP100","SMS_T2bH_mSbottom400_mLSP150","SMS_T2bH_mSbottom400_mLSP1","SMS_T2bH_mSbottom400_mLSP200","SMS_T2bH_mSbottom400_mLSP250","SMS_T2bH_mSbottom400_mLSP50","SMS_T2bH_mSbottom450_mLSP1","SMS_T2bH_mSbottom450_mLSP100","SMS_T2bH_mSbottom450_mLSP150","SMS_T2bH_mSbottom450_mLSP200","SMS_T2bH_mSbottom450_mLSP250","SMS_T2bH_mSbottom450_mLSP300","SMS_T2bH_mSbottom450_mLSP50","SMS_T2bH_mSbottom500_mLSP100","SMS_T2bH_mSbottom500_mLSP150","SMS_T2bH_mSbottom500_mLSP1","SMS_T2bH_mSbottom500_mLSP200","SMS_T2bH_mSbottom500_mLSP250","SMS_T2bH_mSbottom500_mLSP300","SMS_T2bH_mSbottom500_mLSP50","SMS_T2bH_mSbottom600_mLSP1","SMS_T2bH_mSbottom600_mLSP100","SMS_T2bH_mSbottom600_mLSP200","SMS_T2bH_mSbottom600_mLSP300"}; do   ./makeParametricModelDatacardFLASHgg.py  -i /shome/mschoene/9_2_4_gg/src/myMT2Analysis/analysis/EventYields_data_diPhoton_Oct04_MT2bin/WS/ws_SMS_T2bH_mSbottom.root  -o dataCards_T2bH_oct04_mt2bin/Datacard_13TeV_$f.txt -p $f,higgs -c HT0toInf_j1to3_b0_pT0_loMT2,HT0toInf_j1to3_b0_pT0_hiMT2,HT0toInf_j1to3_b0_pT1_loMT2,HT0toInf_j1to3_b0_pT1_hiMT2,HT0toInf_j1to3_b1_pT0_loMT2,HT0toInf_j1to3_b1_pT0_hiMT2,HT0toInf_j1to3_b1_pT1_loMT2,HT0toInf_j1to3_b1_pT1_hiMT2,HT0toInf_j4toInf_b0_pT0_loMT2,HT0toInf_j4toInf_b0_pT0_hiMT2,HT0toInf_j4toInf_b0_pT1_loMT2,HT0toInf_j4toInf_b0_pT1_hiMT2,HT0toInf_j0_b0toInf_pT0_loPt,HT0toInf_j0_b0toInf_pT0_hiPt,HT0toInf_j0_b0toInf_pT1_loPt,HT0toInf_j0_b0toInf_pT1_hiPt,HT0toInf_j1to3_b2toInf_pT0_loMT2,HT0toInf_j1to3_b2toInf_pT0_hiMT2,HT0toInf_j1to3_b2toInf_pT1,HT0toInf_j1to3_b2toInf_pT1,HT0toInf_j4toInf_b1toInf_pT0_loMT2,HT0toInf_j4toInf_b1toInf_pT0_hiMT2,HT0toInf_j4toInf_b1toInf_pT1_loMT2,HT0toInf_j4toInf_b1toInf_pT1_hiMT2     --isMultiPdf --mass 125 --intLumi 0.0359  ; done
+
+
+
+
+#combProc = {'bkg_mass':'bkg_mass','higgs':'higgs','SMS_TChiHH_HToGG_m1':'SMS_TChiHH_HToGG_m1','SMS_TChiHH_HToGG_m25':'SMS_TChiHH_HToGG_m25','SMS_TChiHH_HToGG_m50':'SMS_TChiHH_HToGG_m50','SMS_TChiHH_HToGG_m75':'SMS_TChiHH_HToGG_m75','SMS_TChiHH_HToGG_m100':'SMS_TChiHH_HToGG_m100','SMS_TChiHH_HToGG_m127':'SMS_TChiHH_HToGG_m127','SMS_TChiHH_HToGG_m150':'SMS_TChiHH_HToGG_m150','SMS_TChiHH_HToGG_m175':'SMS_TChiHH_HToGG_m175','SMS_TChiHH_HToGG_m200':'SMS_TChiHH_HToGG_m200','SMS_TChiHH_HToGG_m225':'SMS_TChiHH_HToGG_m225','SMS_TChiHH_HToGG_m250':'SMS_TChiHH_HToGG_m250','SMS_TChiHH_HToGG_m275':'SMS_TChiHH_HToGG_m275','SMS_TChiHH_HToGG_m300':'SMS_TChiHH_HToGG_m300','SMS_TChiHH_HToGG_m325':'SMS_TChiHH_HToGG_m325','SMS_TChiHH_HToGG_m350':'SMS_TChiHH_HToGG_m350','SMS_TChiHH_HToGG_m375':'SMS_TChiHH_HToGG_m375','SMS_TChiHH_HToGG_m400':'SMS_TChiHH_HToGG_m400','SMS_TChiHH_HToGG_m425':'SMS_TChiHH_HToGG_m425','SMS_TChiHH_HToGG_m450':'SMS_TChiHH_HToGG_m450','SMS_TChiHH_HToGG_m475':'SMS_TChiHH_HToGG_m475','SMS_TChiHH_HToGG_m500':'SMS_TChiHH_HToGG_m500','SMS_TChiHH_HToGG_m525':'SMS_TChiHH_HToGG_m525','SMS_TChiHH_HToGG_m550':'SMS_TChiHH_HToGG_m550','SMS_TChiHH_HToGG_m575':'SMS_TChiHH_HToGG_m575','SMS_TChiHH_HToGG_m600':'SMS_TChiHH_HToGG_m600','SMS_TChiHH_HToGG_m625':'SMS_TChiHH_HToGG_m625','SMS_TChiHH_HToGG_m650':'SMS_TChiHH_HToGG_m650','SMS_TChiHH_HToGG_m675':'SMS_TChiHH_HToGG_m675','SMS_TChiHH_HToGG_m700':'SMS_TChiHH_HToGG_m700','SMS_TChiHH_HToGG_m725':'SMS_TChiHH_HToGG_m725','SMS_TChiHH_HToGG_m750':'SMS_TChiHH_HToGG_m750','SMS_TChiHH_HToGG_m775':'SMS_TChiHH_HToGG_m775','SMS_TChiHH_HToGG_m800':'SMS_TChiHH_HToGG_m800','SMS_TChiHH_HToGG_m825':'SMS_TChiHH_HToGG_m825','SMS_TChiHH_HToGG_m850':'SMS_TChiHH_HToGG_m850','SMS_TChiHH_HToGG_m875':'SMS_TChiHH_HToGG_m875','SMS_TChiHH_HToGG_m900':'SMS_TChiHH_HToGG_m900','SMS_TChiHH_HToGG_m925':'SMS_TChiHH_HToGG_m925','SMS_TChiHH_HToGG_m950':'SMS_TChiHH_HToGG_m950','SMS_TChiHH_HToGG_m975':'SMS_TChiHH_HToGG_m975','SMS_TChiHH_HToGG_m1000':'SMS_TChiHH_HToGG_m1000'}
+#flashggProc = {'bkg_mass':'bkg_mass','higgs':'higgs','SMS_TChiHH_HToGG_m1':'SMS_TChiHH_HToGG_m1','SMS_TChiHH_HToGG_m25':'SMS_TChiHH_HToGG_m25','SMS_TChiHH_HToGG_m50':'SMS_TChiHH_HToGG_m50','SMS_TChiHH_HToGG_m75':'SMS_TChiHH_HToGG_m75','SMS_TChiHH_HToGG_m100':'SMS_TChiHH_HToGG_m100','SMS_TChiHH_HToGG_m127':'SMS_TChiHH_HToGG_m127','SMS_TChiHH_HToGG_m150':'SMS_TChiHH_HToGG_m150','SMS_TChiHH_HToGG_m175':'SMS_TChiHH_HToGG_m175','SMS_TChiHH_HToGG_m200':'SMS_TChiHH_HToGG_m200','SMS_TChiHH_HToGG_m225':'SMS_TChiHH_HToGG_m225','SMS_TChiHH_HToGG_m250':'SMS_TChiHH_HToGG_m250','SMS_TChiHH_HToGG_m275':'SMS_TChiHH_HToGG_m275','SMS_TChiHH_HToGG_m300':'SMS_TChiHH_HToGG_m300','SMS_TChiHH_HToGG_m325':'SMS_TChiHH_HToGG_m325','SMS_TChiHH_HToGG_m350':'SMS_TChiHH_HToGG_m350','SMS_TChiHH_HToGG_m375':'SMS_TChiHH_HToGG_m375','SMS_TChiHH_HToGG_m400':'SMS_TChiHH_HToGG_m400','SMS_TChiHH_HToGG_m425':'SMS_TChiHH_HToGG_m425','SMS_TChiHH_HToGG_m450':'SMS_TChiHH_HToGG_m450','SMS_TChiHH_HToGG_m475':'SMS_TChiHH_HToGG_m475','SMS_TChiHH_HToGG_m500':'SMS_TChiHH_HToGG_m500','SMS_TChiHH_HToGG_m525':'SMS_TChiHH_HToGG_m525','SMS_TChiHH_HToGG_m550':'SMS_TChiHH_HToGG_m550','SMS_TChiHH_HToGG_m575':'SMS_TChiHH_HToGG_m575','SMS_TChiHH_HToGG_m600':'SMS_TChiHH_HToGG_m600','SMS_TChiHH_HToGG_m625':'SMS_TChiHH_HToGG_m625','SMS_TChiHH_HToGG_m650':'SMS_TChiHH_HToGG_m650','SMS_TChiHH_HToGG_m675':'SMS_TChiHH_HToGG_m675','SMS_TChiHH_HToGG_m700':'SMS_TChiHH_HToGG_m700','SMS_TChiHH_HToGG_m725':'SMS_TChiHH_HToGG_m725','SMS_TChiHH_HToGG_m750':'SMS_TChiHH_HToGG_m750','SMS_TChiHH_HToGG_m775':'SMS_TChiHH_HToGG_m775','SMS_TChiHH_HToGG_m800':'SMS_TChiHH_HToGG_m800','SMS_TChiHH_HToGG_m825':'SMS_TChiHH_HToGG_m825','SMS_TChiHH_HToGG_m850':'SMS_TChiHH_HToGG_m850','SMS_TChiHH_HToGG_m875':'SMS_TChiHH_HToGG_m875','SMS_TChiHH_HToGG_m900':'SMS_TChiHH_HToGG_m900','SMS_TChiHH_HToGG_m925':'SMS_TChiHH_HToGG_m925','SMS_TChiHH_HToGG_m950':'SMS_TChiHH_HToGG_m950','SMS_TChiHH_HToGG_m975':'SMS_TChiHH_HToGG_m975','SMS_TChiHH_HToGG_m1000':'SMS_TChiHH_HToGG_m1000' }
+#procId = {'SMS_TChiHH_HToGG_m1':0,'SMS_TChiHH_HToGG_m25':0,'SMS_TChiHH_HToGG_m50':0,'SMS_TChiHH_HToGG_m75':0,'SMS_TChiHH_HToGG_m100':0,'SMS_TChiHH_HToGG_m127':0,'SMS_TChiHH_HToGG_m150':0,'SMS_TChiHH_HToGG_m175':0,'SMS_TChiHH_HToGG_m200':0,'SMS_TChiHH_HToGG_m225':0,'SMS_TChiHH_HToGG_m250':0,'SMS_TChiHH_HToGG_m275':0,'SMS_TChiHH_HToGG_m300':0,'SMS_TChiHH_HToGG_m325':0,'SMS_TChiHH_HToGG_m350':0,'SMS_TChiHH_HToGG_m375':0,'SMS_TChiHH_HToGG_m400':0,'SMS_TChiHH_HToGG_m425':0,'SMS_TChiHH_HToGG_m450':0,'SMS_TChiHH_HToGG_m475':0,'SMS_TChiHH_HToGG_m500':0,'SMS_TChiHH_HToGG_m525':0,'SMS_TChiHH_HToGG_m550':0,'SMS_TChiHH_HToGG_m575':0,'SMS_TChiHH_HToGG_m600':0,'SMS_TChiHH_HToGG_m625':0,'SMS_TChiHH_HToGG_m650':0,'SMS_TChiHH_HToGG_m675':0,'SMS_TChiHH_HToGG_m700':0,'SMS_TChiHH_HToGG_m725':0,'SMS_TChiHH_HToGG_m750':0,'SMS_TChiHH_HToGG_m775':0,'SMS_TChiHH_HToGG_m800':0,'SMS_TChiHH_HToGG_m825':0,'SMS_TChiHH_HToGG_m850':0,'SMS_TChiHH_HToGG_m875':0,'SMS_TChiHH_HToGG_m900':0,'SMS_TChiHH_HToGG_m925':0,'SMS_TChiHH_HToGG_m950':0,'SMS_TChiHH_HToGG_m975':0,'SMS_TChiHH_HToGG_m1000':0,'bkg_mass':2,'higgs':1 }
+
+
+
+
+#PROCS="higgs,SMS_TChiWH_HToGG_127_1,SMS_TChiWH_HToGG_150_1,SMS_TChiWH_HToGG_150_24,SMS_TChiWH_HToGG_175_1,SMS_TChiWH_HToGG_175_25,SMS_TChiWH_HToGG_175_49,SMS_TChiWH_HToGG_200_1,SMS_TChiWH_HToGG_200_25,SMS_TChiWH_HToGG_200_50,SMS_TChiWH_HToGG_200_74"
+
+combProc = {'bkg_mass':'bkg_mass','higgs':'higgs','SMS_TChiWH_HToGG_127_1':'SMS_TChiWH_HToGG_127_1','SMS_TChiWH_HToGG_150_1':'SMS_TChiWH_HToGG_150_1','SMS_TChiWH_HToGG_150_24':'SMS_TChiWH_HToGG_150_24','SMS_TChiWH_HToGG_175_1':'SMS_TChiWH_HToGG_175_1','SMS_TChiWH_HToGG_175_25':'SMS_TChiWH_HToGG_175_25','SMS_TChiWH_HToGG_175_49':'SMS_TChiWH_HToGG_175_49','SMS_TChiWH_HToGG_200_1':'SMS_TChiWH_HToGG_200_1','SMS_TChiWH_HToGG_200_25':'SMS_TChiWH_HToGG_200_25','SMS_TChiWH_HToGG_200_50':'SMS_TChiWH_HToGG_200_50','SMS_TChiWH_HToGG_200_74':'SMS_TChiWH_HToGG_200_74'}
+flashggProc = {'bkg_mass':'bkg_mass','higgs':'higgs','SMS_TChiWH_HToGG_127_1':'SMS_TChiWH_HToGG_127_1','SMS_TChiWH_HToGG_150_1':'SMS_TChiWH_HToGG_150_1','SMS_TChiWH_HToGG_175_1':'SMS_TChiWH_HToGG_175_1','SMS_TChiWH_HToGG_150_24':'SMS_TChiWH_HToGG_150_24','SMS_TChiWH_HToGG_175_25':'SMS_TChiWH_HToGG_175_25','SMS_TChiWH_HToGG_175_49':'SMS_TChiWH_HToGG_175_49','SMS_TChiWH_HToGG_200_1':'SMS_TChiWH_HToGG_200_1','SMS_TChiWH_HToGG_200_25':'SMS_TChiWH_HToGG_200_25','SMS_TChiWH_HToGG_200_50':'SMS_TChiWH_HToGG_200_50','SMS_TChiWH_HToGG_200_74':'SMS_TChiWH_HToGG_200_74' }
+procId = {'SMS_TChiWH_HToGG_150_24':0,'SMS_TChiWH_HToGG_175_25':0,'SMS_TChiWH_HToGG_175_49':0,'SMS_TChiWH_HToGG_200_1':0,'SMS_TChiWH_HToGG_200_25':0,'SMS_TChiWH_HToGG_200_50':0,'SMS_TChiWH_HToGG_200_74':0,'SMS_TChiWH_HToGG_127_1':0,'SMS_TChiWH_HToGG_150_1':0,'SMS_TChiWH_HToGG_175_1':0,'bkg_mass':2,'higgs':1 }
+
+
+#combProc = {'bkg_mass':'bkg_mass','higgs':'higgs','SMS_TChiHZ_HToGG_m1':'SMS_TChiHZ_HToGG_m1','SMS_TChiHZ_HToGG_m25':'SMS_TChiHZ_HToGG_m25','SMS_TChiHZ_HToGG_m50':'SMS_TChiHZ_HToGG_m50','SMS_TChiHZ_HToGG_m75':'SMS_TChiHZ_HToGG_m75','SMS_TChiHZ_HToGG_m100':'SMS_TChiHZ_HToGG_m100','SMS_TChiHZ_HToGG_m127':'SMS_TChiHZ_HToGG_m127','SMS_TChiHZ_HToGG_m150':'SMS_TChiHZ_HToGG_m150','SMS_TChiHZ_HToGG_m175':'SMS_TChiHZ_HToGG_m175','SMS_TChiHZ_HToGG_m200':'SMS_TChiHZ_HToGG_m200','SMS_TChiHZ_HToGG_m225':'SMS_TChiHZ_HToGG_m225','SMS_TChiHZ_HToGG_m250':'SMS_TChiHZ_HToGG_m250','SMS_TChiHZ_HToGG_m275':'SMS_TChiHZ_HToGG_m275','SMS_TChiHZ_HToGG_m300':'SMS_TChiHZ_HToGG_m300','SMS_TChiHZ_HToGG_m325':'SMS_TChiHZ_HToGG_m325','SMS_TChiHZ_HToGG_m350':'SMS_TChiHZ_HToGG_m350','SMS_TChiHZ_HToGG_m375':'SMS_TChiHZ_HToGG_m375','SMS_TChiHZ_HToGG_m400':'SMS_TChiHZ_HToGG_m400','SMS_TChiHZ_HToGG_m425':'SMS_TChiHZ_HToGG_m425','SMS_TChiHZ_HToGG_m450':'SMS_TChiHZ_HToGG_m450','SMS_TChiHZ_HToGG_m475':'SMS_TChiHZ_HToGG_m475','SMS_TChiHZ_HToGG_m500':'SMS_TChiHZ_HToGG_m500','SMS_TChiHZ_HToGG_m525':'SMS_TChiHZ_HToGG_m525','SMS_TChiHZ_HToGG_m550':'SMS_TChiHZ_HToGG_m550','SMS_TChiHZ_HToGG_m575':'SMS_TChiHZ_HToGG_m575','SMS_TChiHZ_HToGG_m600':'SMS_TChiHZ_HToGG_m600','SMS_TChiHZ_HToGG_m625':'SMS_TChiHZ_HToGG_m625','SMS_TChiHZ_HToGG_m650':'SMS_TChiHZ_HToGG_m650','SMS_TChiHZ_HToGG_m675':'SMS_TChiHZ_HToGG_m675','SMS_TChiHZ_HToGG_m700':'SMS_TChiHZ_HToGG_m700','SMS_TChiHZ_HToGG_m725':'SMS_TChiHZ_HToGG_m725','SMS_TChiHZ_HToGG_m750':'SMS_TChiHZ_HToGG_m750','SMS_TChiHZ_HToGG_m775':'SMS_TChiHZ_HToGG_m775','SMS_TChiHZ_HToGG_m800':'SMS_TChiHZ_HToGG_m800','SMS_TChiHZ_HToGG_m825':'SMS_TChiHZ_HToGG_m825','SMS_TChiHZ_HToGG_m850':'SMS_TChiHZ_HToGG_m850','SMS_TChiHZ_HToGG_m875':'SMS_TChiHZ_HToGG_m875','SMS_TChiHZ_HToGG_m900':'SMS_TChiHZ_HToGG_m900','SMS_TChiHZ_HToGG_m925':'SMS_TChiHZ_HToGG_m925','SMS_TChiHZ_HToGG_m950':'SMS_TChiHZ_HToGG_m950','SMS_TChiHZ_HToGG_m975':'SMS_TChiHZ_HToGG_m975','SMS_TChiHZ_HToGG_m1000':'SMS_TChiHZ_HToGG_m1000'}
+
+#flashggProc = {'bkg_mass':'bkg_mass','higgs':'higgs','SMS_TChiHZ_HToGG_m1':'SMS_TChiHZ_HToGG_m1','SMS_TChiHZ_HToGG_m25':'SMS_TChiHZ_HToGG_m25','SMS_TChiHZ_HToGG_m50':'SMS_TChiHZ_HToGG_m50','SMS_TChiHZ_HToGG_m75':'SMS_TChiHZ_HToGG_m75','SMS_TChiHZ_HToGG_m100':'SMS_TChiHZ_HToGG_m100','SMS_TChiHZ_HToGG_m127':'SMS_TChiHZ_HToGG_m127','SMS_TChiHZ_HToGG_m150':'SMS_TChiHZ_HToGG_m150','SMS_TChiHZ_HToGG_m175':'SMS_TChiHZ_HToGG_m175','SMS_TChiHZ_HToGG_m200':'SMS_TChiHZ_HToGG_m200','SMS_TChiHZ_HToGG_m225':'SMS_TChiHZ_HToGG_m225','SMS_TChiHZ_HToGG_m250':'SMS_TChiHZ_HToGG_m250','SMS_TChiHZ_HToGG_m275':'SMS_TChiHZ_HToGG_m275','SMS_TChiHZ_HToGG_m300':'SMS_TChiHZ_HToGG_m300','SMS_TChiHZ_HToGG_m325':'SMS_TChiHZ_HToGG_m325','SMS_TChiHZ_HToGG_m350':'SMS_TChiHZ_HToGG_m350','SMS_TChiHZ_HToGG_m375':'SMS_TChiHZ_HToGG_m375','SMS_TChiHZ_HToGG_m400':'SMS_TChiHZ_HToGG_m400','SMS_TChiHZ_HToGG_m425':'SMS_TChiHZ_HToGG_m425','SMS_TChiHZ_HToGG_m450':'SMS_TChiHZ_HToGG_m450','SMS_TChiHZ_HToGG_m475':'SMS_TChiHZ_HToGG_m475','SMS_TChiHZ_HToGG_m500':'SMS_TChiHZ_HToGG_m500','SMS_TChiHZ_HToGG_m525':'SMS_TChiHZ_HToGG_m525','SMS_TChiHZ_HToGG_m550':'SMS_TChiHZ_HToGG_m550','SMS_TChiHZ_HToGG_m575':'SMS_TChiHZ_HToGG_m575','SMS_TChiHZ_HToGG_m600':'SMS_TChiHZ_HToGG_m600','SMS_TChiHZ_HToGG_m625':'SMS_TChiHZ_HToGG_m625','SMS_TChiHZ_HToGG_m650':'SMS_TChiHZ_HToGG_m650','SMS_TChiHZ_HToGG_m675':'SMS_TChiHZ_HToGG_m675','SMS_TChiHZ_HToGG_m700':'SMS_TChiHZ_HToGG_m700','SMS_TChiHZ_HToGG_m725':'SMS_TChiHZ_HToGG_m725','SMS_TChiHZ_HToGG_m750':'SMS_TChiHZ_HToGG_m750','SMS_TChiHZ_HToGG_m775':'SMS_TChiHZ_HToGG_m775','SMS_TChiHZ_HToGG_m800':'SMS_TChiHZ_HToGG_m800','SMS_TChiHZ_HToGG_m825':'SMS_TChiHZ_HToGG_m825','SMS_TChiHZ_HToGG_m850':'SMS_TChiHZ_HToGG_m850','SMS_TChiHZ_HToGG_m875':'SMS_TChiHZ_HToGG_m875','SMS_TChiHZ_HToGG_m900':'SMS_TChiHZ_HToGG_m900','SMS_TChiHZ_HToGG_m925':'SMS_TChiHZ_HToGG_m925','SMS_TChiHZ_HToGG_m950':'SMS_TChiHZ_HToGG_m950','SMS_TChiHZ_HToGG_m975':'SMS_TChiHZ_HToGG_m975','SMS_TChiHZ_HToGG_m1000':'SMS_TChiHZ_HToGG_m1000' }
+
+#procId = {'SMS_TChiHZ_HToGG_m1':0,'SMS_TChiHZ_HToGG_m25':0,'SMS_TChiHZ_HToGG_m50':0,'SMS_TChiHZ_HToGG_m75':0,'SMS_TChiHZ_HToGG_m100':0,'SMS_TChiHZ_HToGG_m127':0,'SMS_TChiHZ_HToGG_m150':0,'SMS_TChiHZ_HToGG_m175':0,'SMS_TChiHZ_HToGG_m200':0,'SMS_TChiHZ_HToGG_m225':0,'SMS_TChiHZ_HToGG_m250':0,'SMS_TChiHZ_HToGG_m275':0,'SMS_TChiHZ_HToGG_m300':0,'SMS_TChiHZ_HToGG_m325':0,'SMS_TChiHZ_HToGG_m350':0,'SMS_TChiHZ_HToGG_m375':0,'SMS_TChiHZ_HToGG_m400':0,'SMS_TChiHZ_HToGG_m425':0,'SMS_TChiHZ_HToGG_m450':0,'SMS_TChiHZ_HToGG_m475':0,'SMS_TChiHZ_HToGG_m500':0,'SMS_TChiHZ_HToGG_m525':0,'SMS_TChiHZ_HToGG_m550':0,'SMS_TChiHZ_HToGG_m575':0,'SMS_TChiHZ_HToGG_m600':0,'SMS_TChiHZ_HToGG_m625':0,'SMS_TChiHZ_HToGG_m650':0,'SMS_TChiHZ_HToGG_m675':0,'SMS_TChiHZ_HToGG_m700':0,'SMS_TChiHZ_HToGG_m725':0,'SMS_TChiHZ_HToGG_m750':0,'SMS_TChiHZ_HToGG_m775':0,'SMS_TChiHZ_HToGG_m800':0,'SMS_TChiHZ_HToGG_m825':0,'SMS_TChiHZ_HToGG_m850':0,'SMS_TChiHZ_HToGG_m875':0,'SMS_TChiHZ_HToGG_m900':0,'SMS_TChiHZ_HToGG_m925':0,'SMS_TChiHZ_HToGG_m950':0,'SMS_TChiHZ_HToGG_m975':0,'SMS_TChiHZ_HToGG_m1000':0,'bkg_mass':2,'higgs':1 }
+
+
+
+
+
+
+
+#combProc = {'bkg_mass':'bkg_mass','higgs':'higgs','SMS_T2bH_mSbottom250_mLSP100':'SMS_T2bH_mSbottom250_mLSP100','SMS_T2bH_mSbottom250_mLSP1':'SMS_T2bH_mSbottom250_mLSP1','SMS_T2bH_mSbottom250_mLSP50':'SMS_T2bH_mSbottom250_mLSP50','SMS_T2bH_mSbottom300_mLSP100':'SMS_T2bH_mSbottom300_mLSP100','SMS_T2bH_mSbottom300_mLSP150':'SMS_T2bH_mSbottom300_mLSP150','SMS_T2bH_mSbottom300_mLSP1':'SMS_T2bH_mSbottom300_mLSP1','SMS_T2bH_mSbottom300_mLSP50':'SMS_T2bH_mSbottom300_mLSP50','SMS_T2bH_mSbottom350_mLSP100':'SMS_T2bH_mSbottom350_mLSP100','SMS_T2bH_mSbottom350_mLSP150':'SMS_T2bH_mSbottom350_mLSP150','SMS_T2bH_mSbottom350_mLSP1':'SMS_T2bH_mSbottom350_mLSP1','SMS_T2bH_mSbottom350_mLSP200':'SMS_T2bH_mSbottom350_mLSP200','SMS_T2bH_mSbottom350_mLSP50':'SMS_T2bH_mSbottom350_mLSP50','SMS_T2bH_mSbottom400_mLSP100':'SMS_T2bH_mSbottom400_mLSP100','SMS_T2bH_mSbottom400_mLSP150':'SMS_T2bH_mSbottom400_mLSP150','SMS_T2bH_mSbottom400_mLSP1':'SMS_T2bH_mSbottom400_mLSP1','SMS_T2bH_mSbottom400_mLSP200':'SMS_T2bH_mSbottom400_mLSP200','SMS_T2bH_mSbottom400_mLSP250':'SMS_T2bH_mSbottom400_mLSP250','SMS_T2bH_mSbottom400_mLSP50':'SMS_T2bH_mSbottom400_mLSP50','SMS_T2bH_mSbottom450_mLSP1':'SMS_T2bH_mSbottom450_mLSP1','SMS_T2bH_mSbottom450_mLSP100':'SMS_T2bH_mSbottom450_mLSP100','SMS_T2bH_mSbottom450_mLSP150':'SMS_T2bH_mSbottom450_mLSP150','SMS_T2bH_mSbottom450_mLSP200':'SMS_T2bH_mSbottom450_mLSP200','SMS_T2bH_mSbottom450_mLSP250':'SMS_T2bH_mSbottom450_mLSP250','SMS_T2bH_mSbottom450_mLSP300':'SMS_T2bH_mSbottom450_mLSP300','SMS_T2bH_mSbottom450_mLSP50':'SMS_T2bH_mSbottom450_mLSP50','SMS_T2bH_mSbottom500_mLSP100':'SMS_T2bH_mSbottom500_mLSP100','SMS_T2bH_mSbottom500_mLSP150':'SMS_T2bH_mSbottom500_mLSP150','SMS_T2bH_mSbottom500_mLSP1':'SMS_T2bH_mSbottom500_mLSP1','SMS_T2bH_mSbottom500_mLSP200':'SMS_T2bH_mSbottom500_mLSP200','SMS_T2bH_mSbottom500_mLSP250':'SMS_T2bH_mSbottom500_mLSP250','SMS_T2bH_mSbottom500_mLSP300':'SMS_T2bH_mSbottom500_mLSP300','SMS_T2bH_mSbottom500_mLSP50':'SMS_T2bH_mSbottom500_mLSP50','SMS_T2bH_mSbottom600_mLSP1':'SMS_T2bH_mSbottom600_mLSP1','SMS_T2bH_mSbottom600_mLSP100':'SMS_T2bH_mSbottom600_mLSP100','SMS_T2bH_mSbottom600_mLSP200':'SMS_T2bH_mSbottom600_mLSP200','SMS_T2bH_mSbottom600_mLSP300':'SMS_T2bH_mSbottom600_mLSP300'}
+
+#flashggProc = {'bkg_mass':'bkg_mass','higgs':'higgs','SMS_T2bH_mSbottom250_mLSP100':'SMS_T2bH_mSbottom250_mLSP100','SMS_T2bH_mSbottom250_mLSP1':'SMS_T2bH_mSbottom250_mLSP1','SMS_T2bH_mSbottom250_mLSP50':'SMS_T2bH_mSbottom250_mLSP50','SMS_T2bH_mSbottom300_mLSP100':'SMS_T2bH_mSbottom300_mLSP100','SMS_T2bH_mSbottom300_mLSP150':'SMS_T2bH_mSbottom300_mLSP150','SMS_T2bH_mSbottom300_mLSP1':'SMS_T2bH_mSbottom300_mLSP1','SMS_T2bH_mSbottom300_mLSP50':'SMS_T2bH_mSbottom300_mLSP50','SMS_T2bH_mSbottom350_mLSP100':'SMS_T2bH_mSbottom350_mLSP100','SMS_T2bH_mSbottom350_mLSP150':'SMS_T2bH_mSbottom350_mLSP150','SMS_T2bH_mSbottom350_mLSP1':'SMS_T2bH_mSbottom350_mLSP1','SMS_T2bH_mSbottom350_mLSP200':'SMS_T2bH_mSbottom350_mLSP200','SMS_T2bH_mSbottom350_mLSP50':'SMS_T2bH_mSbottom350_mLSP50','SMS_T2bH_mSbottom400_mLSP100':'SMS_T2bH_mSbottom400_mLSP100','SMS_T2bH_mSbottom400_mLSP150':'SMS_T2bH_mSbottom400_mLSP150','SMS_T2bH_mSbottom400_mLSP1':'SMS_T2bH_mSbottom400_mLSP1','SMS_T2bH_mSbottom400_mLSP200':'SMS_T2bH_mSbottom400_mLSP200','SMS_T2bH_mSbottom400_mLSP250':'SMS_T2bH_mSbottom400_mLSP250','SMS_T2bH_mSbottom400_mLSP50':'SMS_T2bH_mSbottom400_mLSP50','SMS_T2bH_mSbottom450_mLSP1':'SMS_T2bH_mSbottom450_mLSP1','SMS_T2bH_mSbottom450_mLSP100':'SMS_T2bH_mSbottom450_mLSP100','SMS_T2bH_mSbottom450_mLSP150':'SMS_T2bH_mSbottom450_mLSP150','SMS_T2bH_mSbottom450_mLSP200':'SMS_T2bH_mSbottom450_mLSP200','SMS_T2bH_mSbottom450_mLSP250':'SMS_T2bH_mSbottom450_mLSP250','SMS_T2bH_mSbottom450_mLSP300':'SMS_T2bH_mSbottom450_mLSP300','SMS_T2bH_mSbottom450_mLSP50':'SMS_T2bH_mSbottom450_mLSP50','SMS_T2bH_mSbottom500_mLSP100':'SMS_T2bH_mSbottom500_mLSP100','SMS_T2bH_mSbottom500_mLSP150':'SMS_T2bH_mSbottom500_mLSP150','SMS_T2bH_mSbottom500_mLSP1':'SMS_T2bH_mSbottom500_mLSP1','SMS_T2bH_mSbottom500_mLSP200':'SMS_T2bH_mSbottom500_mLSP200','SMS_T2bH_mSbottom500_mLSP250':'SMS_T2bH_mSbottom500_mLSP250','SMS_T2bH_mSbottom500_mLSP300':'SMS_T2bH_mSbottom500_mLSP300','SMS_T2bH_mSbottom500_mLSP50':'SMS_T2bH_mSbottom500_mLSP50','SMS_T2bH_mSbottom600_mLSP1':'SMS_T2bH_mSbottom600_mLSP1','SMS_T2bH_mSbottom600_mLSP100':'SMS_T2bH_mSbottom600_mLSP100','SMS_T2bH_mSbottom600_mLSP200':'SMS_T2bH_mSbottom600_mLSP200','SMS_T2bH_mSbottom600_mLSP300':'SMS_T2bH_mSbottom600_mLSP300'}
+
+#procId = {'SMS_T2bH_mSbottom250_mLSP50':0,'SMS_T2bH_mSbottom300_mLSP100':0,'SMS_T2bH_mSbottom300_mLSP150':0,'SMS_T2bH_mSbottom300_mLSP1':0,'SMS_T2bH_mSbottom300_mLSP50':0,'SMS_T2bH_mSbottom350_mLSP100':0,'SMS_T2bH_mSbottom350_mLSP150':0,'SMS_T2bH_mSbottom350_mLSP1':0,'SMS_T2bH_mSbottom350_mLSP200':0,'SMS_T2bH_mSbottom350_mLSP50':0,'SMS_T2bH_mSbottom400_mLSP100':0,'SMS_T2bH_mSbottom400_mLSP150':0,'SMS_T2bH_mSbottom400_mLSP1':0,'SMS_T2bH_mSbottom400_mLSP200':0,'SMS_T2bH_mSbottom400_mLSP250':0,'SMS_T2bH_mSbottom400_mLSP50':0,'SMS_T2bH_mSbottom450_mLSP1':0,'SMS_T2bH_mSbottom450_mLSP100':0,'SMS_T2bH_mSbottom450_mLSP150':0,'SMS_T2bH_mSbottom450_mLSP200':0,'SMS_T2bH_mSbottom450_mLSP250':0,'SMS_T2bH_mSbottom450_mLSP300':0,'SMS_T2bH_mSbottom450_mLSP50':0,'SMS_T2bH_mSbottom500_mLSP100':0,'SMS_T2bH_mSbottom500_mLSP150':0,'SMS_T2bH_mSbottom500_mLSP1':0,'SMS_T2bH_mSbottom500_mLSP200':0,'SMS_T2bH_mSbottom500_mLSP250':0,'SMS_T2bH_mSbottom500_mLSP300':0,'SMS_T2bH_mSbottom500_mLSP50':0,'SMS_T2bH_mSbottom600_mLSP1':0,'SMS_T2bH_mSbottom600_mLSP100':0,'SMS_T2bH_mSbottom600_mLSP200':0,'SMS_T2bH_mSbottom600_mLSP300':0,'SMS_T2bH_mSbottom250_mLSP1':0,'SMS_T2bH_mSbottom250_mLSP100':0,'bkg_mass':2,'higgs':1}
+
+
+
+
 bkgProcs = ['bkg_mass'] #what to treat as background
+#bkgProcs = ['bkg_mass','higgs'] #what to treat as background
 #Determine if VH or WZH_hgg
 splitVH=False
 if 'wzh'in options.procs.split(','):
-  splitVH=False
+   splitVH=False
 if 'wh' in options.procs.split(',') and 'zh' in options.procs.split(','):
-  splitVH=True
+   splitVH=True
 #split procs vector
 options.procs += ',bkg_mass'
 options.procs = [combProc[p] for p in options.procs.split(',')]
@@ -148,35 +223,37 @@ looseLepCat=[]
 metCat=[]
 #fill
 for i in range(len(options.cats)):
-  if "Untagged" in options.cats[i]:
-    incCats.append(options.cats[i])
-  if "VBF" in options.cats[i]:
-    dijetCats.append(options.cats[i])
-  if "TTHLeptonic" in options.cats[i]:
-     tthLepCat.append(options.cats[i])
-  if "TTHHadronic" in options.cats[i]:
-     tthHadCat.append(options.cats[i])
-  if "TTH" in options.cats[i]:
-     tthCats.append(options.cats[i])
-  if "VHHadronic" in options.cats[i]:
-     vhHadCat.append(options.cats[i])
-  if "VHTight" in options.cats[i]:
-     tightLepCat.append(options.cats[i])
-  if "VHLoose" in options.cats[i]:
-     looseLepCat.append(options.cats[i])
-  if "VHEt" in options.cats[i]:
-     metCat.append(options.cats[i])
+   if "Untagged" in options.cats[i]:
+      incCats.append(options.cats[i])
+      if "VBF" in options.cats[i]:
+         dijetCats.append(options.cats[i])
+         if "TTHLeptonic" in options.cats[i]:
+            tthLepCat.append(options.cats[i])
+            if "TTHHadronic" in options.cats[i]:
+               tthHadCat.append(options.cats[i])
+               if "TTH" in options.cats[i]:
+                  tthCats.append(options.cats[i])
+                  if "VHHadronic" in options.cats[i]:
+                     vhHadCat.append(options.cats[i])
+                     if "VHTight" in options.cats[i]:
+                        tightLepCat.append(options.cats[i])
+                        if "VHLoose" in options.cats[i]:
+                           looseLepCat.append(options.cats[i])
+                           if "VHEt" in options.cats[i]:
+                              metCat.append(options.cats[i])
 #summary 
-print "[INFO] flashgg cats:"
-print "--> incCats " , incCats
-print "--> dijetCats " , dijetCats
-print "--> tthLepCats " , tthCats
-print "--> tthLepCats " , tthLepCat
-print "--> tthHadCats " , tthHadCat
-print "--> vhHadCats " , vhHadCat
-print "--> tightLepCats " , tightLepCat
-print "--> looseLepCats " , looseLepCat
-print "--> metCat " , metCat
+
+# print "[INFO] flashgg cats:"
+# print "--> incCats " , incCats
+# print "--> dijetCats " , dijetCats
+# print "--> tthLepCats " , tthCats
+# print "--> tthLepCats " , tthLepCat
+# print "--> tthHadCats " , tthHadCat
+# print "--> vhHadCats " , vhHadCat
+# print "--> tightLepCats " , tightLepCat
+# print "--> looseLepCats " , looseLepCat
+# print "--> metCat " , metCat
+
 ###############################################################################
 
 ###############################################################################
@@ -199,7 +276,8 @@ else: options.globalScalesCorr = options.globalScalesCorr.split(',')
 ###############################################################################
 ## OPEN WORKSPACE AND EXTRACT INFO # ##########################################
 sqrts=13
-inWS = WSTFileWrapper(options.infilename,"tagsDumper/cms_hgg_%sTeV"%sqrts)
+inWS = WSTFileWrapper(options.infilename,"ws_sig")
+#inWS = WSTFileWrapper(options.infilename,"tagsDumper/cms_hgg_%sTeV"%sqrts)
 #inWS = inFile.Get('wsig_13TeV')
 #if (inWS==None) : inWS = inFile.Get('tagsDumper/cms_hgg_%sTeV'%sqrts)
 #intL = inWS.var('IntLumi').getVal() #FIXME
@@ -212,27 +290,208 @@ print "[INFO] Get Intlumi from file, value : ", intL," pb^{-1}", " sqrts ", sqrt
 ###############################################################################
 ## SHAPE SYSTEMATIC SETUP  ####################################################
 ###############################################################################
-file_ext = 'mva'
-dataFile = 'CMS-HGG_%s_%dTeV_multipdf.root'%(file_ext,sqrts)
-bkgFile = 'CMS-HGG_%s_%dTeV_multipdf.root'%(file_ext,sqrts)
+#file_ext = 'sep25_lowPtCut'
+#file_ext = 'oct04_mt2bin'
+#file_ext = 'oct24_llbb'
+#file_ext = 'oct15_diLepZ'
+#file_ext = 'oct03_b012V2'
+#file_ext = 'sep27_b012'
+#file_ext = 'sep15'
+#file_ext = 'mva'
+file_ext = 'nov22_bl'
+dataFile = 'CMS-HGG_multipdf_%s.root'%(file_ext)
+
+print dataFile
+
+bkgFile = 'CMS-HGG_multipdf_%s.root'%(file_ext)
+# dataFile = 'CMS-HGG_%s_%dTeV_multipdf.root'%(file_ext,sqrts)
+# bkgFile = 'CMS-HGG_%s_%dTeV_multipdf.root'%(file_ext,sqrts)
+
 dataWS = 'multipdf'
 bkgWS = 'multipdf'
+sigFile = 'CMS-HGG_13TeV_sigfit_nov22_WH_bl.root'
 #sigFile = 'CMS-HGG_%s_%dTeV_sigfit.root'%(file_ext,sqrts)
-sigFile = 'CMS-HGG_sigfit_%s_$PROC_$CAT.root'%(file_ext)
+#sigFile = 'CMS-HGG_13TeV_sigfit_oct10_b012V2_T2bH.root'
+#sigFile = 'CMS-HGG_13TeV_sigfit_oct15_HZmix.root'
+#sigFile = 'CMS-HGG_13TeV_sigfit_oct27_T2bH_b012ISR.root'
+#sigFile = 'CMS-HGG_13TeV_sigfit_oct24_T2bH_llbb.root'
+#sigFile = 'CMS-HGG_13TeV_sigfit_oct15_HZ_LLbin.root'
+#sigFile = 'CMS-HGG_13TeV_sigfit_oct15_isr.root'
+#sigFile = 'CMS-HGG_13TeV_sigfit_oct04_mt2bin_HH.root'
+#sigFile = 'CMS-HGG_13TeV_sigfit_oct04_mt2bin_T2bH.root'
+#sigFile = 'CMS-HGG_13TeV_sigfit_oct03_b012V2_HH.root'
+#sigFile = 'CMS-HGG_13TeV_sigfit_sep27_b012.root'
+#sigFile = 'CMS-HGG_sigfit_13TeV_sep26_fixedXsec.root'
+#sigFile = 'CMS-HGG_sigfit_13TeV_sep25_lowPtCut.root'
+#sigFile = 'CMS-HGG_sigfit_sep20.root'
+#sigFile = 'CMS-HGG_mva_13TeV_sigfit.root'
+#sigFile = 'CMS-HGG_sigfit_%s_$PROC_$CAT.root'%(file_ext)
 #print "making sigfile " ,sigFile
 sigWS = 'wsig_%dTeV'%(sqrts)
 # file detaisl: for FLashgg always use unbinned signal and multipdf
 fileDetails = {}
 fileDetails['data_obs'] = [dataFile,dataWS,'roohist_data_mass_$CHANNEL']
 fileDetails['bkg_mass']  = [bkgFile,bkgWS,'CMS_hgg_$CHANNEL_%dTeV_bkgshape'%sqrts]
-fileDetails['ggH_hgg']       = [sigFile.replace('$PROC',"ggh"),sigWS,'hggpdfsmrel_%dTeV_ggh_$CHANNEL'%sqrts]
-fileDetails['qqH_hgg']       = [sigFile.replace('$PROC',"vbf"),sigWS,'hggpdfsmrel_%dTeV_vbf_$CHANNEL'%sqrts]
-if splitVH:
-  fileDetails['WH_hgg']       =  [sigFile.replace('$PROC',"wh"),sigWS,'hggpdfsmrel_%dTeV_wh_$CHANNEL'%sqrts]
-  fileDetails['ZH_hgg']       =  [sigFile.replace('$PROC',"zh"),sigWS,'hggpdfsmrel_%dTeV_zh_$CHANNEL'%sqrts]
-else:
-  fileDetails['VH']       =  [sigFile.replace('$PROC',"wzh"),sigWS,'hggpdfsmrel_%dTeV_wzh_$CHANNEL'%sqrts]
-fileDetails['ttH_hgg']       = [sigFile.replace('$PROC',"tth"),sigWS,'hggpdfsmrel_%dTeV_tth_$CHANNEL'%sqrts]
+
+fileDetails['higgs']       = [sigFile.replace('$PROC',"higgs"),sigWS,'hggpdfsmrel_%dTeV_higgs_$CHANNEL'%sqrts]
+
+
+fileDetails['SMS_TChiWH_HToGG_127_1' ]   = [sigFile.replace('$PROC',"SMS_TChiWH_HToGG_127_1"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiWH_HToGG_127_1_$CHANNEL'%sqrts]
+
+fileDetails['SMS_TChiWH_HToGG_150_1' ]   = [sigFile.replace('$PROC',"SMS_TChiWH_HToGG_150_1"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiWH_HToGG_150_1_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiWH_HToGG_150_24']   = [sigFile.replace('$PROC',"SMS_TChiWH_HToGG_150_24"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiWH_HToGG_150_24_$CHANNEL'%sqrts]
+
+fileDetails['SMS_TChiWH_HToGG_175_1' ]   = [sigFile.replace('$PROC',"SMS_TChiWH_HToGG_175_1"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiWH_HToGG_175_1_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiWH_HToGG_175_25']   = [sigFile.replace('$PROC',"SMS_TChiWH_HToGG_175_25"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiWH_HToGG_175_25_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiWH_HToGG_175_49']   = [sigFile.replace('$PROC',"SMS_TChiWH_HToGG_175_49"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiWH_HToGG_175_49_$CHANNEL'%sqrts]
+
+fileDetails['SMS_TChiWH_HToGG_200_1' ]   = [sigFile.replace('$PROC',"SMS_TChiWH_HToGG_200_1"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiWH_HToGG_200_1_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiWH_HToGG_200_25']   = [sigFile.replace('$PROC',"SMS_TChiWH_HToGG_200_25"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiWH_HToGG_200_25_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiWH_HToGG_200_50']   = [sigFile.replace('$PROC',"SMS_TChiWH_HToGG_200_50"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiWH_HToGG_200_50_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiWH_HToGG_200_74']   = [sigFile.replace('$PROC',"SMS_TChiWH_HToGG_200_74"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiWH_HToGG_200_74_$CHANNEL'%sqrts]
+
+
+
+
+
+
+ 
+
+fileDetails['SMS_TChiHH_HToGG_m1000']   = [sigFile.replace('$PROC',"SMS_TChiHH_HToGG_m1000"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHH_HToGG_m1000_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHH_HToGG_m975']    = [sigFile.replace('$PROC',"SMS_TChiHH_HToGG_m975"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHH_HToGG_m975_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHH_HToGG_m950']    = [sigFile.replace('$PROC',"SMS_TChiHH_HToGG_m950"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHH_HToGG_m950_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHH_HToGG_m925']    = [sigFile.replace('$PROC',"SMS_TChiHH_HToGG_m925"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHH_HToGG_m925_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHH_HToGG_m900']    = [sigFile.replace('$PROC',"SMS_TChiHH_HToGG_m900"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHH_HToGG_m900_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHH_HToGG_m875']    = [sigFile.replace('$PROC',"SMS_TChiHH_HToGG_m875"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHH_HToGG_m875_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHH_HToGG_m850']    = [sigFile.replace('$PROC',"SMS_TChiHH_HToGG_m850"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHH_HToGG_m850_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHH_HToGG_m825']    = [sigFile.replace('$PROC',"SMS_TChiHH_HToGG_m825"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHH_HToGG_m825_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHH_HToGG_m800']    = [sigFile.replace('$PROC',"SMS_TChiHH_HToGG_m800"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHH_HToGG_m800_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHH_HToGG_m775']    = [sigFile.replace('$PROC',"SMS_TChiHH_HToGG_m775"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHH_HToGG_m775_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHH_HToGG_m750']    = [sigFile.replace('$PROC',"SMS_TChiHH_HToGG_m750"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHH_HToGG_m750_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHH_HToGG_m725']    = [sigFile.replace('$PROC',"SMS_TChiHH_HToGG_m725"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHH_HToGG_m725_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHH_HToGG_m700']    = [sigFile.replace('$PROC',"SMS_TChiHH_HToGG_m700"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHH_HToGG_m700_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHH_HToGG_m675']    = [sigFile.replace('$PROC',"SMS_TChiHH_HToGG_m675"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHH_HToGG_m675_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHH_HToGG_m650']    = [sigFile.replace('$PROC',"SMS_TChiHH_HToGG_m650"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHH_HToGG_m650_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHH_HToGG_m625']    = [sigFile.replace('$PROC',"SMS_TChiHH_HToGG_m625"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHH_HToGG_m625_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHH_HToGG_m600']    = [sigFile.replace('$PROC',"SMS_TChiHH_HToGG_m600"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHH_HToGG_m600_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHH_HToGG_m575']    = [sigFile.replace('$PROC',"SMS_TChiHH_HToGG_m575"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHH_HToGG_m575_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHH_HToGG_m550']    = [sigFile.replace('$PROC',"SMS_TChiHH_HToGG_m550"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHH_HToGG_m550_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHH_HToGG_m525']    = [sigFile.replace('$PROC',"SMS_TChiHH_HToGG_m525"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHH_HToGG_m525_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHH_HToGG_m500']    = [sigFile.replace('$PROC',"SMS_TChiHH_HToGG_m500"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHH_HToGG_m500_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHH_HToGG_m475']    = [sigFile.replace('$PROC',"SMS_TChiHH_HToGG_m475"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHH_HToGG_m475_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHH_HToGG_m450']    = [sigFile.replace('$PROC',"SMS_TChiHH_HToGG_m450"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHH_HToGG_m450_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHH_HToGG_m425']    = [sigFile.replace('$PROC',"SMS_TChiHH_HToGG_m425"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHH_HToGG_m425_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHH_HToGG_m400']    = [sigFile.replace('$PROC',"SMS_TChiHH_HToGG_m400"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHH_HToGG_m400_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHH_HToGG_m375']    = [sigFile.replace('$PROC',"SMS_TChiHH_HToGG_m375"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHH_HToGG_m375_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHH_HToGG_m350']    = [sigFile.replace('$PROC',"SMS_TChiHH_HToGG_m350"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHH_HToGG_m350_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHH_HToGG_m325']    = [sigFile.replace('$PROC',"SMS_TChiHH_HToGG_m325"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHH_HToGG_m325_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHH_HToGG_m300']    = [sigFile.replace('$PROC',"SMS_TChiHH_HToGG_m300"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHH_HToGG_m300_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHH_HToGG_m275']    = [sigFile.replace('$PROC',"SMS_TChiHH_HToGG_m275"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHH_HToGG_m275_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHH_HToGG_m250']    = [sigFile.replace('$PROC',"SMS_TChiHH_HToGG_m250"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHH_HToGG_m250_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHH_HToGG_m225']    = [sigFile.replace('$PROC',"SMS_TChiHH_HToGG_m225"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHH_HToGG_m225_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHH_HToGG_m200']    = [sigFile.replace('$PROC',"SMS_TChiHH_HToGG_m200"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHH_HToGG_m200_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHH_HToGG_m175']    = [sigFile.replace('$PROC',"SMS_TChiHH_HToGG_m175"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHH_HToGG_m175_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHH_HToGG_m150']    = [sigFile.replace('$PROC',"SMS_TChiHH_HToGG_m150"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHH_HToGG_m150_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHH_HToGG_m127']    = [sigFile.replace('$PROC',"SMS_TChiHH_HToGG_m127"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHH_HToGG_m127_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHH_HToGG_m100']    = [sigFile.replace('$PROC',"SMS_TChiHH_HToGG_m100"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHH_HToGG_m100_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHH_HToGG_m75']     = [sigFile.replace('$PROC',"SMS_TChiHH_HToGG_m75"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHH_HToGG_m75_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHH_HToGG_m50']     = [sigFile.replace('$PROC',"SMS_TChiHH_HToGG_m50"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHH_HToGG_m50_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHH_HToGG_m25']     = [sigFile.replace('$PROC',"SMS_TChiHH_HToGG_m25"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHH_HToGG_m25_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHH_HToGG_m1']      = [sigFile.replace('$PROC',"SMS_TChiHH_HToGG_m1"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHH_HToGG_m1_$CHANNEL'%sqrts]
+
+
+
+
+fileDetails['SMS_TChiHZ_HToGG_m1000']   = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m1000"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m1000_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHZ_HToGG_m975']    = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m975"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m975_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHZ_HToGG_m950']    = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m950"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m950_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHZ_HToGG_m925']    = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m925"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m925_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHZ_HToGG_m900']    = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m900"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m900_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHZ_HToGG_m875']    = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m875"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m875_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHZ_HToGG_m850']    = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m850"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m850_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHZ_HToGG_m825']    = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m825"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m825_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHZ_HToGG_m800']    = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m800"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m800_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHZ_HToGG_m775']    = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m775"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m775_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHZ_HToGG_m750']    = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m750"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m750_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHZ_HToGG_m725']    = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m725"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m725_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHZ_HToGG_m700']    = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m700"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m700_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHZ_HToGG_m675']    = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m675"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m675_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHZ_HToGG_m650']    = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m650"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m650_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHZ_HToGG_m625']    = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m625"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m625_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHZ_HToGG_m600']    = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m600"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m600_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHZ_HToGG_m575']    = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m575"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m575_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHZ_HToGG_m550']    = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m550"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m550_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHZ_HToGG_m525']    = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m525"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m525_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHZ_HToGG_m500']    = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m500"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m500_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHZ_HToGG_m475']    = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m475"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m475_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHZ_HToGG_m450']    = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m450"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m450_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHZ_HToGG_m425']    = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m425"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m425_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHZ_HToGG_m400']    = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m400"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m400_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHZ_HToGG_m375']    = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m375"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m375_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHZ_HToGG_m350']    = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m350"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m350_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHZ_HToGG_m325']    = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m325"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m325_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHZ_HToGG_m300']    = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m300"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m300_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHZ_HToGG_m275']    = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m275"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m275_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHZ_HToGG_m250']    = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m250"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m250_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHZ_HToGG_m225']    = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m225"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m225_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHZ_HToGG_m200']    = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m200"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m200_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHZ_HToGG_m175']    = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m175"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m175_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHZ_HToGG_m150']    = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m150"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m150_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHZ_HToGG_m127']    = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m127"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m127_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHZ_HToGG_m100']    = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m100"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m100_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHZ_HToGG_m75']     = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m75"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m75_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHZ_HToGG_m50']     = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m50"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m50_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHZ_HToGG_m25']     = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m25"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m25_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHZ_HToGG_m1']      = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m1"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m1_$CHANNEL'%sqrts]
+
+
+fileDetails['SMS_T2bH_mSbottom600_mLSP300']     = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom600_mLSP300"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom600_mLSP300_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom600_mLSP200']       = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom600_mLSP200"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom600_mLSP200_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom600_mLSP100']       = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom600_mLSP100"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom600_mLSP100_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom600_mLSP1']       = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom600_mLSP1"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom600_mLSP1_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom500_mLSP50']       = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom500_mLSP50"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom500_mLSP50_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom500_mLSP300']       = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom500_mLSP300"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom500_mLSP300_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom500_mLSP250']       = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom500_mLSP250"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom500_mLSP250_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom500_mLSP200']       = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom500_mLSP200"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom500_mLSP200_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom500_mLSP1']       = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom500_mLSP1"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom500_mLSP1_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom500_mLSP150']       = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom500_mLSP150"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom500_mLSP150_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom500_mLSP100']       = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom500_mLSP100"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom500_mLSP100_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom450_mLSP50']       = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom450_mLSP50"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom450_mLSP50_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom450_mLSP300']       = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom450_mLSP300"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom450_mLSP300_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom450_mLSP250']       = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom450_mLSP250"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom450_mLSP250_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom450_mLSP200']       = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom450_mLSP200"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom450_mLSP200_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom450_mLSP150']       = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom450_mLSP150"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom450_mLSP150_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom450_mLSP100']       = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom450_mLSP100"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom450_mLSP100_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom450_mLSP1']       = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom450_mLSP1"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom450_mLSP1_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom400_mLSP50']       = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom400_mLSP50"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom400_mLSP50_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom400_mLSP250']       = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom400_mLSP250"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom400_mLSP250_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom400_mLSP200']       = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom400_mLSP200"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom400_mLSP200_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom400_mLSP1']       = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom400_mLSP1"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom400_mLSP1_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom400_mLSP150']       = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom400_mLSP150"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom400_mLSP150_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom400_mLSP100']       = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom400_mLSP100"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom400_mLSP100_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom350_mLSP50']       = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom350_mLSP50"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom350_mLSP50_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom350_mLSP200']       = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom350_mLSP200"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom350_mLSP200_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom350_mLSP1']       = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom350_mLSP1"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom350_mLSP1_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom350_mLSP150']       = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom350_mLSP150"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom350_mLSP150_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom350_mLSP100']       = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom350_mLSP100"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom350_mLSP100_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom300_mLSP50']       = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom300_mLSP50"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom300_mLSP50_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom300_mLSP1']       = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom300_mLSP1"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom300_mLSP1_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom300_mLSP150']       = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom300_mLSP150"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom300_mLSP150_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom300_mLSP100']       = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom300_mLSP100"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom300_mLSP100_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom250_mLSP50']       = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom250_mLSP50"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom250_mLSP50_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom250_mLSP100']       = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom250_mLSP100"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom250_mLSP100_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom250_mLSP1']       = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom250_mLSP1"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom250_mLSP1_$CHANNEL'%sqrts]
+
+
+
+# fileDetails['ggH_hgg']       = [sigFile.replace('$PROC',"ggh"),sigWS,'hggpdfsmrel_%dTeV_ggh_$CHANNEL'%sqrts]
+# fileDetails['qqH_hgg']       = [sigFile.replace('$PROC',"vbf"),sigWS,'hggpdfsmrel_%dTeV_vbf_$CHANNEL'%sqrts]
+# if splitVH:
+#   fileDetails['WH_hgg']       =  [sigFile.replace('$PROC',"wh"),sigWS,'hggpdfsmrel_%dTeV_wh_$CHANNEL'%sqrts]
+#   fileDetails['ZH_hgg']       =  [sigFile.replace('$PROC',"zh"),sigWS,'hggpdfsmrel_%dTeV_zh_$CHANNEL'%sqrts]
+# else:
+#   fileDetails['VH']       =  [sigFile.replace('$PROC',"wzh"),sigWS,'hggpdfsmrel_%dTeV_wzh_$CHANNEL'%sqrts]
+# fileDetails['ttH_hgg']       = [sigFile.replace('$PROC',"tth"),sigWS,'hggpdfsmrel_%dTeV_tth_$CHANNEL'%sqrts]
 ###############################################################################
 
 ###############################################################################
@@ -262,158 +521,158 @@ theorySystAbsScale['ttH_hgg'] = [0.0   ,-0.058,0.0    ,0.092 , 0.0   , -0.036, 0
 
 #yprinting function
 def printTheorySysts():
-  # as these are antisymmetric lnN systematics - implement as [1/(1.+err_down)] for the lower and [1.+err_up] for the upper
-  print '[INFO] Theory...'
-  for systName, systDetails in theorySyst.items():
-    print "[INFO] processing ", systName ," from list ",theorySyst
-    if "replicas" in systDetails[-1] :
-        name="CMS_hgg_"+systName
-        if (not "Theory" in allSystList ) :allSystList.append("Theory")
-        if (not options.justThisSyst=="") :
-          if (not options.justThisSyst=="Theory"): continue
-        outFile.write('%-35s  lnN   '%(name))
-        for c in options.cats:
-          for p in options.procs:
-            if "bkg" in flashggProc[p] : 
-              outFile.write('- ')
-              continue
+   # as these are antisymmetric lnN systematics - implement as [1/(1.+err_down)] for the lower and [1.+err_up] for the upper
+   print '[INFO] Theory...'
+   for systName, systDetails in theorySyst.items():
+      print "[INFO] processing ", systName ," from list ",theorySyst
+      if "replicas" in systDetails[-1] :
+         name="CMS_hgg_"+systName
+         if (not "Theory" in allSystList ) :allSystList.append("Theory")
+         if (not options.justThisSyst=="") :
+            if (not options.justThisSyst=="Theory"): continue
+            outFile.write('%-35s  lnN   '%(name))
+            for c in options.cats:
+               for p in options.procs:
+                  if "bkg" in flashggProc[p] : 
+                     outFile.write('- ')
+                     continue
             else:
-              outFile.write(getFlashggLineTheoryEnvelope(flashggProc[p],c,systName,systDetails))
-        outFile.write('\n')
-    else: #sym or asym uncertainties
+               outFile.write(getFlashggLineTheoryEnvelope(flashggProc[p],c,systName,systDetails))
+               outFile.write('\n')
+         else: #sym or asym uncertainties
       #print "consider ", systName
-      asymmetric=("asym" in systDetails[-1])
+            asymmetric=("asym" in systDetails[-1])
       if asymmetric:
-        iteration_list=systDetails[:-1]
+         iteration_list=systDetails[:-1]
       else:
-        iteration_list=[]
-        for a in range(systDetails[0][0],systDetails[0][1]):
-          iteration_list.append([a,0])
+         iteration_list=[]
+         for a in range(systDetails[0][0],systDetails[0][1]):
+            iteration_list.append([a,0])
 
       #print "THIS SYST: ", systName ," is assymetric ? ", asymmetric, " and we will iterate over ", iteration_list 
       factor=1.0
       if "alphaS" in systName: factor=1.5
       for it in iteration_list:
-        i=it[0]
-        j=it[1]
-        name="CMS_hgg_"+systName+"_"+str(iteration_list.index(it))
-        if (not "Theory" in allSystList ) :allSystList.append("Theory")
-        if (not options.justThisSyst=="") :
-          if (not options.justThisSyst=="Theory"): continue
-        if (i%1==0) : print "[INFO] processing ", name
-        outFile.write('%-35s  lnN   '%(name))
-        for c in options.cats:
-          for p in options.procs:
-            if "bkg" in flashggProc[p] : 
-              outFile.write('- ')
-              continue
+         i=it[0]
+         j=it[1]
+         name="CMS_hgg_"+systName+"_"+str(iteration_list.index(it))
+         if (not "Theory" in allSystList ) :allSystList.append("Theory")
+         if (not options.justThisSyst=="") :
+            if (not options.justThisSyst=="Theory"): continue
+            if (i%1==0) : print "[INFO] processing ", name
+            outFile.write('%-35s  lnN   '%(name))
+            for c in options.cats:
+               for p in options.procs:
+                  if "bkg" in flashggProc[p] : 
+                     outFile.write('- ')
+                     continue
             else:
-              outFile.write(getFlashggLineTheoryWeights(flashggProc[p],c,systName,i,asymmetric,j,factor))
-        if '%s:%s'%(p,c) in options.toSkip: continue
-        outFile.write('\n')
+               outFile.write(getFlashggLineTheoryWeights(flashggProc[p],c,systName,i,asymmetric,j,factor))
+               if '%s:%s'%(p,c) in options.toSkip: continue
+               outFile.write('\n')
       outFile.write('\n')
-  
+      
   #absolute scales for theory uncertainties.
-  for syst in theorySystAbsScale['names_to_consider'] :
-    if (not "Theory" in allSystList ) :allSystList.append("Theory")
-    if (not options.justThisSyst=="") :
-      if (not options.justThisSyst=="Theory"): continue
+      for syst in theorySystAbsScale['names_to_consider'] :
+         if (not "Theory" in allSystList ) :allSystList.append("Theory")
+         if (not options.justThisSyst=="") :
+            if (not options.justThisSyst=="Theory"): continue
     #print  "DEBUG consider name ", syst
-    asymmetric= False
-    if "_up" in syst : asymmetric= True
-    if "_down" in syst : continue #already considered as part of "_up"
-    outFile.write('%-35s  lnN   '%(syst.replace("_up",""))) # if it doesn;t contain "_up", the replace has no effect anyway 
-    for c in options.cats:
-      for p in options.procs:
-            if "bkg" in flashggProc[p] : 
-              outFile.write('- ')
-              continue
+            asymmetric= False
+            if "_up" in syst : asymmetric= True
+            if "_down" in syst : continue #already considered as part of "_up"
+            outFile.write('%-35s  lnN   '%(syst.replace("_up",""))) # if it doesn;t contain "_up", the replace has no effect anyway 
+            for c in options.cats:
+               for p in options.procs:
+                  if "bkg" in flashggProc[p] : 
+                     outFile.write('- ')
+                     continue
             else:
-              value = 1+theorySystAbsScale[p][theorySystAbsScale['names'].index(syst)] 
-              if asymmetric :
-                valueDown = 1+theorySystAbsScale[p][theorySystAbsScale['names'].index(syst.replace("_up","_down"))]
-                if value==1.0 and valueDown==1.0 :
-                  outFile.write("- ")
-                else:
-                  outFile.write("%1.3f/%1.3f "%(value,valueDown))
-              else :
-                if value==1.0 :
-                  outFile.write("- ")
-                else:
-                  outFile.write("%1.3f "%(value))
-    outFile.write('\n')
-    
+               value = 1+theorySystAbsScale[p][theorySystAbsScale['names'].index(syst)] 
+               if asymmetric :
+                  valueDown = 1+theorySystAbsScale[p][theorySystAbsScale['names'].index(syst.replace("_up","_down"))]
+                  if value==1.0 and valueDown==1.0 :
+                     outFile.write("- ")
+                  else:
+                     outFile.write("%1.3f/%1.3f "%(value,valueDown))
+               else :
+                  if value==1.0 :
+                     outFile.write("- ")
+                  else:
+                     outFile.write("%1.3f "%(value))
+                     outFile.write('\n')
+                     
 ## pdf weights printing tool 
 def getFlashggLineTheoryWeights(proc,cat,name,i,asymmetric,j=0,factor=1):
-  n = i
-  m = i
-  ad_hoc_factor =1.
-  theoryNormFactor_n=1. #up
-  theoryNormFactor_m=1. #down
-  if ( asymmetric ) :
-    "SINCE WE are looking at syst ", name , " we apply an ad-hoc factor of ", factor
-    ad_hoc_factor=factor
-    m = j
-  if (options.theoryNormFactors != ""):
-     values = eval("th_norm.%s_%s"%(proc,name.replace("Weight","")))
+   n = i
+   m = i
+   ad_hoc_factor =1.
+   theoryNormFactor_n=1. #up
+   theoryNormFactor_m=1. #down
+   if ( asymmetric ) :
+      "SINCE WE are looking at syst ", name , " we apply an ad-hoc factor of ", factor
+      ad_hoc_factor=factor
+      m = j
+      if (options.theoryNormFactors != ""):
+         values = eval("th_norm.%s_%s"%(proc,name.replace("Weight","")))
      #print ("th_norm.%s_%s"%(proc,name.replace("Weight","")))
-     theoryNormFactor_n= 1/values[n] #up
-     theoryNormFactor_m= 1/values[m] #down
-  
-  mass = inWS.var("CMS_hgg_mass")
-  weight = r.RooRealVar("weight","weight",0)
-  weight_up = inWS.var("%s_%d"%(name,n))
-  weight_down = inWS.var("%s_%d"%(name,m))
-  weight_central = inWS.var("centralObjectWeight") 
-  weight_sumW = inWS.var("sumW") 
+         theoryNormFactor_n= 1/values[n] #up
+         theoryNormFactor_m= 1/values[m] #down
+         
+         mass = inWS.var("hgg_mass")
+         weight = r.RooRealVar("weight","weight",0)
+         weight_up = inWS.var("%s_%d"%(name,n))
+         weight_down = inWS.var("%s_%d"%(name,m))
+         weight_central = inWS.var("centralObjectWeight") 
+         weight_sumW = inWS.var("sumW") 
   #data_nominal = inWS.data("%s_%d_13TeV_%s"%(proc,options.mass,cat))
-  data_nominal= inWS.data("%s_%d_13TeV_%s_pdfWeights"%(proc,options.mass,cat))
-  data_nominal_sum = data_nominal.sumEntries()
-  if (data_nominal_sum <= 0.):
-      print "[WARNING] This dataset has 0 or negative sum of weight. Systematic calulcxation meaningless, so list as '- '"
+         data_nominal= inWS.data("%s_%d_13TeV_%s_pdfWeights"%(proc,options.mass,cat))
+         data_nominal_sum = data_nominal.sumEntries()
+         if (data_nominal_sum <= 0.):
+            print "[WARNING] This dataset has 0 or negative sum of weight. Systematic calulcxation meaningless, so list as '- '"
       line = '- '
       return line
   #data_nominal_num = data_nominal.numEntries()
-  data_up = data_nominal.emptyClone();
-  data_down = data_nominal.emptyClone();
-  data_nominal_new = data_nominal.emptyClone();
-  zeroWeightEvents=0.
-  for i in range(0,int(data_nominal.numEntries())):
-    
-    mass.setVal(data_nominal.get(i).getRealValue("CMS_hgg_mass"))
-    w_nominal =data_nominal.weight()
-    w_up = theoryNormFactor_n*data_nominal.get(i).getRealValue("%s_%d"%(name,n))
-    w_down = theoryNormFactor_m*data_nominal.get(i).getRealValue("%s_%d"%(name,m))
+   data_up = data_nominal.emptyClone();
+   data_down = data_nominal.emptyClone();
+   data_nominal_new = data_nominal.emptyClone();
+   zeroWeightEvents=0.
+   for i in range(0,int(data_nominal.numEntries())):
+      
+      mass.setVal(data_nominal.get(i).getRealValue("hgg_mass"))
+      w_nominal =data_nominal.weight()
+      w_up = theoryNormFactor_n*data_nominal.get(i).getRealValue("%s_%d"%(name,n))
+      w_down = theoryNormFactor_m*data_nominal.get(i).getRealValue("%s_%d"%(name,m))
     #w_central = data_nominal.get(i).getRealValue(weight_central.GetName())
-    w_central = data_nominal.get(i).getRealValue("scaleWeight_0") #sneaky fix as it doesn't look like central weight is beign propagated correctly in these cases.
+      w_central = data_nominal.get(i).getRealValue("scaleWeight_0") #sneaky fix as it doesn't look like central weight is beign propagated correctly in these cases.
     #print " WARNING] syst ", name,n, " ","procs/cat  " , proc,",",cat , " entry " , i, " w_nom ", w_nominal , "  w_up " , w_up , " w_down ", w_down ,"w_central ", w_central, " theoryNormFactor_m ", theoryNormFactor_m , " theoryNormFactor_n ", theoryNormFactor_n
-    sumW = data_nominal.get(i).getRealValue("sumW")
-    if (w_central==0. or w_nominal==0. or math.isnan(w_down) or math.isnan(w_up) or w_down==0. or w_up==0.): 
-        zeroWeightEvents=zeroWeightEvents+1.0
-        if (zeroWeightEvents%1000==0):
-          print "[WARNING] skipping one event where weight is identically 0 or nan, causing  a seg fault, occured in ",(zeroWeightEvents/data_nominal.numEntries())*100 , " percent of events"
+      sumW = data_nominal.get(i).getRealValue("sumW")
+      if (w_central==0. or w_nominal==0. or math.isnan(w_down) or math.isnan(w_up) or w_down==0. or w_up==0.): 
+         zeroWeightEvents=zeroWeightEvents+1.0
+         if (zeroWeightEvents%1000==0):
+            print "[WARNING] skipping one event where weight is identically 0 or nan, causing  a seg fault, occured in ",(zeroWeightEvents/data_nominal.numEntries())*100 , " percent of events"
           #print " WARNING] syst ", name,n, " ","procs/cat  " , proc,",",cat , " entry " , i, " w_nom ", w_nominal , "  w_up " , w_up , " w_down ", w_down ,"w_central ", w_central
           #exit(1)
-        continue
-    elif ( abs(w_central/w_down) <0.01 or abs(w_central/w_down) >100 ) :
-        zeroWeightEvents=zeroWeightEvents+1.0
+            continue
+         elif ( abs(w_central/w_down) <0.01 or abs(w_central/w_down) >100 ) :
+            zeroWeightEvents=zeroWeightEvents+1.0
         #if (zeroWeightEvents%1000==0):
           #print "[WARNING] skipping one event where weight is identically 0 or nan, causing  a seg fault, occured in ",(zeroWeightEvents/data_nominal.numEntries())*100 , " percent of events"
           #print " WARNING] syst ", name,n, " ","procs/cat  " , proc,",",cat , " entry " , i, " w_nom ", w_nominal , "  w_up " , w_up , " w_down ", w_down ,"w_central ", w_central
           #exit(1)
-        continue
-    weight_down.setVal(w_nominal*(w_down/w_central))
-    weight_up.setVal(w_nominal*(w_up/w_central))
-    data_up.add(r.RooArgSet(mass,weight_up),weight_up.getVal())
-    data_down.add(r.RooArgSet(mass,weight_down),weight_down.getVal())
-    data_nominal_new.add(r.RooArgSet(mass,weight),w_nominal)
-  if (data_up.sumEntries() <= 0. or data_down.sumEntries() <= 0. ):
-      print "[WARNING] This dataset has 0 or negative sum of weight. Systematic calulcxation meaningless, so list as '- '"
+            continue
+         weight_down.setVal(w_nominal*(w_down/w_central))
+         weight_up.setVal(w_nominal*(w_up/w_central))
+         data_up.add(r.RooArgSet(mass,weight_up),weight_up.getVal())
+         data_down.add(r.RooArgSet(mass,weight_down),weight_down.getVal())
+         data_nominal_new.add(r.RooArgSet(mass,weight),w_nominal)
+         if (data_up.sumEntries() <= 0. or data_down.sumEntries() <= 0. ):
+            print "[WARNING] This dataset has 0 or negative sum of weight. Systematic calulcxation meaningless, so list as '- '"
       line = '- '
       return line
-  systVals = interp1SigmaDataset(data_nominal_new,data_down,data_up,ad_hoc_factor)
-  if (math.isnan(systVals[0]) or math.isnan(systVals[1]) or systVals[0]<0.6 or systVals[1]<0.6 ): 
-    print "ERROR look at the value of these uncertainties!! systVals[0] ", systVals[0], " systVals[1] ", systVals[1]
+   systVals = interp1SigmaDataset(data_nominal_new,data_down,data_up,ad_hoc_factor)
+   if (math.isnan(systVals[0]) or math.isnan(systVals[1]) or systVals[0]<0.6 or systVals[1]<0.6 ): 
+      print "ERROR look at the value of these uncertainties!! systVals[0] ", systVals[0], " systVals[1] ", systVals[1]
     #print "data Nominal"
     #data_nominal_new.Print()
     #print "data down "
@@ -421,8 +680,8 @@ def getFlashggLineTheoryWeights(proc,cat,name,i,asymmetric,j=0,factor=1):
     #print "data up "
     #data_up.Print()
     #exit (1)
-  if (systVals[0] >10) : 
-    print "ERROR look at the value of these uncertainties!! systVals[0] ", systVals[0], " systVals[1] ", systVals[1]
+      if (systVals[0] >10) : 
+         print "ERROR look at the value of these uncertainties!! systVals[0] ", systVals[0], " systVals[1] ", systVals[1]
     #print "data_nominal_new"
     #data_nominal_new.Print()
     #print "data_down"
@@ -432,7 +691,7 @@ def getFlashggLineTheoryWeights(proc,cat,name,i,asymmetric,j=0,factor=1):
     #print "ad_hoc_factor"
     #ad_hoc_factor
     #exit (1)
-  if ((systVals[1] >10)) : 
+         if ((systVals[1] >10)) : 
     #print "data_nominal_new"
     #data_nominal_new.Print()
     #print "data_down"
@@ -441,13 +700,13 @@ def getFlashggLineTheoryWeights(proc,cat,name,i,asymmetric,j=0,factor=1):
     #data_up.Print()
     #print "ad_hoc_factor"
     #ad_hoc_factor
-    print "ERROR look at the value of these uncertainties!! systVals[0] ", systVals[0], " systVals[1] ", systVals[1]
+            print "ERROR look at the value of these uncertainties!! systVals[0] ", systVals[0], " systVals[1] ", systVals[1]
     #exit (1)
-  if systVals[0]==1 and systVals[1]==1:
-      line = '- '
-  elif (asymmetric):
-      if systVals[0] < 1 and systVals[1] <1 :
-        print "alpha S --- both systVals[0] ", systVals[0] , " and systVals[1] ", systVals[1] , " are less than 1 !"
+            if systVals[0]==1 and systVals[1]==1:
+               line = '- '
+            elif (asymmetric):
+               if systVals[0] < 1 and systVals[1] <1 :
+                  print "alpha S --- both systVals[0] ", systVals[0] , " and systVals[1] ", systVals[1] , " are less than 1 !"
         #print "data_nominal_new"
         #data_nominal_new.Print()
         #print "data_down"
@@ -457,98 +716,98 @@ def getFlashggLineTheoryWeights(proc,cat,name,i,asymmetric,j=0,factor=1):
         #print "ad_hoc_factor", ad_hoc_factor
         #exit(1)
       line = '%5.3f/%5.3f '%(systVals[0],systVals[1])
-  else : #symmetric
+   else : #symmetric
       line = '%5.3f '%(systVals[0])
   #print " summary tag " , cat , "  proc ", proc, " value ", line 
-  return line
+      return line
 
 ## envelope computation, for Theory scale weights
 def getFlashggLineTheoryEnvelope(proc,cat,name,details):
-  
+   
   #print "consider proc ", proc, " cat ", cat , " name ", name , " detail ", details
   #print "DEBug cat ", cat
   #if "Untagged" in cat : return " - "
-  indices=details[0:-1] # skip last entry whcuh is text specifying the treatment of uncertainty eg "replicas"
-  histograms=[]
-  h_nominal =None
-  nBins=80
-  
-  for iReplica in indices:
-    data_nominal = inWS.data("%s_%d_13TeV_%s"%(proc,options.mass,cat)) #FIXME
-    data_nominal_num = data_nominal.numEntries()
-    data_new_h = r.TH1F("h_%d"%iReplica,"h_%d"%iReplica,nBins,100,180);
-    data_nom_h = r.TH1F("h_nom_%d"%iReplica,"h_nom_%d"%iReplica,nBins,100,180);
-    mass = inWS.var("CMS_hgg_mass")
-    weight = r.RooRealVar("weight","weight",0)
-    weight_new = inWS.var("%s_%d"%(name,iReplica))
-    theoryNormFactor=1.0
-    if (options.theoryNormFactors != ""):
-       values = eval("th_norm.%s_%s"%(proc,name.replace("Weight","")))
-       theoryNormFactor= 1/values[iReplica]
+   indices=details[0:-1] # skip last entry which is text specifying the treatment of uncertainty eg "replicas"
+   histograms=[]
+   h_nominal =None
+   nBins=80
+   
+   for iReplica in indices:
+      data_nominal = inWS.data("%s_%d_13TeV_%s"%(proc,options.mass,cat)) #FIXME
+      data_nominal_num = data_nominal.numEntries()
+      data_new_h = r.TH1F("h_%d"%iReplica,"h_%d"%iReplica,nBins,100,180);
+      data_nom_h = r.TH1F("h_nom_%d"%iReplica,"h_nom_%d"%iReplica,nBins,100,180);
+      mass = inWS.var("hgg_mass")
+      weight = r.RooRealVar("weight","weight",0)
+      weight_new = inWS.var("%s_%d"%(name,iReplica))
+      theoryNormFactor=1.0
+      if (options.theoryNormFactors != ""):
+         values = eval("th_norm.%s_%s"%(proc,name.replace("Weight","")))
+         theoryNormFactor= 1/values[iReplica]
 
-    weight_central = inWS.var("centralObjectWeight")
-    zeroWeightEvents=0.;
-    for i in range(0,int(data_nominal.numEntries())):
-      mass.setVal(data_nominal.get(i).getRealValue("CMS_hgg_mass"))
+         weight_central = inWS.var("centralObjectWeight")
+         zeroWeightEvents=0.;
+         for i in range(0,int(data_nominal.numEntries())):
+            mass.setVal(data_nominal.get(i).getRealValue("hgg_mass"))
       mass.setBins(100)
       w_nominal =data_nominal.weight()
       w_new = theoryNormFactor*data_nominal.get(i).getRealValue("%s_%d"%(name,iReplica))
       w_central = data_nominal.get(i).getRealValue("scaleWeight_0")
       if (w_central==0. or w_nominal==0. or math.isnan(w_new) or w_new==0.):
-        zeroWeightEvents=zeroWeightEvents+1.0
-        if (zeroWeightEvents%1000==0):
-          print "[WARNING] skipping one event where weight is identically 0, causing  a seg fault, occured in ",(zeroWeightEvents/data_nominal.numEntries())*100 , " percent of events"
+         zeroWeightEvents=zeroWeightEvents+1.0
+         if (zeroWeightEvents%1000==0):
+            print "[WARNING] skipping one event where weight is identically 0, causing  a seg fault, occured in ",(zeroWeightEvents/data_nominal.numEntries())*100 , " percent of events"
           #print " [WARNING] procs/cat  " , proc,",",cat , " entry " , i, " w_nom ", w_nominal , "  w_new " , w_new , "w_central ", w_central
         #exit(1)
-        continue
+            continue
       elif( abs(w_central/w_new) >100 or  abs(w_central/w_new) <0.01) :
-        zeroWeightEvents=zeroWeightEvents+1.0
-        if (zeroWeightEvents%1000==0):
-          print "[WARNING] skipping one event where weight is identically 0, causing  a seg fault, occured in ",(zeroWeightEvents/data_nominal.numEntries())*100 , " percent of events"
+         zeroWeightEvents=zeroWeightEvents+1.0
+         if (zeroWeightEvents%1000==0):
+            print "[WARNING] skipping one event where weight is identically 0, causing  a seg fault, occured in ",(zeroWeightEvents/data_nominal.numEntries())*100 , " percent of events"
           #print " [WARNING] procs/cat  " , proc,",",cat , " entry " , i, " w_nom ", w_nominal , "  w_new " , w_new , "w_central ", w_central
-        exit(1)
-        continue
+            exit(1)
+            continue
       weight_new.setVal(w_nominal*(w_new/w_central))
       data_new_h.Fill(mass.getVal(),weight_new.getVal())
       data_nom_h.Fill(mass.getVal(),w_nominal)
-    histograms.append(data_new_h)
-    if (h_nominal==None) : h_nominal=data_nom_h
-  
-  h_min = r.TH1F("h_min","h_min",nBins,100,180);
-  h_max = r.TH1F("h_max","h_max",nBins,100,180);
-  array ={}
-  for iBin in range(0, h_min.GetNbinsX()): 
-    array[iBin]=[]
-    for iRep in range(0,len(indices)):
-      content=histograms[iRep].GetBinContent(iRep)
+      histograms.append(data_new_h)
+      if (h_nominal==None) : h_nominal=data_nom_h
+      
+      h_min = r.TH1F("h_min","h_min",nBins,100,180);
+      h_max = r.TH1F("h_max","h_max",nBins,100,180);
+      array ={}
+      for iBin in range(0, h_min.GetNbinsX()): 
+         array[iBin]=[]
+         for iRep in range(0,len(indices)):
+            content=histograms[iRep].GetBinContent(iRep)
       array[iBin].append(histograms[iRep].GetBinContent(iBin))
-    h_min.SetBinContent(iBin,min(array[iBin]))
-    h_max.SetBinContent(iBin,max(array[iBin]))
+      h_min.SetBinContent(iBin,min(array[iBin]))
+      h_max.SetBinContent(iBin,max(array[iBin]))
 
-  systVals = interp1Sigma(h_nominal,h_min,h_max)
-  if (systVals[0]<0.2 or  systVals[1]<0.2):
-    print "[ERROR] Look at these histograms because systVals[0]= ", systVals[0], " or systVals[1]= ",systVals[1]," :"
-    print "h_nominal ", h_nominal.GetEntries(), " (", h_nominal.Integral(),")";
-    print "h_min ", h_min.GetEntries(), " (", h_min.Integral(),")";
-    print "h_max ", h_max.GetEntries(), " (", h_max.Integral(),")";
-    exit(1)
-  if (systVals[0]>2. or  systVals[1]>2.):
-    print "[ERROR] Look at these histograms because systVals[0]= ", systVals[0], " or systVals[1]= ",systVals[1]," :"
-    print "h_nominal ", h_nominal.GetEntries(), " (", h_nominal.Integral(),")";
-    print "h_min ", h_min.GetEntries(), " (", h_min.Integral(),")";
-    print "h_max ", h_max.GetEntries(), " (", h_max.Integral(),")";
-    if(h_nominal.Integral() <0. or  h_min.Integral() <0. or  h_max.Integral()<0.): 
-        line = '- '
-    else :
-      print "ERROR large weight"
+      systVals = interp1Sigma(h_nominal,h_min,h_max)
+      if (systVals[0]<0.2 or  systVals[1]<0.2):
+         print "[ERROR] Look at these histograms because systVals[0]= ", systVals[0], " or systVals[1]= ",systVals[1]," :"
+         print "h_nominal ", h_nominal.GetEntries(), " (", h_nominal.Integral(),")";
+         print "h_min ", h_min.GetEntries(), " (", h_min.Integral(),")";
+         print "h_max ", h_max.GetEntries(), " (", h_max.Integral(),")";
+         exit(1)
+         if (systVals[0]>2. or  systVals[1]>2.):
+            print "[ERROR] Look at these histograms because systVals[0]= ", systVals[0], " or systVals[1]= ",systVals[1]," :"
+            print "h_nominal ", h_nominal.GetEntries(), " (", h_nominal.Integral(),")";
+            print "h_min ", h_min.GetEntries(), " (", h_min.Integral(),")";
+            print "h_max ", h_max.GetEntries(), " (", h_max.Integral(),")";
+            if(h_nominal.Integral() <0. or  h_min.Integral() <0. or  h_max.Integral()<0.): 
+               line = '- '
+            else :
+               print "ERROR large weight"
       exit(1)
-    return line
+      return line
 
-  if systVals[0]==1 and systVals[1]==1:
-        line = '- '
-  else:
-        line = '%5.3f/%5.3f '%(systVals[0],systVals[1])
-  return line
+   if systVals[0]==1 and systVals[1]==1:
+      line = '- '
+   else:
+      line = '%5.3f/%5.3f '%(systVals[0],systVals[1])
+      return line
 ###############################################################################
 
 ###############################################################################
@@ -559,47 +818,108 @@ brSyst = [0.0206,-0.0208] #13TeV Values, from YR4 taking  in quadrature THU (+1.
 # lumi syst
 ####lumiSyst = 0.026 #8TeV Values
 lumiSyst=0.062  #Correct for ICHEP 
+sigSyst=0.1 #preliminary guess
+isrSyst_j0=0.01
+isrSyst_j1to3=0.07
+isrSyst_j4toInf=0.12
+
+
 
 ##Printing Functions
 def printBRSyst():
-  print '[INFO] BR...'
+   print '[INFO] BR...'
   #outFile.write('%-35s   lnN   '%('CMS_hgg_BR'))
-  outFile.write('%-35s   lnN   '%('BR_hgg'))
-  for c in options.cats:
-    for p in options.procs:
-      if '%s:%s'%(p,c) in options.toSkip: continue
-      if p in bkgProcs:
-        outFile.write('- ')
-      else:
-         outFile.write('%5.3f/%5.3f '%(1./(1.-brSyst[1]),1.+brSyst[0]))
-  outFile.write('\n')
-  outFile.write('\n')
+   outFile.write('%-35s   lnN   '%('BR_hgg'))
+   for c in options.cats:
+      for p in options.procs:
+         if '%s:%s'%(p,c) in options.toSkip: continue
+         if p in bkgProcs:
+            outFile.write('- ')
+         else:
+            outFile.write('%5.3f/%5.3f '%(1./(1.-brSyst[1]),1.+brSyst[0]))
+   outFile.write('\n')
+   outFile.write('\n')
 
 def printLumiSyst():
-  print '[INFO] Lumi...'
-  outFile.write('%-35s   lnN   '%('lumi_%dTeV'%sqrts))
-  for c in options.cats:
-    for p in options.procs:
-      if '%s:%s'%(p,c) in options.toSkip: continue
-      if p in bkgProcs:
-        outFile.write('- ')
-      else:
-        outFile.write('%5.3f '%(1.+lumiSyst))
-  outFile.write('\n')
-  outFile.write('\n')
+   print '[INFO] Lumi...'
+   outFile.write('%-35s   lnN   '%('lumi_%dTeV'%sqrts))
+   for c in options.cats:
+      for p in options.procs:
+         if '%s:%s'%(p,c) in options.toSkip: continue
+         if p in bkgProcs:
+            outFile.write('- ')
+         else:
+            outFile.write('%5.3f '%(1.+lumiSyst))
+   outFile.write('\n')
+   outFile.write('\n')
+
+
+inputFile = r.TFile ( options.infilename )
+
+def printSigSyst():
+   print '[INFO] Sig...'
+   outFile.write('%-35s   lnN   '%('Sig_syst'))
+   for c in options.cats:
+      for p in options.procs:
+         if '%s:%s'%(p,c) in options.toSkip: continue
+         if p in bkgProcs or "higgs" in p:
+            outFile.write('- ')
+         else:
+           
+            # isrSystHist = inputFile.Get( "h2D_isr_err_%s"%(c) )
+            # regex = re.compile('Sbottom([0-9]*)')
+            # regex2 = re.compile('mLSP([0-9]*)')
+            # mSbottom = regex.findall( p )
+            # mChi = regex2.findall( p )
+            # m1 = list(map(float, mSbottom))
+            # m2 = list(map(float, mChi))
+            # binx = isrSystHist.GetXaxis().FindBin( m1[0] );
+            # biny = isrSystHist.GetYaxis().FindBin( m2[0] );
+            # print c
+            # print isrSystHist.GetBinContent( binx, biny )
+            # isrWeightHisto = isrSystHist.GetBinContent( binx, biny )
+
+            # outFile.write('%5.3f '%(1. + isrWeightHisto))
+
+            if "j0" in c:
+               outFile.write('%5.3f '%(1. - isrSyst_j0))
+               print "Found j0 category"
+            elif "j1to3" in c:
+               outFile.write('%5.3f '%(1. - isrSyst_j1to3 ))
+            elif  "j4" in c:
+               outFile.write('%5.3f '%(1. + isrSyst_j4toInf ))    
+            else:     
+               outFile.write('%5.3f '%(1. + 0.01 ))    
+
+   outFile.write('\n')
+   outFile.write('\n')
+
+
+# def printSigSyst():
+#    print '[INFO] Sig...'
+#    outFile.write('%-35s   lnN   '%('Sig_syst'))
+#    for c in options.cats:
+#       for p in options.procs:
+#          if '%s:%s'%(p,c) in options.toSkip: continue
+#          if p in bkgProcs or "higgs" in p:
+#             outFile.write('- ')
+#          else:
+#             outFile.write('%5.3f '%(1.+ sigSyst))
+#    outFile.write('\n')
+#    outFile.write('\n')
 
 def printTrigSyst():
-  print '[INFO] Trig...'
-  outFile.write('%-35s   lnN   '%'CMS_hgg_n_trig_eff')
-  for c in options.cats:
-    for p in options.procs:
-      if '%s:%s'%(p,c) in options.toSkip: continue
+   print '[INFO] Trig...'
+   outFile.write('%-35s   lnN   '%'CMS_hgg_n_trig_eff')
+   for c in options.cats:
+      for p in options.procs:
+         if '%s:%s'%(p,c) in options.toSkip: continue
       if p in bkgProcs:
-        outFile.write('- ')
+         outFile.write('- ')
       else:
-        outFile.write('%5.3f '%(1.+trigEff))
-  outFile.write('\n')
-  outFile.write('\n')
+         outFile.write('%5.3f '%(1.+trigEff))
+         outFile.write('\n')
+         outFile.write('\n')
 ###############################################################################
 
 ###############################################################################
@@ -741,7 +1061,8 @@ def printFileOptions():
       pdfname = info[2].replace('$CHANNEL','%s'%c)
       if typ not in options.procs and typ!='data_obs': continue
       #outFile.write('shapes %-10s %-15s %-30s %-30s\n'%(typ,'%s_%dTeV'%(c,sqrts),file.replace(".root","_%s_%s.root"%(typ,c)),wsname+':'+pdfname))
-      outFile.write('shapes %-10s %-15s %-30s %-30s\n'%(typ,'%s_%dTeV'%(c,sqrts),file,wsname+':'+pdfname))
+      outFile.write('shapes %-10s %-15s %-30s %-30s\n'%(typ,'%s'%(c),file,wsname+':'+pdfname))
+####      outFile.write('shapes %-10s %-15s %-30s %-30s\n'%(typ,'%s_%dTeV'%(c,sqrts),file,wsname+':'+pdfname))
   outFile.write('\n')
 ###############################################################################
 
@@ -752,7 +1073,7 @@ def printObsProcBinLines():
   print '[INFO] Rates...'
   outFile.write('%-15s '%'bin')
   for c in options.cats:
-    outFile.write('%s_%dTeV '%(c,sqrts))
+    outFile.write('%s '%(c)) ###   outFile.write('%s_%dTeV '%(c,sqrts))
   outFile.write('\n')
   
   outFile.write('%-15s '%'observation')
@@ -764,7 +1085,8 @@ def printObsProcBinLines():
   for c in options.cats:
     for p in options.procs:
       if '%s:%s'%(p,c) in options.toSkip: continue
-      outFile.write('%s_%dTeV '%(c,sqrts))
+      outFile.write('%s '%(c))   ####outFile.write('%s_%dTeV '%(c,sqrts)) 
+
   outFile.write('\n')
   
   outFile.write('%-15s '%'process')
@@ -811,7 +1133,11 @@ def getReweightedDataset(dataNOMINAL,syst):
     data_up = dataNOMINAL.emptyClone();
     data_down = dataNOMINAL.emptyClone();
     data_nominal = dataNOMINAL.emptyClone();
-    mass = inWS.var("CMS_hgg_mass")
+
+    print inWS
+    print  "this better be something"
+
+    mass = inWS.var("hgg_mass")
     weight = r.RooRealVar("weight","weight",0)
     weight_up = inWS.var("%sUp01sigma"%syst)
     #weight_down = inWS.var("%sDown01sigma"%sys)
@@ -819,7 +1145,7 @@ def getReweightedDataset(dataNOMINAL,syst):
     weight_central = inWS.var("centralObjectWeight")
     zeroWeightEvents=0.
     for i in range(0,int(dataNOMINAL.numEntries())):
-      mass.setVal(dataNOMINAL.get(i).getRealValue("CMS_hgg_mass"))
+      mass.setVal(dataNOMINAL.get(i).getRealValue("hgg_mass"))
       w_nominal =dataNOMINAL.weight()
       w_down = dataNOMINAL.get(i).getRealValue(weight_down.GetName())
       w_up = dataNOMINAL.get(i).getRealValue(weight_up.GetName())
@@ -903,7 +1229,11 @@ def getFlashggLine(proc,cat,syst):
     data_up = dataNOMINAL.emptyClone();
     data_down = dataNOMINAL.emptyClone();
     data_nominal = dataNOMINAL.emptyClone();
-    mass = inWS.var("CMS_hgg_mass")
+
+    print inWS
+    print  "this better be something"
+
+    mass = inWS.var("hgg_mass")
     weight = r.RooRealVar("weight","weight",0)
     weight_up = inWS.var("%sUp01sigma"%syst)
     #weight_down = inWS.var("%sDown01sigma"%sys)
@@ -911,7 +1241,7 @@ def getFlashggLine(proc,cat,syst):
     weight_central = inWS.var("centralObjectWeight")
     zeroWeightEvents=0.
     for i in range(0,int(dataNOMINAL.numEntries())):
-      mass.setVal(dataNOMINAL.get(i).getRealValue("CMS_hgg_mass"))
+      mass.setVal(dataNOMINAL.get(i).getRealValue("hgg_mass"))
       w_nominal =dataNOMINAL.weight()
       w_down = dataNOMINAL.get(i).getRealValue(weight_down.GetName())
       w_up = dataNOMINAL.get(i).getRealValue(weight_up.GetName())
@@ -1064,7 +1394,7 @@ def printVbfSysts():
           data =  inWS.data("%s_%d_13TeV_%s_%s"%(flashggProc[p],options.mass,c,syst))
           dataDOWN =  inWS.data("%s_%d_13TeV_%s_%sDown01sigma"%(flashggProc[p],options.mass,c,syst))
           dataNOMINAL =  inWS.data("%s_%d_13TeV_%s"%(flashggProc[p],options.mass,c))
-          mass = inWS.var("CMS_hgg_mass")
+          mass = inWS.var("hgg_mass")
           dataUP =  inWS.data("%s_%d_13TeV_%s_%sUp01sigma"%(flashggProc[p],options.mass,c,syst))
           
           if (data==None):
@@ -1280,17 +1610,18 @@ if ((options.justThisSyst== "batch_split") or options.justThisSyst==""):
   #obs proc/tag bins
   printObsProcBinLines()
   #nuisance param systematics
-  printNuisParams()
-  printMultiPdf()
+#mininotneed  printNuisParams()
+#mininotneed  printMultiPdf()
   printBRSyst()
   printLumiSyst()
+  printSigSyst()
   #printTrigSyst() # now a weight in the main roodataset!
-  printSimpleTTHSysts()
+##mininotneed  printSimpleTTHSysts()
 
 if (len(tthCats) > 0 ):  printTTHSysts()
-printTheorySysts()
+#fixmimi printTheorySysts()
 # lnN systematics
-printFlashggSysts()
+#fixmimi printFlashggSysts()
 #catgeory migrations
 #if (len(dijetCats) > 0 and len(tthCats)>0):  printVbfSysts()
 if (len(dijetCats) > 0 ):  printVbfSysts()

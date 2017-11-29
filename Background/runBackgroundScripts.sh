@@ -2,19 +2,38 @@
 
 #bash variables
 FILE="";
-EXT="auto"; #extensiom for all folders and files created by this script
+#EXT="auto"; #extensiom for all folders and files created by this script
 PROCS="ggh"
-CATS="UntaggedTag_0,UntaggedTag_1,UntaggedTag_2,UntaggedTag_3,UntaggedTag_4,VBFTag_0,VBFTag_1,VBFTag_2,VHHadronicTag,VHTightTag,VHLooseTag"
+
+EXT="nov07_bb"; #extensiom for all folders and files created by this script
+
+CATS="is1El_pT1,is1Mu_pT1,is1El_pT0,is1Mu_pT0,diLepZ,diBBZ_pT0,diBBZ_pT1,diBBH_pT0,diBBH_pT1,HT0toInf_j1to3_b0_pT0_loMT2,HT0toInf_j1to3_b0_pT0_hiMT2,HT0toInf_j1to3_b0_pT1_loMT2,HT0toInf_j1to3_b0_pT1_hiMT2,HT0toInf_j1to3_b1_pT0_loMT2,HT0toInf_j1to3_b1_pT0_hiMT2,HT0toInf_j1to3_b1_pT1_loMT2,HT0toInf_j1to3_b1_pT1_hiMT2,HT0toInf_j4toInf_b0_pT0_loMT2,HT0toInf_j4toInf_b0_pT0_hiMT2,HT0toInf_j4toInf_b0_pT1_loMT2,HT0toInf_j4toInf_b0_pT1_hiMT2,HT0toInf_j4toInf_b1_pT0_loMT2,HT0toInf_j4toInf_b1_pT0_hiMT2,HT0toInf_j4toInf_b1_pT1_loMT2,HT0toInf_j4toInf_b1_pT1_hiMT2,HT0toInf_j0_b0toInf_pT0_loPt,HT0toInf_j0_b0toInf_pT0_hiPt,HT0toInf_j0_b0toInf_pT1_loPt,HT0toInf_j0_b0toInf_pT1_hiPt,HT0toInf_j1to3_b2toInf_pT0_loMT2,HT0toInf_j1to3_b2toInf_pT0_hiMT2,HT0toInf_j1to3_b2toInf_pT1,HT0toInf_j4toInf_b2toInf_pT0,HT0toInf_j4toInf_b2toInf_pT1"
+
+
+#CATS="is1El_pT1,is1Mu_pT1,is1El_pT0,is1Mu_pT0,diLepZ,diBBZ_pT0,diBBZ_pT1,diBBH_pT0,diBBH_pT1,HT0toInf_j0_b0toInf_pT0,HT0toInf_j0_b0toInf_pT1,HT0toInf_j1to3_b0_pT0,HT0toInf_j1to3_b0_pT1,HT0toInf_j4toInf_b0_pT0,HT0toInf_j4toInf_b0_pT1,HT0toInf_j1to3_b1_pT0,HT0toInf_j1to3_b1_pT1,HT0toInf_j4toInf_b1_pT0,HT0toInf_j4toInf_b1_pT1,HT0toInf_j1to3_b2toInf_pT0,HT0toInf_j1to3_b2toInf_pT1,HT0toInf_j4toInf_b2toInf_pT0,HT0toInf_j4toInf_b2toInf_pT1"
+
+
+
+
+#CATS="is1El,is1Mu,diBBZ_pT0,diBBZ_pT1,diBBH_pT0,diBBH_pT1,diLepZ,HT0toInf_j0_b0toInf_pT0,HT0toInf_j0_b0toInf_pT1,HT0toInf_j1to3_b0_pT0,HT0toInf_j1to3_b0_pT1,HT0toInf_j4toInf_b0_pT0,HT0toInf_j4toInf_b0_pT1,HT0toInf_j1to3_b1_pT0,HT0toInf_j1to3_b1_pT1,HT0toInf_j4toInf_b1_pT0,HT0toInf_j4toInf_b1_pT1,HT0toInf_j1to3_b2toInf_pT0,HT0toInf_j1to3_b2toInf_pT1,HT0toInf_j4toInf_b2toInf_pT0,HT0toInf_j4toInf_b2toInf_pT1"
+#CATS="diBB,diLepZ,HT0toInf_j0_b0toInf_pT0,HT0toInf_j0_b0toInf_pT1,HT0toInf_j1to3_b0_pT0,HT0toInf_j1to3_b0_pT1,HT0toInf_j4toInf_b0_pT0,HT0toInf_j4toInf_b0_pT1,HT0toInf_j1to3_b1_pT0,HT0toInf_j1to3_b1_pT1,HT0toInf_j4toInf_b1_pT0,HT0toInf_j4toInf_b1_pT1,HT0toInf_j1to3_b2toInf_pT0,HT0toInf_j1to3_b2toInf_pT1,HT0toInf_j4toInf_b2toInf_pT0,HT0toInf_j4toInf_b2toInf_pT1"
+
+
+#CATS="HT0toInf_j1to3_b0_pT0_loMT2,HT0toInf_j1to3_b0_pT0_hiMT2,HT0toInf_j1to3_b0_pT1_loMT2,HT0toInf_j1to3_b0_pT1_hiMT2,HT0toInf_j1to3_b1_pT0_loMT2,HT0toInf_j1to3_b1_pT0_hiMT2,HT0toInf_j1to3_b1_pT1_loMT2,HT0toInf_j1to3_b1_pT1_hiMT2,HT0toInf_j4toInf_b0_pT0_loMT2,HT0toInf_j4toInf_b0_pT0_hiMT2,HT0toInf_j4toInf_b0_pT1_loMT2,HT0toInf_j4toInf_b0_pT1_hiMT2,HT0toInf_j0_b0toInf_pT0_loPt,HT0toInf_j0_b0toInf_pT0_hiPt,HT0toInf_j0_b0toInf_pT1_loPt,HT0toInf_j0_b0toInf_pT1_hiPt,HT0toInf_j1to3_b2toInf_pT0_loMT2,HT0toInf_j1to3_b2toInf_pT0_hiMT2,HT0toInf_j1to3_b2toInf_pT1,HT0toInf_j1to3_b2toInf_pT1,HT0toInf_j4toInf_b1toInf_pT0_loMT2,HT0toInf_j4toInf_b1toInf_pT0_hiMT2,HT0toInf_j4toInf_b1toInf_pT1_loMT2,HT0toInf_j4toInf_b1toInf_pT1_hiMT2"
+
+#CATS="HT0toInf_j0_b0_pT0,HT0toInf_j0_b0_pT1,HT0toInf_j1to3_b0_pT0,HT0toInf_j1to3_b0_pT1,HT0toInf_j4toInf_b0_pT0,HT0toInf_j4toInf_b0_pT1,HT0toInf_j0_b1toInf_pT0,HT0toInf_j0_b1toInf_pT1,HT0toInf_j1to3_b1toInf_pT0,HT0toInf_j1to3_b1toInf_pT1,HT0toInf_j4toInf_b1toInf_pT0,HT0toInf_j4toInf_b1toInf_pT1"
+
+#CATS="UntaggedTag_0,UntaggedTag_1,UntaggedTag_2,UntaggedTag_3,UntaggedTag_4,VBFTag_0,VBFTag_1,VBFTag_2,VHHadronicTag,VHTightTag,VHLooseTag"
 SCALES="HighR9EE,LowR9EE,HighR9EB,LowR9EB"
 SMEARS="HighR9EE,LowR9EE,HighR9EB,LowR9EB" #DRY RUN
-FTESTONLY=0
+FTESTONLY=1
 PSEUDODATAONLY=0
 PSEUDODATADAT=""
 SIGFILE=""
 BKGPLOTSONLY=0
 SEED=0
 INTLUMI=1
-ISDATA=0
+ISDATA=1
 UNBLIND=0
 
 usage(){
@@ -103,6 +122,11 @@ if [[ $BATCH == "LSF" ]]; then
 DEFAULTQUEUE=1nh
 BATCHQUERY=bjobs
 fi
+if [[ $BATCH == "T3" ]]; then
+DEFAULTQUEUE=short.q
+fi
+BSOPT=""
+
 
 ####################################################
 ################## PSEUDODATAONLY ###################

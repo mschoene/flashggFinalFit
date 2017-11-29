@@ -46,8 +46,8 @@ for cat in range(options.cats):
 	
 	os.system('chmod +x %s'%f.name)
 	if options.dryRun:
-		print 'bsub -q %s -o %s.log %s'%(options.queue,os.path.abspath(f.name),os.path.abspath(f.name))
+		print 'qsub -q %s -o %s.log %s'%(options.queue,os.path.abspath(f.name),os.path.abspath(f.name))
 	else:
-		os.system('bsub -q %s -o %s.log %s'%(options.queue,os.path.abspath(f.name),os.path.abspath(f.name)))
+		os.system('qsub -q %s -o %s.log %s'%(options.queue,os.path.abspath(f.name),os.path.abspath(f.name)))
 	
 	

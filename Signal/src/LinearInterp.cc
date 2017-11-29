@@ -48,10 +48,17 @@ void LinearInterp::setSecondaryModelVars(RooRealVar *mh_sm, RooRealVar *deltam, 
 void LinearInterp::interpolate(int nGaussians){
  
   for (int g=0; g<nGaussians; g++) {
+
+
+    std::cout << "Running on gaussian nr " << g << " of " << nGaussians << std::endl;
+
     vector<double> xValues;
     vector<double> dmValues;
     vector<double> sigmaValues;
     for (unsigned int i=0; i<allMH_.size(); i++){
+
+      std::cout << "Running on mass nr " << i << " (at " << allMH_[i] << ") of " << allMH_.size() << std::endl;
+
       int mh = allMH_[i];
       xValues.push_back(double(mh));
       dmValues.push_back(fitParams[mh][Form("dm_mh%d_g%d",mh,g)]->getVal());
@@ -61,7 +68,7 @@ void LinearInterp::interpolate(int nGaussians){
     assert(xValues.size()==sigmaValues.size());
     //RooSpline1D *dmSpline = new RooSpline1D(Form("dm_g%d",g),Form("dm_g%d",g),*MH,xValues.size(),&(xValues[0]),&(dmValues[0]),"LINEAR");
     RooSpline1D *dmSpline = new RooSpline1D(Form("dm_g%d",g),Form("dm_g%d",g),*MH,xValues.size(),&(xValues[0]),&(dmValues[0]));
-   // RooSpline1D *sigmaSpline = new RooSpline1D(Form("sigma_g%d",g),Form("sigma_g%d",g),*MH,xValues.size(),&(xValues[0]),&(sigmaValues[0]),"LINEAR");
+    // RooSpline1D *sigmaSpline = new RooSpline1D(Form("sigma_g%d",g),Form("sigma_g%d",g),*MH,xValues.size(),&(xValues[0]),&(sigmaValues[0]),"LINEAR");
     RooSpline1D *sigmaSpline = new RooSpline1D(Form("sigma_g%d",g),Form("sigma_g%d",g),*MH,xValues.size(),&(xValues[0]),&(sigmaValues[0]));
     splines.insert(pair<string,RooSpline1D*>(dmSpline->GetName(),dmSpline));
     splines.insert(pair<string,RooSpline1D*>(sigmaSpline->GetName(),sigmaSpline));

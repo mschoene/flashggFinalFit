@@ -68,7 +68,8 @@ int verbosity_;
 bool isFlashgg_;
 //RooWorkspace *inWS_;
 WSTFileWrapper * inWS_;
-RooRealVar *mass_ = new RooRealVar("CMS_hgg_mass","CMS_hgg_mass",125);
+RooRealVar *mass_ = new RooRealVar("h_mass","h_mass",125);
+//RooRealVar *mass_ = new RooRealVar("CMS_hgg_mass","CMS_hgg_mass",125);
 
 void OptionParser(int argc, char *argv[]){
 
@@ -77,20 +78,20 @@ void OptionParser(int argc, char *argv[]){
 		("help,h",                                                                                					"Show help")
 		("infilenames,i", po::value<string>(&infilenamesStr_),                                           		"Input file names (comma sep)")
 		("outfilename,o", po::value<string>(&outfilename_)->default_value("dat/photonCatSyst.dat"), 				"Output file name")
-		("mh,m", po::value<int>(&mh_)->default_value(125),                                  								"Mass point")
-		("sqrtS", po::value<string>(&sqrtS_)->default_value("13"),																								"CoM energy")
-		("procs,p",po::value<string>(&procStr_)->default_value("ggh,vbf,wh,zh,tth"),												"Processes (comma sep)")
-		("plotDir,D", po::value<string>(&plotDir_)->default_value("plots"),																	"Out directory for plots")
-		("doPlots,P", po::value<bool>(&doPlots_)->default_value(false),																	"Plot variations")
-		("quadInterpolate",	po::value<int>(&quadInterpolate_)->default_value(0),														"Do a quadratic interpolation from this amount of sigma")
-		("isFlashgg",	po::value<bool>(&isFlashgg_)->default_value(true),														"Use flashgg format")
+		("mh,m", po::value<int>(&mh_)->default_value(125),                  								"Mass point")
+		("sqrtS", po::value<string>(&sqrtS_)->default_value("13"),									"CoM energy")
+		("procs,p",po::value<string>(&procStr_)->default_value("ggh,vbf,wh,zh,tth"),					"Processes (comma sep)")
+		("plotDir,D", po::value<string>(&plotDir_)->default_value("plots"),						"Out directory for plots")
+		("doPlots,P", po::value<bool>(&doPlots_)->default_value(false),							"Plot variations")
+		("quadInterpolate",	po::value<int>(&quadInterpolate_)->default_value(0),	"Do a quadratic interpolation from this amount of sigma")
+		("isFlashgg",	po::value<bool>(&isFlashgg_)->default_value(true),						"Use flashgg format")
 		("flashggCats,f", po::value<string>(&flashggCatsStr_)->default_value("UntaggedTag_0,UntaggedTag_1,UntaggedTag_2,UntaggedTag_3,UntaggedTag_4,VBFTag_0,VBFTag_1,VBFTag_2,TTHHadronicTag,TTHLeptonicTag,VHHadronicTag,VHTightTag,VHLooseTag,VHEtTag"),       "Flashgg category names") 
-		("verbosity,v", po::value<int>(&verbosity_)->default_value(0),                                  								"How much info to write (0 none, 1 some)")
+		("verbosity,v", po::value<int>(&verbosity_)->default_value(0),                  		"How much info to write (0 none, 1 some)")
 		;                                   
 
 	po::options_description backw_opts("Backwards compatibility options");
 	backw_opts.add_options()
-		("nCats,n", po::value<int>(&nCats_)->default_value(9),                                    					"Number of total categories (Now set automatically if using --isFlashgg 1)")
+		("nCats,n", po::value<int>(&nCats_)->default_value(9),                "Number of total categories (Now set automatically if using --isFlashgg 1)")
 		;
 
 	po::options_description syst_opts("Systematics options");
@@ -448,7 +449,8 @@ int main(int argc, char *argv[]){
 		inFiles[i]->Print();
 	}
 	//	inWS_ = (RooWorkspace*)inFiles[0]->Get("tagsDumper/cms_hgg_13TeV"); //FIXME should add all workspaces together from various files
-	inWS_ = new WSTFileWrapper(infilenamesStr_,"tagsDumper/cms_hgg_13TeV");
+	inWS_ = new WSTFileWrapper(infilenamesStr_,"ws_sig");
+	//	inWS_ = new WSTFileWrapper(infilenamesStr_,"tagsDumper/cms_hgg_13TeV");
 
 	ofstream outfile;
 	outfile.open(outfilename_.c_str());
