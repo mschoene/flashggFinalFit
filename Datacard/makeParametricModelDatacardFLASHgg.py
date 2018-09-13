@@ -87,7 +87,16 @@ parser.add_option("-o","--outfilename",default="cms_hgg_datacard.txt",help="Name
 parser.add_option("-p","--procs",default="ggh,vbf,wh,zh,tth",help="String list of procs (default: %default)")
 #parser.add_option("-c","--cats",default="is1El_pT1,is1Mu_pT1,is1El_pT0,is1Mu_pT0,diLepZ,diBBZ_pT0,diBBZ_pT1,diBBH_pT0,diBBH_pT1,HT0toInf_j1to3_b0_pT0_loMT2,HT0toInf_j1to3_b0_pT0_hiMT2,HT0toInf_j1to3_b0_pT1_loMT2,HT0toInf_j1to3_b0_pT1_hiMT2,HT0toInf_j1to3_b1_pT0_loMT2,HT0toInf_j1to3_b1_pT0_hiMT2,HT0toInf_j1to3_b1_pT1_loMT2,HT0toInf_j1to3_b1_pT1_hiMT2,HT0toInf_j4toInf_b0_pT0_loMT2,HT0toInf_j4toInf_b0_pT0_hiMT2,HT0toInf_j4toInf_b0_pT1_loMT2,HT0toInf_j4toInf_b0_pT1_hiMT2,HT0toInf_j4toInf_b1_pT0_loMT2,HT0toInf_j4toInf_b1_pT0_hiMT2,HT0toInf_j4toInf_b1_pT1_loMT2,HT0toInf_j4toInf_b1_pT1_hiMT2,HT0toInf_j0_b0toInf_pT0_loPt,HT0toInf_j0_b0toInf_pT0_hiPt,HT0toInf_j0_b0toInf_pT1_loPt,HT0toInf_j0_b0toInf_pT1_hiPt,HT0toInf_j1to3_b2toInf_pT0_loMT2,HT0toInf_j1to3_b2toInf_pT0_hiMT2,HT0toInf_j1to3_b2toInf_pT1,HT0toInf_j4toInf_b2toInf_pT0,HT0toInf_j4toInf_b2toInf_pT1",help="Flashgg Categories (default: %default)")
 
-parser.add_option("-c","--cats",default="HT0toInf_j0_b0toInf_pT0,HT0toInf_j0_b0toInf_pT1,HT0toInf_j1to3_b0_pT0,HT0toInf_j1to3_b0_pT1,HT0toInf_j4toInf_b0_pT0,HT0toInf_j4toInf_b0_pT1,HT0toInf_j1to3_b1_pT0,HT0toInf_j1to3_b1_pT1,HT0toInf_j1to3_b2toInf_pT0,HT0toInf_j1to3_b2toInf_pT1,HT0toInf_j4toInf_b1_pT0,HT0toInf_j4toInf_b1_pT1,HT0toInf_j4toInf_b2toInf_pT0,HT0toInf_j4toInf_b2toInf_pT1",help="Flashgg Categories (default: %default)")
+#parser.add_option("-c","--cats",default="is1El_pT0,is1Mu_pT0,is1El_pT1,is1Mu_pT1,diBBH_pT0,diBBH_pT1,diBBZ_pT0,diBBZ_pT1,diLepZ,j0_b0toInf_pT0,j0_b0toInf_pT1,j1to3_b0_pT0,j1to3_b0_pT1,j4toInf_b0_pT0,j4toInf_b0_pT1,j1to3_b1_pT0,j1to3_b1_pT1,j1to3_b2toInf_pT0,j1to3_b2toInf_pT1,j4toInf_b1_pT0,j4toInf_b1_pT1,j4toInf_b2toInf_pT0,j4toInf_b2toInf_pT1",help="Flashgg Categories (default: %default)")
+
+parser.add_option("-c","--cats",default="diBBZ_pT0,diBBZ_pT1,diBBH_pT0,diBBH_pT1,diLepZ,j0_b0toInf_pT0,j0_b0toInf_pT1,is1El_pT0_mt2_0,is1Mu_pT0_mt2_0,is1El_pT0_mt2_30,is1Mu_pT0_mt2_30,is1El_pT1_mt2_0,is1Mu_pT1_mt2_0,is1El_pT1_mt2_30,is1Mu_pT1_mt2_30,j1to3_b0_pT0_mt2_0,j1to3_b0_pT1_mt2_0,j4toInf_b0_pT0_mt2_0,j4toInf_b0_pT1_mt2_0,j1to3_b1_pT0_mt2_0,j1to3_b1_pT1_mt2_0,j4toInf_b1_pT0_mt2_0,j4toInf_b1_pT1_mt2_0,j1to3_b2toInf_pT0_mt2_0,j1to3_b2toInf_pT1_mt2_0,j4toInf_b2toInf_pT0_mt2_0,j4toInf_b2toInf_pT1_mt2_0,j1to3_b0_pT0_mt2_30,j1to3_b0_pT1_mt2_30,j4toInf_b0_pT0_mt2_30,j4toInf_b0_pT1_mt2_30,j1to3_b1_pT0_mt2_30,j1to3_b1_pT1_mt2_30,j4toInf_b1_pT0_mt2_30,j4toInf_b1_pT1_mt2_30,j1to3_b2toInf_pT0_mt2_30,j1to3_b2toInf_pT1_mt2_30,j4toInf_b2toInf_pT0_mt2_30,j4toInf_b2toInf_pT1_mt2_30",help="Flashgg Categories (default: %default)")
+
+
+#parser.add_option("-c","--cats",default="diBBZ_pT0,diBBZ_pT1,diBBH_pT0,diBBH_pT1,diLepZ,j0_b0toInf_pT0,j0_b0toInf_pT1,is1El_pT0_mt2_0,is1Mu_pT0_mt2_0,is1El_pT0_mt2_30,is1Mu_pT0_mt2_30,is1El_pT1,is1Mu_pT1,j1to3_b0_pT0_mt2_0,j1to3_b0_pT1_mt2_0,j4toInf_b0_pT0_mt2_0,j4toInf_b0_pT1_mt2_0,j1to3_b1_pT0_mt2_0,j1to3_b1_pT1_mt2_0,j4toInf_b1_pT0_mt2_0,j4toInf_b1_pT1_mt2_0,j1to3_b2toInf_pT0_mt2_0,j1to3_b2toInf_pT1_mt2_0,j4toInf_b2toInf_pT0_mt2_0,j4toInf_b2toInf_pT1_mt2_0,j1to3_b0_pT0_mt2_30,j1to3_b0_pT1_mt2_30,j4toInf_b0_pT0_mt2_30,j4toInf_b0_pT1_mt2_30,j1to3_b1_pT0_mt2_30,j1to3_b1_pT1_mt2_30,j4toInf_b1_pT0_mt2_30,j4toInf_b1_pT1_mt2_30,j1to3_b2toInf_pT0_mt2_30,j1to3_b2toInf_pT1_mt2_30,j4toInf_b2toInf_pT0_mt2_30,j4toInf_b2toInf_pT1_mt2_30",help="Flashgg Categories (default: %default)")
+
+
+
+#parser.add_option("-c","--cats",default="HT0toInf_j0_b0toInf_pT0,HT0toInf_j0_b0toInf_pT1,HT0toInf_j1to3_b0_pT0,HT0toInf_j1to3_b0_pT1,HT0toInf_j4toInf_b0_pT0,HT0toInf_j4toInf_b0_pT1,HT0toInf_j1to3_b1_pT0,HT0toInf_j1to3_b1_pT1,HT0toInf_j1to3_b2toInf_pT0,HT0toInf_j1to3_b2toInf_pT1,HT0toInf_j4toInf_b1_pT0,HT0toInf_j4toInf_b1_pT1,HT0toInf_j4toInf_b2toInf_pT0,HT0toInf_j4toInf_b2toInf_pT1",help="Flashgg Categories (default: %default)")
 
 #parser.add_option("-c","--cats",default="is1El_pT0,is1Mu_pT0,is1El_pT1,is1Mu_pT1,diBBH_pT0,diBBH_pT1,diBBZ_pT0,diBBZ_pT1,diLepZ,HT0toInf_j0_b0toInf_pT0,HT0toInf_j0_b0toInf_pT1,HT0toInf_j1to3_b0_pT0,HT0toInf_j1to3_b0_pT1,HT0toInf_j4toInf_b0_pT0,HT0toInf_j4toInf_b0_pT1,HT0toInf_j1to3_b1_pT0,HT0toInf_j1to3_b1_pT1,HT0toInf_j1to3_b2toInf_pT0,HT0toInf_j1to3_b2toInf_pT1,HT0toInf_j4toInf_b1_pT0,HT0toInf_j4toInf_b1_pT1,HT0toInf_j4toInf_b2toInf_pT0,HT0toInf_j4toInf_b2toInf_pT1",help="Flashgg Categories (default: %default)")
 
@@ -110,6 +119,7 @@ parser.add_option("--scaleFactors",help="Scale factor for spin model pass as e.g
 parser.add_option("--quadInterpolate",type="int",default=0,help="Do a quadratic interpolation of flashgg templates back to 1 sigma from this sigma. 0 means off (default: %default)")
 parser.add_option("--mass",type="int",default=125,help="Mass at which to calculate the systematic variations (default: %default)")
 parser.add_option("--intLumi",type="float",default=3.71,help="Integrated Lumi (default: %default)")
+parser.add_option("--intLumi2017",type="float",default=3.71,help="Integrated Lumi 2017(default: %default)")
 (options,args)=parser.parse_args()
 allSystList=[]
 if options.submitSelf :
@@ -145,49 +155,83 @@ outFile = open(options.outfilename,'w')
 # for f in {"SMS_TChiHZ_HToGG_m127","SMS_TChiHZ_HToGG_m150","SMS_TChiHZ_HToGG_m175","SMS_TChiHZ_HToGG_m200","SMS_TChiHZ_HToGG_m225","SMS_TChiHZ_HToGG_m250","SMS_TChiHZ_HToGG_m275","SMS_TChiHZ_HToGG_m300","SMS_TChiHZ_HToGG_m325","SMS_TChiHZ_HToGG_m350","SMS_TChiHZ_HToGG_m375","SMS_TChiHZ_HToGG_m400","SMS_TChiHZ_HToGG_m425","SMS_TChiHZ_HToGG_m450","SMS_TChiHZ_HToGG_m475","SMS_TChiHZ_HToGG_m500","SMS_TChiHZ_HToGG_m525","SMS_TChiHZ_HToGG_m550","SMS_TChiHZ_HToGG_m575","SMS_TChiHZ_HToGG_m600","SMS_TChiHZ_HToGG_m625","SMS_TChiHZ_HToGG_m650","SMS_TChiHZ_HToGG_m675","SMS_TChiHZ_HToGG_m700","SMS_TChiHZ_HToGG_m725","SMS_TChiHZ_HToGG_m750","SMS_TChiHZ_HToGG_m775","SMS_TChiHZ_HToGG_m800","SMS_TChiHZ_HToGG_m825","SMS_TChiHZ_HToGG_m850","SMS_TChiHZ_HToGG_m875","SMS_TChiHZ_HToGG_m900","SMS_TChiHZ_HToGG_m925","SMS_TChiHZ_HToGG_m950","SMS_TChiHZ_HToGG_m1000"}; do ./makeParametricModelDatacardFLASHgg.py  -i /shome/mschoene/9_2_4_gg/src/myMT2Analysis/analysis/EventYields_data_diPhoton_Oct15_HZmix/WS/ws_SMS_TChiHZ_HToGG.root -o dataCards_TChi_oct15_HZmix/Datacard_13TeV_$f.txt -p $f,higgs -c  HT0toInf_j0_b0toInf_pT0,HT0toInf_j0_b0toInf_pT1,HT0toInf_j1to3_b0_pT0,HT0toInf_j1to3_b0_pT1,HT0toInf_j4toInf_b0_pT0,HT0toInf_j4toInf_b0_pT1,HT0toInf_j1to3_b1_pT0,HT0toInf_j1to3_b1_pT1,HT0toInf_j4toInf_b1toInf_pT0,HT0toInf_j4toInf_b1toInf_pT1,HT0toInf_j1to3_b2toInf_pT0,HT0toInf_j1to3_b2toInf_pT1  --isMultiPdf --mass 125 --intLumi 0.0359  ; done
 
 
+#for f in {"SMS_TChiHZ_HToGG_m127","SMS_TChiHZ_HToGG_m150"}; do ./makeParametricModelDatacardFLASHgg.py  -i /shome/mschoene/9_2_4_gg/src/myMT2Analysis/analysis/EventYields_data_2016_diPhoton_02Mar18/WS/ws_SMS_TChiHZ_HToGG_ll_onelPT_bb.root -o dataCards_data2016_HZ_2017mar12/Datacard_13TeV_$f.txt -p $f,higgs  --isMultiPdf --mass 125 --intLumi 0.0359  ; done
+
+
+#for f in {"SMS_TChiHH_HToGG_m127","SMS_TChiHH_HToGG_m150"}; do ./makeParametricModelDatacardFLASHgg.py  -i /shome/mschoene/9_2_4_gg/src/myMT2Analysis/analysis/EventYields_data_2016_diPhoton_02Mar18/WS/ws_SMS_TChiHH_HToGG_comb_mt2_30.root -o dataCards_HH_may17_wEnv/Datacard_13TeV_$f.txt -p higgs_2016,higgs_2017,$f,$f_2017  --isMultiPdf --mass 125 --intLumi 0.0359  --intLumi2017 0.04137  ; done
+
+
+
+
+
+#for f in {"SMS_TChiHZ_HToGG_m127","SMS_TChiHZ_HToGG_m150"}; do ./makeParametricModelDatacardFLASHgg.py  -i /shome/mschoene/9_2_4_gg/src/myMT2Analysis/analysis/EventYields_data_2016_diPhoton_02Mar18/WS/ws_SMS_TChiHZ_HToGG_comb_mt2_30.root -o dataCards_HZ_may17/Datacard_13TeV_$f.txt -p higgs_2016,higgs_2017,$f,$f_2017  --isMultiPdf --mass 125 --intLumi 0.0359  --intLumi2017 0.04137  ; done
+
+# for f in {"SMS_TChiWH_HToGG_127_1","SMS_TChiWH_HToGG_150_1","SMS_TChiWH_HToGG_150_24","SMS_TChiWH_HToGG_175_1","SMS_TChiWH_HToGG_175_25","SMS_TChiWH_HToGG_175_49","SMS_TChiWH_HToGG_200_1","SMS_TChiWH_HToGG_200_25","SMS_TChiWH_HToGG_200_50","SMS_TChiWH_HToGG_200_74"}; do ./makeParametricModelDatacardFLASHgg.py  -i /shome/mschoene/9_2_4_gg/src/myMT2Analysis/analysis/EventYields_data_2016_diPhoton_02Mar18/WS/ws_SMS_TChiWH_HToGG_comb_mt2_30.root -o dataCards_HH_may17_wEnv/Datacard_13TeV_$f.txt -p higgs_2016,higgs_2017,$f,${f}_2017  --isMultiPdf --mass 125 --intLumi 0.0359  --intLumi2017 0.04137  ; done
+
+
+ #for f in {"SMS_TChiWH_HToGG_127_1","SMS_TChiWH_HToGG_150_1","SMS_TChiWH_HToGG_150_24","SMS_TChiWH_HToGG_175_1","SMS_TChiWH_HToGG_175_25","SMS_TChiWH_HToGG_175_49","SMS_TChiWH_HToGG_200_1","SMS_TChiWH_HToGG_200_25","SMS_TChiWH_HToGG_200_50","SMS_TChiWH_HToGG_200_74","SMS_TChiWH_HToGG_225_1","SMS_TChiWH_HToGG_225_25","SMS_TChiWH_HToGG_225_50","SMS_TChiWH_HToGG_225_75","SMS_TChiWH_HToGG_225_99","SMS_TChiWH_HToGG_250_1","SMS_TChiWH_HToGG_250_25","SMS_TChiWH_HToGG_250_50","SMS_TChiWH_HToGG_250_75","SMS_TChiWH_HToGG_250_100","SMS_TChiWH_HToGG_250_124"}; do ./makeParametricModelDatacardFLASHgg.py  -i /shome/mschoene/9_2_4_gg/src/myMT2Analysis/analysis/EventYields_data_2016_diPhoton_02Mar18/WS/ws_SMS_TChiWH_HToGG_comb_mt2_30.root -o dataCards_HH_may17_wEnv/Datacard_13TeV_$f.txt -p higgs_2016,higgs_2017,$f,${f}_2017  --isMultiPdf --mass 125 --intLumi 0.0359  --intLumi2017 0.04137  ; done
+
+
+
+#for f in {"SMS_TChiHZ_HToGG_m127","SMS_TChiHZ_HToGG_m150","SMS_TChiHZ_HToGG_m175","SMS_TChiHZ_HToGG_m200","SMS_TChiHZ_HToGG_m225","SMS_TChiHZ_HToGG_m250","SMS_TChiHZ_HToGG_m275","SMS_TChiHZ_HToGG_m300","SMS_TChiHZ_HToGG_m325","SMS_TChiHZ_HToGG_m350","SMS_TChiHZ_HToGG_m375","SMS_TChiHZ_HToGG_m400","SMS_TChiHZ_HToGG_m425","SMS_TChiHZ_HToGG_m450","SMS_TChiHZ_HToGG_m475","SMS_TChiHZ_HToGG_m500"}; do ./makeParametricModelDatacardFLASHgg.py  -i /shome/mschoene/9_2_4_gg/src/myMT2Analysis/analysis/EventYields_data_2016_11jul18/WS/ws_SMS_TChiHZ_HToGG_comb_mt2_30.root   -o dataCards_HZ_aug16/Datacard_13TeV_$f.txt -p higgs_2016,higgs_2017,${f},${f}_2017  --isMultiPdf --mass 125 --intLumi 0.036814  --intLumi2017 0.041529  ; done
+
+
 
 
 
 # for f in {"SMS_TChiHH_HToGG_m127","SMS_TChiHH_HToGG_m150","SMS_TChiHH_HToGG_m175","SMS_TChiHH_HToGG_m200","SMS_TChiHH_HToGG_m225","SMS_TChiHH_HToGG_m250","SMS_TChiHH_HToGG_m275","SMS_TChiHH_HToGG_m300","SMS_TChiHH_HToGG_m325","SMS_TChiHH_HToGG_m350","SMS_TChiHH_HToGG_m375","SMS_TChiHH_HToGG_m400","SMS_TChiHH_HToGG_m425","SMS_TChiHH_HToGG_m450","SMS_TChiHH_HToGG_m475","SMS_TChiHH_HToGG_m500","SMS_TChiHH_HToGG_m525","SMS_TChiHH_HToGG_m550","SMS_TChiHH_HToGG_m575","SMS_TChiHH_HToGG_m600","SMS_TChiHH_HToGG_m625","SMS_TChiHH_HToGG_m650","SMS_TChiHH_HToGG_m675","SMS_TChiHH_HToGG_m700","SMS_TChiHH_HToGG_m725","SMS_TChiHH_HToGG_m750","SMS_TChiHH_HToGG_m775","SMS_TChiHH_HToGG_m800","SMS_TChiHH_HToGG_m825","SMS_TChiHH_HToGG_m850","SMS_TChiHH_HToGG_m875","SMS_TChiHH_HToGG_m900","SMS_TChiHH_HToGG_m925","SMS_TChiHH_HToGG_m950","SMS_TChiHH_HToGG_m975","SMS_TChiHH_HToGG_m1000"}; do ./makeParametricModelDatacardFLASHgg.py  -i /shome/mschoene/9_2_4_gg/src/myMT2Analysis/analysis/EventYields_data_diPhoton_Oct04_MT2bin/WS/ws_SMS_TChiHH_HToGG.root -o dataCards_TChiHH_oct04_mt2bin/Datacard_13TeV_$f.txt -p $f,higgs       -c  HT0toInf_j1to3_b0_pT0_loMT2,HT0toInf_j1to3_b0_pT0_hiMT2,HT0toInf_j1to3_b0_pT1_loMT2,HT0toInf_j1to3_b0_pT1_hiMT2,HT0toInf_j1to3_b1_pT0_loMT2,HT0toInf_j1to3_b1_pT0_hiMT2,HT0toInf_j1to3_b1_pT1_loMT2,HT0toInf_j1to3_b1_pT1_hiMT2,HT0toInf_j4toInf_b0_pT0_loMT2,HT0toInf_j4toInf_b0_pT0_hiMT2,HT0toInf_j4toInf_b0_pT1_loMT2,HT0toInf_j4toInf_b0_pT1_hiMT2,HT0toInf_j0_b0toInf_pT0_loPt,HT0toInf_j0_b0toInf_pT0_hiPt,HT0toInf_j0_b0toInf_pT1_loPt,HT0toInf_j0_b0toInf_pT1_hiPt,HT0toInf_j1to3_b2toInf_pT0_loMT2,HT0toInf_j1to3_b2toInf_pT0_hiMT2,HT0toInf_j1to3_b2toInf_pT1,HT0toInf_j4toInf_b1toInf_pT0_loMT2,HT0toInf_j4toInf_b1toInf_pT0_hiMT2,HT0toInf_j4toInf_b1toInf_pT1_loMT2,HT0toInf_j4toInf_b1toInf_pT1_hiMT2    --isMultiPdf --mass 125 --intLumi 0.0359  ; done
 
 
+#for f in {"SMS_T2bH_mSbottom250_mLSP100","SMS_T2bH_mSbottom250_mLSP1","SMS_T2bH_mSbottom250_mLSP50","SMS_T2bH_mSbottom300_mLSP100","SMS_T2bH_mSbottom300_mLSP150","SMS_T2bH_mSbottom300_mLSP1","SMS_T2bH_mSbottom300_mLSP50","SMS_T2bH_mSbottom350_mLSP100","SMS_T2bH_mSbottom350_mLSP150","SMS_T2bH_mSbottom350_mLSP1","SMS_T2bH_mSbottom350_mLSP200","SMS_T2bH_mSbottom350_mLSP50","SMS_T2bH_mSbottom400_mLSP100","SMS_T2bH_mSbottom400_mLSP150","SMS_T2bH_mSbottom400_mLSP1","SMS_T2bH_mSbottom400_mLSP200","SMS_T2bH_mSbottom400_mLSP250","SMS_T2bH_mSbottom400_mLSP50","SMS_T2bH_mSbottom450_mLSP1","SMS_T2bH_mSbottom450_mLSP100","SMS_T2bH_mSbottom450_mLSP150","SMS_T2bH_mSbottom450_mLSP200","SMS_T2bH_mSbottom450_mLSP250","SMS_T2bH_mSbottom450_mLSP300","SMS_T2bH_mSbottom450_mLSP50","SMS_T2bH_mSbottom500_mLSP100","SMS_T2bH_mSbottom500_mLSP150","SMS_T2bH_mSbottom500_mLSP1","SMS_T2bH_mSbottom500_mLSP200","SMS_T2bH_mSbottom500_mLSP250","SMS_T2bH_mSbottom500_mLSP300","SMS_T2bH_mSbottom500_mLSP50","SMS_T2bH_mSbottom600_mLSP1","SMS_T2bH_mSbottom600_mLSP100","SMS_T2bH_mSbottom600_mLSP200","SMS_T2bH_mSbottom600_mLSP300"}; do ./makeParametricModelDatacardFLASHgg.py  -i /shome/mschoene/9_2_4_gg/src/myMT2Analysis/analysis/EventYields_data_2016_11jul18/WS/ws_SMS_T2bH_mSbottom_comb_mt2_30.root   -o dataCards_T2bH_aug16/Datacard_13TeV_$f.txt -p higgs_2016,higgs_2017,${f},${f}_2017  --isMultiPdf --mass 125 --intLumi 0.036814  --intLumi2017 0.041529  ; done
 
 # for f in {"SMS_T2bH_mSbottom250_mLSP100","SMS_T2bH_mSbottom250_mLSP1","SMS_T2bH_mSbottom250_mLSP50","SMS_T2bH_mSbottom300_mLSP100","SMS_T2bH_mSbottom300_mLSP150","SMS_T2bH_mSbottom300_mLSP1","SMS_T2bH_mSbottom300_mLSP50","SMS_T2bH_mSbottom350_mLSP100","SMS_T2bH_mSbottom350_mLSP150","SMS_T2bH_mSbottom350_mLSP1","SMS_T2bH_mSbottom350_mLSP200","SMS_T2bH_mSbottom350_mLSP50","SMS_T2bH_mSbottom400_mLSP100","SMS_T2bH_mSbottom400_mLSP150","SMS_T2bH_mSbottom400_mLSP1","SMS_T2bH_mSbottom400_mLSP200","SMS_T2bH_mSbottom400_mLSP250","SMS_T2bH_mSbottom400_mLSP50","SMS_T2bH_mSbottom450_mLSP1","SMS_T2bH_mSbottom450_mLSP100","SMS_T2bH_mSbottom450_mLSP150","SMS_T2bH_mSbottom450_mLSP200","SMS_T2bH_mSbottom450_mLSP250","SMS_T2bH_mSbottom450_mLSP300","SMS_T2bH_mSbottom450_mLSP50","SMS_T2bH_mSbottom500_mLSP100","SMS_T2bH_mSbottom500_mLSP150","SMS_T2bH_mSbottom500_mLSP1","SMS_T2bH_mSbottom500_mLSP200","SMS_T2bH_mSbottom500_mLSP250","SMS_T2bH_mSbottom500_mLSP300","SMS_T2bH_mSbottom500_mLSP50","SMS_T2bH_mSbottom600_mLSP1","SMS_T2bH_mSbottom600_mLSP100","SMS_T2bH_mSbottom600_mLSP200","SMS_T2bH_mSbottom600_mLSP300"}; do   ./makeParametricModelDatacardFLASHgg.py  -i /shome/mschoene/9_2_4_gg/src/myMT2Analysis/analysis/EventYields_data_diPhoton_Oct04_MT2bin/WS/ws_SMS_T2bH_mSbottom.root  -o dataCards_T2bH_oct04_mt2bin/Datacard_13TeV_$f.txt -p $f,higgs -c HT0toInf_j1to3_b0_pT0_loMT2,HT0toInf_j1to3_b0_pT0_hiMT2,HT0toInf_j1to3_b0_pT1_loMT2,HT0toInf_j1to3_b0_pT1_hiMT2,HT0toInf_j1to3_b1_pT0_loMT2,HT0toInf_j1to3_b1_pT0_hiMT2,HT0toInf_j1to3_b1_pT1_loMT2,HT0toInf_j1to3_b1_pT1_hiMT2,HT0toInf_j4toInf_b0_pT0_loMT2,HT0toInf_j4toInf_b0_pT0_hiMT2,HT0toInf_j4toInf_b0_pT1_loMT2,HT0toInf_j4toInf_b0_pT1_hiMT2,HT0toInf_j0_b0toInf_pT0_loPt,HT0toInf_j0_b0toInf_pT0_hiPt,HT0toInf_j0_b0toInf_pT1_loPt,HT0toInf_j0_b0toInf_pT1_hiPt,HT0toInf_j1to3_b2toInf_pT0_loMT2,HT0toInf_j1to3_b2toInf_pT0_hiMT2,HT0toInf_j1to3_b2toInf_pT1,HT0toInf_j1to3_b2toInf_pT1,HT0toInf_j4toInf_b1toInf_pT0_loMT2,HT0toInf_j4toInf_b1toInf_pT0_hiMT2,HT0toInf_j4toInf_b1toInf_pT1_loMT2,HT0toInf_j4toInf_b1toInf_pT1_hiMT2     --isMultiPdf --mass 125 --intLumi 0.0359  ; done
 
 
 
-
-#combProc = {'bkg_mass':'bkg_mass','higgs':'higgs','SMS_TChiHH_HToGG_m1':'SMS_TChiHH_HToGG_m1','SMS_TChiHH_HToGG_m25':'SMS_TChiHH_HToGG_m25','SMS_TChiHH_HToGG_m50':'SMS_TChiHH_HToGG_m50','SMS_TChiHH_HToGG_m75':'SMS_TChiHH_HToGG_m75','SMS_TChiHH_HToGG_m100':'SMS_TChiHH_HToGG_m100','SMS_TChiHH_HToGG_m127':'SMS_TChiHH_HToGG_m127','SMS_TChiHH_HToGG_m150':'SMS_TChiHH_HToGG_m150','SMS_TChiHH_HToGG_m175':'SMS_TChiHH_HToGG_m175','SMS_TChiHH_HToGG_m200':'SMS_TChiHH_HToGG_m200','SMS_TChiHH_HToGG_m225':'SMS_TChiHH_HToGG_m225','SMS_TChiHH_HToGG_m250':'SMS_TChiHH_HToGG_m250','SMS_TChiHH_HToGG_m275':'SMS_TChiHH_HToGG_m275','SMS_TChiHH_HToGG_m300':'SMS_TChiHH_HToGG_m300','SMS_TChiHH_HToGG_m325':'SMS_TChiHH_HToGG_m325','SMS_TChiHH_HToGG_m350':'SMS_TChiHH_HToGG_m350','SMS_TChiHH_HToGG_m375':'SMS_TChiHH_HToGG_m375','SMS_TChiHH_HToGG_m400':'SMS_TChiHH_HToGG_m400','SMS_TChiHH_HToGG_m425':'SMS_TChiHH_HToGG_m425','SMS_TChiHH_HToGG_m450':'SMS_TChiHH_HToGG_m450','SMS_TChiHH_HToGG_m475':'SMS_TChiHH_HToGG_m475','SMS_TChiHH_HToGG_m500':'SMS_TChiHH_HToGG_m500','SMS_TChiHH_HToGG_m525':'SMS_TChiHH_HToGG_m525','SMS_TChiHH_HToGG_m550':'SMS_TChiHH_HToGG_m550','SMS_TChiHH_HToGG_m575':'SMS_TChiHH_HToGG_m575','SMS_TChiHH_HToGG_m600':'SMS_TChiHH_HToGG_m600','SMS_TChiHH_HToGG_m625':'SMS_TChiHH_HToGG_m625','SMS_TChiHH_HToGG_m650':'SMS_TChiHH_HToGG_m650','SMS_TChiHH_HToGG_m675':'SMS_TChiHH_HToGG_m675','SMS_TChiHH_HToGG_m700':'SMS_TChiHH_HToGG_m700','SMS_TChiHH_HToGG_m725':'SMS_TChiHH_HToGG_m725','SMS_TChiHH_HToGG_m750':'SMS_TChiHH_HToGG_m750','SMS_TChiHH_HToGG_m775':'SMS_TChiHH_HToGG_m775','SMS_TChiHH_HToGG_m800':'SMS_TChiHH_HToGG_m800','SMS_TChiHH_HToGG_m825':'SMS_TChiHH_HToGG_m825','SMS_TChiHH_HToGG_m850':'SMS_TChiHH_HToGG_m850','SMS_TChiHH_HToGG_m875':'SMS_TChiHH_HToGG_m875','SMS_TChiHH_HToGG_m900':'SMS_TChiHH_HToGG_m900','SMS_TChiHH_HToGG_m925':'SMS_TChiHH_HToGG_m925','SMS_TChiHH_HToGG_m950':'SMS_TChiHH_HToGG_m950','SMS_TChiHH_HToGG_m975':'SMS_TChiHH_HToGG_m975','SMS_TChiHH_HToGG_m1000':'SMS_TChiHH_HToGG_m1000'}
-#flashggProc = {'bkg_mass':'bkg_mass','higgs':'higgs','SMS_TChiHH_HToGG_m1':'SMS_TChiHH_HToGG_m1','SMS_TChiHH_HToGG_m25':'SMS_TChiHH_HToGG_m25','SMS_TChiHH_HToGG_m50':'SMS_TChiHH_HToGG_m50','SMS_TChiHH_HToGG_m75':'SMS_TChiHH_HToGG_m75','SMS_TChiHH_HToGG_m100':'SMS_TChiHH_HToGG_m100','SMS_TChiHH_HToGG_m127':'SMS_TChiHH_HToGG_m127','SMS_TChiHH_HToGG_m150':'SMS_TChiHH_HToGG_m150','SMS_TChiHH_HToGG_m175':'SMS_TChiHH_HToGG_m175','SMS_TChiHH_HToGG_m200':'SMS_TChiHH_HToGG_m200','SMS_TChiHH_HToGG_m225':'SMS_TChiHH_HToGG_m225','SMS_TChiHH_HToGG_m250':'SMS_TChiHH_HToGG_m250','SMS_TChiHH_HToGG_m275':'SMS_TChiHH_HToGG_m275','SMS_TChiHH_HToGG_m300':'SMS_TChiHH_HToGG_m300','SMS_TChiHH_HToGG_m325':'SMS_TChiHH_HToGG_m325','SMS_TChiHH_HToGG_m350':'SMS_TChiHH_HToGG_m350','SMS_TChiHH_HToGG_m375':'SMS_TChiHH_HToGG_m375','SMS_TChiHH_HToGG_m400':'SMS_TChiHH_HToGG_m400','SMS_TChiHH_HToGG_m425':'SMS_TChiHH_HToGG_m425','SMS_TChiHH_HToGG_m450':'SMS_TChiHH_HToGG_m450','SMS_TChiHH_HToGG_m475':'SMS_TChiHH_HToGG_m475','SMS_TChiHH_HToGG_m500':'SMS_TChiHH_HToGG_m500','SMS_TChiHH_HToGG_m525':'SMS_TChiHH_HToGG_m525','SMS_TChiHH_HToGG_m550':'SMS_TChiHH_HToGG_m550','SMS_TChiHH_HToGG_m575':'SMS_TChiHH_HToGG_m575','SMS_TChiHH_HToGG_m600':'SMS_TChiHH_HToGG_m600','SMS_TChiHH_HToGG_m625':'SMS_TChiHH_HToGG_m625','SMS_TChiHH_HToGG_m650':'SMS_TChiHH_HToGG_m650','SMS_TChiHH_HToGG_m675':'SMS_TChiHH_HToGG_m675','SMS_TChiHH_HToGG_m700':'SMS_TChiHH_HToGG_m700','SMS_TChiHH_HToGG_m725':'SMS_TChiHH_HToGG_m725','SMS_TChiHH_HToGG_m750':'SMS_TChiHH_HToGG_m750','SMS_TChiHH_HToGG_m775':'SMS_TChiHH_HToGG_m775','SMS_TChiHH_HToGG_m800':'SMS_TChiHH_HToGG_m800','SMS_TChiHH_HToGG_m825':'SMS_TChiHH_HToGG_m825','SMS_TChiHH_HToGG_m850':'SMS_TChiHH_HToGG_m850','SMS_TChiHH_HToGG_m875':'SMS_TChiHH_HToGG_m875','SMS_TChiHH_HToGG_m900':'SMS_TChiHH_HToGG_m900','SMS_TChiHH_HToGG_m925':'SMS_TChiHH_HToGG_m925','SMS_TChiHH_HToGG_m950':'SMS_TChiHH_HToGG_m950','SMS_TChiHH_HToGG_m975':'SMS_TChiHH_HToGG_m975','SMS_TChiHH_HToGG_m1000':'SMS_TChiHH_HToGG_m1000' }
-#procId = {'SMS_TChiHH_HToGG_m1':0,'SMS_TChiHH_HToGG_m25':0,'SMS_TChiHH_HToGG_m50':0,'SMS_TChiHH_HToGG_m75':0,'SMS_TChiHH_HToGG_m100':0,'SMS_TChiHH_HToGG_m127':0,'SMS_TChiHH_HToGG_m150':0,'SMS_TChiHH_HToGG_m175':0,'SMS_TChiHH_HToGG_m200':0,'SMS_TChiHH_HToGG_m225':0,'SMS_TChiHH_HToGG_m250':0,'SMS_TChiHH_HToGG_m275':0,'SMS_TChiHH_HToGG_m300':0,'SMS_TChiHH_HToGG_m325':0,'SMS_TChiHH_HToGG_m350':0,'SMS_TChiHH_HToGG_m375':0,'SMS_TChiHH_HToGG_m400':0,'SMS_TChiHH_HToGG_m425':0,'SMS_TChiHH_HToGG_m450':0,'SMS_TChiHH_HToGG_m475':0,'SMS_TChiHH_HToGG_m500':0,'SMS_TChiHH_HToGG_m525':0,'SMS_TChiHH_HToGG_m550':0,'SMS_TChiHH_HToGG_m575':0,'SMS_TChiHH_HToGG_m600':0,'SMS_TChiHH_HToGG_m625':0,'SMS_TChiHH_HToGG_m650':0,'SMS_TChiHH_HToGG_m675':0,'SMS_TChiHH_HToGG_m700':0,'SMS_TChiHH_HToGG_m725':0,'SMS_TChiHH_HToGG_m750':0,'SMS_TChiHH_HToGG_m775':0,'SMS_TChiHH_HToGG_m800':0,'SMS_TChiHH_HToGG_m825':0,'SMS_TChiHH_HToGG_m850':0,'SMS_TChiHH_HToGG_m875':0,'SMS_TChiHH_HToGG_m900':0,'SMS_TChiHH_HToGG_m925':0,'SMS_TChiHH_HToGG_m950':0,'SMS_TChiHH_HToGG_m975':0,'SMS_TChiHH_HToGG_m1000':0,'bkg_mass':2,'higgs':1 }
+#for f in {"SMS_T2bH_mSbottom250_mLSP100","SMS_T2bH_mSbottom250_mLSP1","SMS_T2bH_mSbottom250_mLSP50","SMS_T2bH_mSbottom300_mLSP100","SMS_T2bH_mSbottom300_mLSP150","SMS_T2bH_mSbottom300_mLSP1","SMS_T2bH_mSbottom300_mLSP50","SMS_T2bH_mSbottom350_mLSP100","SMS_T2bH_mSbottom350_mLSP150","SMS_T2bH_mSbottom350_mLSP1","SMS_T2bH_mSbottom350_mLSP200","SMS_T2bH_mSbottom350_mLSP50","SMS_T2bH_mSbottom400_mLSP100","SMS_T2bH_mSbottom400_mLSP150","SMS_T2bH_mSbottom400_mLSP1","SMS_T2bH_mSbottom400_mLSP200","SMS_T2bH_mSbottom400_mLSP250","SMS_T2bH_mSbottom400_mLSP50","SMS_T2bH_mSbottom450_mLSP1","SMS_T2bH_mSbottom450_mLSP100","SMS_T2bH_mSbottom450_mLSP150","SMS_T2bH_mSbottom450_mLSP200","SMS_T2bH_mSbottom450_mLSP250","SMS_T2bH_mSbottom450_mLSP300","SMS_T2bH_mSbottom450_mLSP50","SMS_T2bH_mSbottom500_mLSP100","SMS_T2bH_mSbottom500_mLSP150","SMS_T2bH_mSbottom500_mLSP1","SMS_T2bH_mSbottom500_mLSP200","SMS_T2bH_mSbottom500_mLSP250","SMS_T2bH_mSbottom500_mLSP300","SMS_T2bH_mSbottom500_mLSP50","SMS_T2bH_mSbottom600_mLSP1","SMS_T2bH_mSbottom600_mLSP100","SMS_T2bH_mSbottom600_mLSP200","SMS_T2bH_mSbottom600_mLSP300"}; do   ./makeParametricModelDatacardFLASHgg.py  -i /shome/mschoene/9_2_4_gg/src/myMT2Analysis/analysis/EventYields_data_diPhoton_Oct04_MT2bin/WS/ws_SMS_T2bH_mSbottom.root  -o dataCards_T2bH_oct04_mt2bin/Datacard_13TeV_$f.txt -p $f,higgs  --isMultiPdf --mass 125 --intLumi 0.0359  ; done
 
 
+# for f in {"SMS_T2bH_mSbottom250_mLSP100","SMS_T2bH_mSbottom250_mLSP1","SMS_T2bH_mSbottom250_mLSP50","SMS_T2bH_mSbottom300_mLSP100","SMS_T2bH_mSbottom300_mLSP150","SMS_T2bH_mSbottom300_mLSP1","SMS_T2bH_mSbottom300_mLSP50","SMS_T2bH_mSbottom350_mLSP100","SMS_T2bH_mSbottom350_mLSP150","SMS_T2bH_mSbottom350_mLSP1","SMS_T2bH_mSbottom350_mLSP200","SMS_T2bH_mSbottom350_mLSP50","SMS_T2bH_mSbottom400_mLSP100","SMS_T2bH_mSbottom400_mLSP150","SMS_T2bH_mSbottom400_mLSP1","SMS_T2bH_mSbottom400_mLSP200","SMS_T2bH_mSbottom400_mLSP250","SMS_T2bH_mSbottom400_mLSP50","SMS_T2bH_mSbottom450_mLSP1","SMS_T2bH_mSbottom450_mLSP100","SMS_T2bH_mSbottom450_mLSP150","SMS_T2bH_mSbottom450_mLSP200","SMS_T2bH_mSbottom450_mLSP250","SMS_T2bH_mSbottom450_mLSP300","SMS_T2bH_mSbottom450_mLSP50","SMS_T2bH_mSbottom500_mLSP100","SMS_T2bH_mSbottom500_mLSP150","SMS_T2bH_mSbottom500_mLSP1","SMS_T2bH_mSbottom500_mLSP200","SMS_T2bH_mSbottom500_mLSP250","SMS_T2bH_mSbottom500_mLSP300","SMS_T2bH_mSbottom500_mLSP50","SMS_T2bH_mSbottom600_mLSP1","SMS_T2bH_mSbottom600_mLSP100","SMS_T2bH_mSbottom600_mLSP200","SMS_T2bH_mSbottom600_mLSP300"}; do   ./makeParametricModelDatacardFLASHgg.py  -i /shome/mschoene/9_2_4_gg/src/myMT2Analysis/analysis/EventYields_data_2016_diPhoton_02Mar18/WS/ws_SMS_T2bH_mSbottom_ll_onelPT_bb.root  -o dataCards_data2016_T2bH_2017mar12/Datacard_13TeV_$f.txt -p $f,higgs  --isMultiPdf --mass 125 --intLumi 0.0359  ; done
 
 
-#PROCS="higgs,SMS_TChiWH_HToGG_127_1,SMS_TChiWH_HToGG_150_1,SMS_TChiWH_HToGG_150_24,SMS_TChiWH_HToGG_175_1,SMS_TChiWH_HToGG_175_25,SMS_TChiWH_HToGG_175_49,SMS_TChiWH_HToGG_200_1,SMS_TChiWH_HToGG_200_25,SMS_TChiWH_HToGG_200_50,SMS_TChiWH_HToGG_200_74"
 
-combProc = {'bkg_mass':'bkg_mass','higgs':'higgs','SMS_TChiWH_HToGG_127_1':'SMS_TChiWH_HToGG_127_1','SMS_TChiWH_HToGG_150_1':'SMS_TChiWH_HToGG_150_1','SMS_TChiWH_HToGG_150_24':'SMS_TChiWH_HToGG_150_24','SMS_TChiWH_HToGG_175_1':'SMS_TChiWH_HToGG_175_1','SMS_TChiWH_HToGG_175_25':'SMS_TChiWH_HToGG_175_25','SMS_TChiWH_HToGG_175_49':'SMS_TChiWH_HToGG_175_49','SMS_TChiWH_HToGG_200_1':'SMS_TChiWH_HToGG_200_1','SMS_TChiWH_HToGG_200_25':'SMS_TChiWH_HToGG_200_25','SMS_TChiWH_HToGG_200_50':'SMS_TChiWH_HToGG_200_50','SMS_TChiWH_HToGG_200_74':'SMS_TChiWH_HToGG_200_74'}
-flashggProc = {'bkg_mass':'bkg_mass','higgs':'higgs','SMS_TChiWH_HToGG_127_1':'SMS_TChiWH_HToGG_127_1','SMS_TChiWH_HToGG_150_1':'SMS_TChiWH_HToGG_150_1','SMS_TChiWH_HToGG_175_1':'SMS_TChiWH_HToGG_175_1','SMS_TChiWH_HToGG_150_24':'SMS_TChiWH_HToGG_150_24','SMS_TChiWH_HToGG_175_25':'SMS_TChiWH_HToGG_175_25','SMS_TChiWH_HToGG_175_49':'SMS_TChiWH_HToGG_175_49','SMS_TChiWH_HToGG_200_1':'SMS_TChiWH_HToGG_200_1','SMS_TChiWH_HToGG_200_25':'SMS_TChiWH_HToGG_200_25','SMS_TChiWH_HToGG_200_50':'SMS_TChiWH_HToGG_200_50','SMS_TChiWH_HToGG_200_74':'SMS_TChiWH_HToGG_200_74' }
-procId = {'SMS_TChiWH_HToGG_150_24':0,'SMS_TChiWH_HToGG_175_25':0,'SMS_TChiWH_HToGG_175_49':0,'SMS_TChiWH_HToGG_200_1':0,'SMS_TChiWH_HToGG_200_25':0,'SMS_TChiWH_HToGG_200_50':0,'SMS_TChiWH_HToGG_200_74':0,'SMS_TChiWH_HToGG_127_1':0,'SMS_TChiWH_HToGG_150_1':0,'SMS_TChiWH_HToGG_175_1':0,'bkg_mass':2,'higgs':1 }
+#combProc = {'bkg_mass':'bkg_mass','higgs_2016':'higgs_2016','SMS_TChiHH_HToGG_m1':'SMS_TChiHH_HToGG_m1','SMS_TChiHH_HToGG_m25':'SMS_TChiHH_HToGG_m25','SMS_TChiHH_HToGG_m50':'SMS_TChiHH_HToGG_m50','SMS_TChiHH_HToGG_m75':'SMS_TChiHH_HToGG_m75','SMS_TChiHH_HToGG_m100':'SMS_TChiHH_HToGG_m100','SMS_TChiHH_HToGG_m127':'SMS_TChiHH_HToGG_m127','SMS_TChiHH_HToGG_m150':'SMS_TChiHH_HToGG_m150','SMS_TChiHH_HToGG_m175':'SMS_TChiHH_HToGG_m175','SMS_TChiHH_HToGG_m200':'SMS_TChiHH_HToGG_m200','SMS_TChiHH_HToGG_m225':'SMS_TChiHH_HToGG_m225','SMS_TChiHH_HToGG_m250':'SMS_TChiHH_HToGG_m250','SMS_TChiHH_HToGG_m275':'SMS_TChiHH_HToGG_m275','SMS_TChiHH_HToGG_m300':'SMS_TChiHH_HToGG_m300','SMS_TChiHH_HToGG_m325':'SMS_TChiHH_HToGG_m325','SMS_TChiHH_HToGG_m350':'SMS_TChiHH_HToGG_m350','SMS_TChiHH_HToGG_m375':'SMS_TChiHH_HToGG_m375','SMS_TChiHH_HToGG_m400':'SMS_TChiHH_HToGG_m400','SMS_TChiHH_HToGG_m425':'SMS_TChiHH_HToGG_m425','SMS_TChiHH_HToGG_m450':'SMS_TChiHH_HToGG_m450','SMS_TChiHH_HToGG_m475':'SMS_TChiHH_HToGG_m475','SMS_TChiHH_HToGG_m500':'SMS_TChiHH_HToGG_m500','SMS_TChiHH_HToGG_m525':'SMS_TChiHH_HToGG_m525','SMS_TChiHH_HToGG_m550':'SMS_TChiHH_HToGG_m550','SMS_TChiHH_HToGG_m575':'SMS_TChiHH_HToGG_m575','SMS_TChiHH_HToGG_m600':'SMS_TChiHH_HToGG_m600','SMS_TChiHH_HToGG_m625':'SMS_TChiHH_HToGG_m625','SMS_TChiHH_HToGG_m650':'SMS_TChiHH_HToGG_m650','SMS_TChiHH_HToGG_m675':'SMS_TChiHH_HToGG_m675','SMS_TChiHH_HToGG_m700':'SMS_TChiHH_HToGG_m700','SMS_TChiHH_HToGG_m725':'SMS_TChiHH_HToGG_m725','SMS_TChiHH_HToGG_m750':'SMS_TChiHH_HToGG_m750','SMS_TChiHH_HToGG_m775':'SMS_TChiHH_HToGG_m775','SMS_TChiHH_HToGG_m800':'SMS_TChiHH_HToGG_m800','SMS_TChiHH_HToGG_m825':'SMS_TChiHH_HToGG_m825','SMS_TChiHH_HToGG_m850':'SMS_TChiHH_HToGG_m850','SMS_TChiHH_HToGG_m875':'SMS_TChiHH_HToGG_m875','SMS_TChiHH_HToGG_m900':'SMS_TChiHH_HToGG_m900','SMS_TChiHH_HToGG_m925':'SMS_TChiHH_HToGG_m925','SMS_TChiHH_HToGG_m950':'SMS_TChiHH_HToGG_m950','SMS_TChiHH_HToGG_m975':'SMS_TChiHH_HToGG_m975','SMS_TChiHH_HToGG_m1000':'SMS_TChiHH_HToGG_m1000','higgs_2017':'higgs_2017','SMS_TChiHH_HToGG_m1_2017':'SMS_TChiHH_HToGG_m1_2017','SMS_TChiHH_HToGG_m25_2017':'SMS_TChiHH_HToGG_m25_2017','SMS_TChiHH_HToGG_m50_2017':'SMS_TChiHH_HToGG_m50_2017','SMS_TChiHH_HToGG_m75_2017':'SMS_TChiHH_HToGG_m75_2017','SMS_TChiHH_HToGG_m100_2017':'SMS_TChiHH_HToGG_m100_2017','SMS_TChiHH_HToGG_m127_2017':'SMS_TChiHH_HToGG_m127_2017','SMS_TChiHH_HToGG_m150_2017':'SMS_TChiHH_HToGG_m150_2017','SMS_TChiHH_HToGG_m175_2017':'SMS_TChiHH_HToGG_m175_2017','SMS_TChiHH_HToGG_m200_2017':'SMS_TChiHH_HToGG_m200_2017','SMS_TChiHH_HToGG_m225_2017':'SMS_TChiHH_HToGG_m225_2017','SMS_TChiHH_HToGG_m250_2017':'SMS_TChiHH_HToGG_m250_2017','SMS_TChiHH_HToGG_m275_2017':'SMS_TChiHH_HToGG_m275_2017','SMS_TChiHH_HToGG_m300_2017':'SMS_TChiHH_HToGG_m300_2017','SMS_TChiHH_HToGG_m325_2017':'SMS_TChiHH_HToGG_m325_2017','SMS_TChiHH_HToGG_m350_2017':'SMS_TChiHH_HToGG_m350_2017','SMS_TChiHH_HToGG_m375_2017':'SMS_TChiHH_HToGG_m375_2017','SMS_TChiHH_HToGG_m400_2017':'SMS_TChiHH_HToGG_m400_2017','SMS_TChiHH_HToGG_m425_2017':'SMS_TChiHH_HToGG_m425_2017','SMS_TChiHH_HToGG_m450_2017':'SMS_TChiHH_HToGG_m450_2017','SMS_TChiHH_HToGG_m475_2017':'SMS_TChiHH_HToGG_m475_2017','SMS_TChiHH_HToGG_m500_2017':'SMS_TChiHH_HTo0GG_m500_2017','SMS_TChiHH_HToGG_m525_2017':'SMS_TChiHH_HToGG_m525_2017','SMS_TChiHH_HToGG_m550_2017':'SMS_TChiHH_HToGG_m550_2017','SMS_TChiHH_HToGG_m575_2017':'SMS_TChiHH_HToGG_m575_2017','SMS_TChiHH_HToGG_m600_2017':'SMS_TChiHH_HToGG_m600_2017','SMS_TChiHH_HToGG_m625_2017':'SMS_TChiHH_HToGG_m625_2017','SMS_TChiHH_HToGG_m650_2017':'SMS_TChiHH_HToGG_m650_2017','SMS_TChiHH_HToGG_m675_2017':'SMS_TChiHH_HToGG_m675_2017','SMS_TChiHH_HToGG_m700_2017':'SMS_TChiHH_HToGG_m700_2017','SMS_TChiHH_HToGG_m725_2017':'SMS_TChiHH_HToGG_m725_2017','SMS_TChiHH_HToGG_m750_2017':'SMS_TChiHH_HToGG_m750_2017','SMS_TChiHH_HToGG_m775_2017':'SMS_TChiHH_HToGG_m775_2017','SMS_TChiHH_HToGG_m800_2017':'SMS_TChiHH_HToGG_m800_2017','SMS_TChiHH_HToGG_m825_2017':'SMS_TChiHH_HToGG_m825_2017','SMS_TChiHH_HToGG_m850_2017':'SMS_TChiHH_HToGG_m850_2017','SMS_TChiHH_HToGG_m875_2017':'SMS_TChiHH_HToGG_m875_2017','SMS_TChiHH_HToGG_m900_2017':'SMS_TChiHH_HToGG_m900_2017','SMS_TChiHH_HToGG_m925_2017':'SMS_TChiHH_HToGG_m925_2017','SMS_TChiHH_HToGG_m950_2017':'SMS_TChiHH_HToGG_m950_2017','SMS_TChiHH_HToGG_m975_2017':'SMS_TChiHH_HToGG_m975_2017','SMS_TChiHH_HToGG_m1000_2017':'SMS_TChiHH_HToGG_m1000_2017'}
 
+#flashggProc = {'bkg_mass':'bkg_mass','higgs_2016':'higgs_2016','SMS_TChiHH_HToGG_m1':'SMS_TChiHH_HToGG_m1','SMS_TChiHH_HToGG_m25':'SMS_TChiHH_HToGG_m25','SMS_TChiHH_HToGG_m50':'SMS_TChiHH_HToGG_m50','SMS_TChiHH_HToGG_m75':'SMS_TChiHH_HToGG_m75','SMS_TChiHH_HToGG_m100':'SMS_TChiHH_HToGG_m100','SMS_TChiHH_HToGG_m127':'SMS_TChiHH_HToGG_m127','SMS_TChiHH_HToGG_m150':'SMS_TChiHH_HToGG_m150','SMS_TChiHH_HToGG_m175':'SMS_TChiHH_HToGG_m175','SMS_TChiHH_HToGG_m200':'SMS_TChiHH_HToGG_m200','SMS_TChiHH_HToGG_m225':'SMS_TChiHH_HToGG_m225','SMS_TChiHH_HToGG_m250':'SMS_TChiHH_HToGG_m250','SMS_TChiHH_HToGG_m275':'SMS_TChiHH_HToGG_m275','SMS_TChiHH_HToGG_m300':'SMS_TChiHH_HToGG_m300','SMS_TChiHH_HToGG_m325':'SMS_TChiHH_HToGG_m325','SMS_TChiHH_HToGG_m350':'SMS_TChiHH_HToGG_m350','SMS_TChiHH_HToGG_m375':'SMS_TChiHH_HToGG_m375','SMS_TChiHH_HToGG_m400':'SMS_TChiHH_HToGG_m400','SMS_TChiHH_HToGG_m425':'SMS_TChiHH_HToGG_m425','SMS_TChiHH_HToGG_m450':'SMS_TChiHH_HToGG_m450','SMS_TChiHH_HToGG_m475':'SMS_TChiHH_HToGG_m475','SMS_TChiHH_HToGG_m500':'SMS_TChiHH_HToGG_m500','SMS_TChiHH_HToGG_m525':'SMS_TChiHH_HToGG_m525','SMS_TChiHH_HToGG_m550':'SMS_TChiHH_HToGG_m550','SMS_TChiHH_HToGG_m575':'SMS_TChiHH_HToGG_m575','SMS_TChiHH_HToGG_m600':'SMS_TChiHH_HToGG_m600','SMS_TChiHH_HToGG_m625':'SMS_TChiHH_HToGG_m625','SMS_TChiHH_HToGG_m650':'SMS_TChiHH_HToGG_m650','SMS_TChiHH_HToGG_m675':'SMS_TChiHH_HToGG_m675','SMS_TChiHH_HToGG_m700':'SMS_TChiHH_HToGG_m700','SMS_TChiHH_HToGG_m725':'SMS_TChiHH_HToGG_m725','SMS_TChiHH_HToGG_m750':'SMS_TChiHH_HToGG_m750','SMS_TChiHH_HToGG_m775':'SMS_TChiHH_HToGG_m775','SMS_TChiHH_HToGG_m800':'SMS_TChiHH_HToGG_m800','SMS_TChiHH_HToGG_m825':'SMS_TChiHH_HToGG_m825','SMS_TChiHH_HToGG_m850':'SMS_TChiHH_HToGG_m850','SMS_TChiHH_HToGG_m875':'SMS_TChiHH_HToGG_m875','SMS_TChiHH_HToGG_m900':'SMS_TChiHH_HToGG_m900','SMS_TChiHH_HToGG_m925':'SMS_TChiHH_HToGG_m925','SMS_TChiHH_HToGG_m950':'SMS_TChiHH_HToGG_m950','SMS_TChiHH_HToGG_m975':'SMS_TChiHH_HToGG_m975','SMS_TChiHH_HToGG_m1000':'SMS_TChiHH_HToGG_m1000','higgs_2017':'higgs_2017','SMS_TChiHH_HToGG_m1_2017':'SMS_TChiHH_HToGG_m1_2017','SMS_TChiHH_HToGG_m25_2017':'SMS_TChiHH_HToGG_m25_2017','SMS_TChiHH_HToGG_m50_2017':'SMS_TChiHH_HToGG_m50_2017','SMS_TChiHH_HToGG_m75_2017':'SMS_TChiHH_HToGG_m75_2017','SMS_TChiHH_HToGG_m100_2017':'SMS_TChiHH_HToGG_m100_2017','SMS_TChiHH_HToGG_m127_2017':'SMS_TChiHH_HToGG_m127_2017','SMS_TChiHH_HToGG_m150_2017':'SMS_TChiHH_HToGG_m150_2017','SMS_TChiHH_HToGG_m175_2017':'SMS_TChiHH_HToGG_m175_2017','SMS_TChiHH_HToGG_m200_2017':'SMS_TChiHH_HToGG_m200_2017','SMS_TChiHH_HToGG_m225_2017':'SMS_TChiHH_HToGG_m225_2017','SMS_TChiHH_HToGG_m250_2017':'SMS_TChiHH_HToGG_m250_2017','SMS_TChiHH_HToGG_m275_2017':'SMS_TChiHH_HToGG_m275_2017','SMS_TChiHH_HToGG_m300_2017':'SMS_TChiHH_HToGG_m300_2017','SMS_TChiHH_HToGG_m325_2017':'SMS_TChiHH_HToGG_m325_2017','SMS_TChiHH_HToGG_m350_2017':'SMS_TChiHH_HToGG_m350_2017','SMS_TChiHH_HToGG_m375_2017':'SMS_TChiHH_HToGG_m375_2017','SMS_TChiHH_HToGG_m400_2017':'SMS_TChiHH_HToGG_m400_2017','SMS_TChiHH_HToGG_m425_2017':'SMS_TChiHH_HToGG_m425_2017','SMS_TChiHH_HToGG_m450_2017':'SMS_TChiHH_HToGG_m450_2017','SMS_TChiHH_HToGG_m475_2017':'SMS_TChiHH_HToGG_m475_2017','SMS_TChiHH_HToGG_m500_2017':'SMS_TChiHH_HToGG_m500_2017','SMS_TChiHH_HToGG_m525_2017':'SMS_TChiHH_HToGG_m525_2017','SMS_TChiHH_HToGG_m550_2017':'SMS_TChiHH_HToGG_m550_2017','SMS_TChiHH_HToGG_m575_2017':'SMS_TChiHH_HToGG_m575_2017','SMS_TChiHH_HToGG_m600_2017':'SMS_TChiHH_HToGG_m600_2017','SMS_TChiHH_HToGG_m625_2017':'SMS_TChiHH_HToGG_m625_2017','SMS_TChiHH_HToGG_m650_2017':'SMS_TChiHH_HToGG_m650_2017','SMS_TChiHH_HToGG_m675_2017':'SMS_TChiHH_HToGG_m675_2017','SMS_TChiHH_HToGG_m700_2017':'SMS_TChiHH_HToGG_m700_2017','SMS_TChiHH_HToGG_m725_2017':'SMS_TChiHH_HToGG_m725_2017','SMS_TChiHH_HToGG_m750_2017':'SMS_TChiHH_HToGG_m750_2017','SMS_TChiHH_HToGG_m775_2017':'SMS_TChiHH_HToGG_m775_2017','SMS_TChiHH_HToGG_m800_2017':'SMS_TChiHH_HToGG_m800_2017','SMS_TChiHH_HToGG_m825_2017':'SMS_TChiHH_HToGG_m825_2017','SMS_TChiHH_HToGG_m850_2017':'SMS_TChiHH_HToGG_m850_2017','SMS_TChiHH_HToGG_m875_2017':'SMS_TChiHH_HToGG_m875_2017','SMS_TChiHH_HToGG_m900_2017':'SMS_TChiHH_HToGG_m900_2017','SMS_TChiHH_HToGG_m925_2017':'SMS_TChiHH_HToGG_m925_2017','SMS_TChiHH_HToGG_m950_2017':'SMS_TChiHH_HToGG_m950_2017','SMS_TChiHH_HToGG_m975_2017':'SMS_TChiHH_HToGG_m975_2017','SMS_TChiHH_HToGG_m1000_2017':'SMS_TChiHH_HToGG_m1000_2017'}
 
-#combProc = {'bkg_mass':'bkg_mass','higgs':'higgs','SMS_TChiHZ_HToGG_m1':'SMS_TChiHZ_HToGG_m1','SMS_TChiHZ_HToGG_m25':'SMS_TChiHZ_HToGG_m25','SMS_TChiHZ_HToGG_m50':'SMS_TChiHZ_HToGG_m50','SMS_TChiHZ_HToGG_m75':'SMS_TChiHZ_HToGG_m75','SMS_TChiHZ_HToGG_m100':'SMS_TChiHZ_HToGG_m100','SMS_TChiHZ_HToGG_m127':'SMS_TChiHZ_HToGG_m127','SMS_TChiHZ_HToGG_m150':'SMS_TChiHZ_HToGG_m150','SMS_TChiHZ_HToGG_m175':'SMS_TChiHZ_HToGG_m175','SMS_TChiHZ_HToGG_m200':'SMS_TChiHZ_HToGG_m200','SMS_TChiHZ_HToGG_m225':'SMS_TChiHZ_HToGG_m225','SMS_TChiHZ_HToGG_m250':'SMS_TChiHZ_HToGG_m250','SMS_TChiHZ_HToGG_m275':'SMS_TChiHZ_HToGG_m275','SMS_TChiHZ_HToGG_m300':'SMS_TChiHZ_HToGG_m300','SMS_TChiHZ_HToGG_m325':'SMS_TChiHZ_HToGG_m325','SMS_TChiHZ_HToGG_m350':'SMS_TChiHZ_HToGG_m350','SMS_TChiHZ_HToGG_m375':'SMS_TChiHZ_HToGG_m375','SMS_TChiHZ_HToGG_m400':'SMS_TChiHZ_HToGG_m400','SMS_TChiHZ_HToGG_m425':'SMS_TChiHZ_HToGG_m425','SMS_TChiHZ_HToGG_m450':'SMS_TChiHZ_HToGG_m450','SMS_TChiHZ_HToGG_m475':'SMS_TChiHZ_HToGG_m475','SMS_TChiHZ_HToGG_m500':'SMS_TChiHZ_HToGG_m500','SMS_TChiHZ_HToGG_m525':'SMS_TChiHZ_HToGG_m525','SMS_TChiHZ_HToGG_m550':'SMS_TChiHZ_HToGG_m550','SMS_TChiHZ_HToGG_m575':'SMS_TChiHZ_HToGG_m575','SMS_TChiHZ_HToGG_m600':'SMS_TChiHZ_HToGG_m600','SMS_TChiHZ_HToGG_m625':'SMS_TChiHZ_HToGG_m625','SMS_TChiHZ_HToGG_m650':'SMS_TChiHZ_HToGG_m650','SMS_TChiHZ_HToGG_m675':'SMS_TChiHZ_HToGG_m675','SMS_TChiHZ_HToGG_m700':'SMS_TChiHZ_HToGG_m700','SMS_TChiHZ_HToGG_m725':'SMS_TChiHZ_HToGG_m725','SMS_TChiHZ_HToGG_m750':'SMS_TChiHZ_HToGG_m750','SMS_TChiHZ_HToGG_m775':'SMS_TChiHZ_HToGG_m775','SMS_TChiHZ_HToGG_m800':'SMS_TChiHZ_HToGG_m800','SMS_TChiHZ_HToGG_m825':'SMS_TChiHZ_HToGG_m825','SMS_TChiHZ_HToGG_m850':'SMS_TChiHZ_HToGG_m850','SMS_TChiHZ_HToGG_m875':'SMS_TChiHZ_HToGG_m875','SMS_TChiHZ_HToGG_m900':'SMS_TChiHZ_HToGG_m900','SMS_TChiHZ_HToGG_m925':'SMS_TChiHZ_HToGG_m925','SMS_TChiHZ_HToGG_m950':'SMS_TChiHZ_HToGG_m950','SMS_TChiHZ_HToGG_m975':'SMS_TChiHZ_HToGG_m975','SMS_TChiHZ_HToGG_m1000':'SMS_TChiHZ_HToGG_m1000'}
-
-#flashggProc = {'bkg_mass':'bkg_mass','higgs':'higgs','SMS_TChiHZ_HToGG_m1':'SMS_TChiHZ_HToGG_m1','SMS_TChiHZ_HToGG_m25':'SMS_TChiHZ_HToGG_m25','SMS_TChiHZ_HToGG_m50':'SMS_TChiHZ_HToGG_m50','SMS_TChiHZ_HToGG_m75':'SMS_TChiHZ_HToGG_m75','SMS_TChiHZ_HToGG_m100':'SMS_TChiHZ_HToGG_m100','SMS_TChiHZ_HToGG_m127':'SMS_TChiHZ_HToGG_m127','SMS_TChiHZ_HToGG_m150':'SMS_TChiHZ_HToGG_m150','SMS_TChiHZ_HToGG_m175':'SMS_TChiHZ_HToGG_m175','SMS_TChiHZ_HToGG_m200':'SMS_TChiHZ_HToGG_m200','SMS_TChiHZ_HToGG_m225':'SMS_TChiHZ_HToGG_m225','SMS_TChiHZ_HToGG_m250':'SMS_TChiHZ_HToGG_m250','SMS_TChiHZ_HToGG_m275':'SMS_TChiHZ_HToGG_m275','SMS_TChiHZ_HToGG_m300':'SMS_TChiHZ_HToGG_m300','SMS_TChiHZ_HToGG_m325':'SMS_TChiHZ_HToGG_m325','SMS_TChiHZ_HToGG_m350':'SMS_TChiHZ_HToGG_m350','SMS_TChiHZ_HToGG_m375':'SMS_TChiHZ_HToGG_m375','SMS_TChiHZ_HToGG_m400':'SMS_TChiHZ_HToGG_m400','SMS_TChiHZ_HToGG_m425':'SMS_TChiHZ_HToGG_m425','SMS_TChiHZ_HToGG_m450':'SMS_TChiHZ_HToGG_m450','SMS_TChiHZ_HToGG_m475':'SMS_TChiHZ_HToGG_m475','SMS_TChiHZ_HToGG_m500':'SMS_TChiHZ_HToGG_m500','SMS_TChiHZ_HToGG_m525':'SMS_TChiHZ_HToGG_m525','SMS_TChiHZ_HToGG_m550':'SMS_TChiHZ_HToGG_m550','SMS_TChiHZ_HToGG_m575':'SMS_TChiHZ_HToGG_m575','SMS_TChiHZ_HToGG_m600':'SMS_TChiHZ_HToGG_m600','SMS_TChiHZ_HToGG_m625':'SMS_TChiHZ_HToGG_m625','SMS_TChiHZ_HToGG_m650':'SMS_TChiHZ_HToGG_m650','SMS_TChiHZ_HToGG_m675':'SMS_TChiHZ_HToGG_m675','SMS_TChiHZ_HToGG_m700':'SMS_TChiHZ_HToGG_m700','SMS_TChiHZ_HToGG_m725':'SMS_TChiHZ_HToGG_m725','SMS_TChiHZ_HToGG_m750':'SMS_TChiHZ_HToGG_m750','SMS_TChiHZ_HToGG_m775':'SMS_TChiHZ_HToGG_m775','SMS_TChiHZ_HToGG_m800':'SMS_TChiHZ_HToGG_m800','SMS_TChiHZ_HToGG_m825':'SMS_TChiHZ_HToGG_m825','SMS_TChiHZ_HToGG_m850':'SMS_TChiHZ_HToGG_m850','SMS_TChiHZ_HToGG_m875':'SMS_TChiHZ_HToGG_m875','SMS_TChiHZ_HToGG_m900':'SMS_TChiHZ_HToGG_m900','SMS_TChiHZ_HToGG_m925':'SMS_TChiHZ_HToGG_m925','SMS_TChiHZ_HToGG_m950':'SMS_TChiHZ_HToGG_m950','SMS_TChiHZ_HToGG_m975':'SMS_TChiHZ_HToGG_m975','SMS_TChiHZ_HToGG_m1000':'SMS_TChiHZ_HToGG_m1000' }
-
-#procId = {'SMS_TChiHZ_HToGG_m1':0,'SMS_TChiHZ_HToGG_m25':0,'SMS_TChiHZ_HToGG_m50':0,'SMS_TChiHZ_HToGG_m75':0,'SMS_TChiHZ_HToGG_m100':0,'SMS_TChiHZ_HToGG_m127':0,'SMS_TChiHZ_HToGG_m150':0,'SMS_TChiHZ_HToGG_m175':0,'SMS_TChiHZ_HToGG_m200':0,'SMS_TChiHZ_HToGG_m225':0,'SMS_TChiHZ_HToGG_m250':0,'SMS_TChiHZ_HToGG_m275':0,'SMS_TChiHZ_HToGG_m300':0,'SMS_TChiHZ_HToGG_m325':0,'SMS_TChiHZ_HToGG_m350':0,'SMS_TChiHZ_HToGG_m375':0,'SMS_TChiHZ_HToGG_m400':0,'SMS_TChiHZ_HToGG_m425':0,'SMS_TChiHZ_HToGG_m450':0,'SMS_TChiHZ_HToGG_m475':0,'SMS_TChiHZ_HToGG_m500':0,'SMS_TChiHZ_HToGG_m525':0,'SMS_TChiHZ_HToGG_m550':0,'SMS_TChiHZ_HToGG_m575':0,'SMS_TChiHZ_HToGG_m600':0,'SMS_TChiHZ_HToGG_m625':0,'SMS_TChiHZ_HToGG_m650':0,'SMS_TChiHZ_HToGG_m675':0,'SMS_TChiHZ_HToGG_m700':0,'SMS_TChiHZ_HToGG_m725':0,'SMS_TChiHZ_HToGG_m750':0,'SMS_TChiHZ_HToGG_m775':0,'SMS_TChiHZ_HToGG_m800':0,'SMS_TChiHZ_HToGG_m825':0,'SMS_TChiHZ_HToGG_m850':0,'SMS_TChiHZ_HToGG_m875':0,'SMS_TChiHZ_HToGG_m900':0,'SMS_TChiHZ_HToGG_m925':0,'SMS_TChiHZ_HToGG_m950':0,'SMS_TChiHZ_HToGG_m975':0,'SMS_TChiHZ_HToGG_m1000':0,'bkg_mass':2,'higgs':1 }
+#procId = {'SMS_TChiHH_HToGG_m1':0,'SMS_TChiHH_HToGG_m25':0,'SMS_TChiHH_HToGG_m50':0,'SMS_TChiHH_HToGG_m75':0,'SMS_TChiHH_HToGG_m100':0,'SMS_TChiHH_HToGG_m127':0,'SMS_TChiHH_HToGG_m150':0,'SMS_TChiHH_HToGG_m175':0,'SMS_TChiHH_HToGG_m200':0,'SMS_TChiHH_HToGG_m225':0,'SMS_TChiHH_HToGG_m250':0,'SMS_TChiHH_HToGG_m275':0,'SMS_TChiHH_HToGG_m300':0,'SMS_TChiHH_HToGG_m325':0,'SMS_TChiHH_HToGG_m350':0,'SMS_TChiHH_HToGG_m375':0,'SMS_TChiHH_HToGG_m400':0,'SMS_TChiHH_HToGG_m425':0,'SMS_TChiHH_HToGG_m450':0,'SMS_TChiHH_HToGG_m475':0,'SMS_TChiHH_HToGG_m500':0,'SMS_TChiHH_HToGG_m525':0,'SMS_TChiHH_HToGG_m550':0,'SMS_TChiHH_HToGG_m575':0,'SMS_TChiHH_HToGG_m600':0,'SMS_TChiHH_HToGG_m625':0,'SMS_TChiHH_HToGG_m650':0,'SMS_TChiHH_HToGG_m675':0,'SMS_TChiHH_HToGG_m700':0,'SMS_TChiHH_HToGG_m725':0,'SMS_TChiHH_HToGG_m750':0,'SMS_TChiHH_HToGG_m775':0,'SMS_TChiHH_HToGG_m800':0,'SMS_TChiHH_HToGG_m825':0,'SMS_TChiHH_HToGG_m850':0,'SMS_TChiHH_HToGG_m875':0,'SMS_TChiHH_HToGG_m900':0,'SMS_TChiHH_HToGG_m925':0,'SMS_TChiHH_HToGG_m950':0,'SMS_TChiHH_HToGG_m975':0,'SMS_TChiHH_HToGG_m1000':0,'bkg_mass':2,'higgs_2016':1,'SMS_TChiHH_HToGG_m1_2017':0,'SMS_TChiHH_HToGG_m25_2017':0,'SMS_TChiHH_HToGG_m50_2017':0,'SMS_TChiHH_HToGG_m75_2017':0,'SMS_TChiHH_HToGG_m100_2017':0,'SMS_TChiHH_HToGG_m127_2017':0,'SMS_TChiHH_HToGG_m150_2017':0,'SMS_TChiHH_HToGG_m175_2017':0,'SMS_TChiHH_HToGG_m200_2017':0,'SMS_TChiHH_HToGG_m225_2017':0,'SMS_TChiHH_HToGG_m250_2017':0,'SMS_TChiHH_HToGG_m275_2017':0,'SMS_TChiHH_HToGG_m300_2017':0,'SMS_TChiHH_HToGG_m325_2017':0,'SMS_TChiHH_HToGG_m350_2017':0,'SMS_TChiHH_HToGG_m375_2017':0,'SMS_TChiHH_HToGG_m400_2017':0,'SMS_TChiHH_HToGG_m425_2017':0,'SMS_TChiHH_HToGG_m450_2017':0,'SMS_TChiHH_HToGG_m475_2017':0,'SMS_TChiHH_HToGG_m500_2017':0,'SMS_TChiHH_HToGG_m525_2017':0,'SMS_TChiHH_HToGG_m550_2017':0,'SMS_TChiHH_HToGG_m575_2017':0,'SMS_TChiHH_HToGG_m600_2017':0,'SMS_TChiHH_HToGG_m625_2017':0,'SMS_TChiHH_HToGG_m650_2017':0,'SMS_TChiHH_HToGG_m675_2017':0,'SMS_TChiHH_HToGG_m700_2017':0,'SMS_TChiHH_HToGG_m725_2017':0,'SMS_TChiHH_HToGG_m750_2017':0,'SMS_TChiHH_HToGG_m775_2017':0,'SMS_TChiHH_HToGG_m800_2017':0,'SMS_TChiHH_HToGG_m825_2017':0,'SMS_TChiHH_HToGG_m850_2017':0,'SMS_TChiHH_HToGG_m875_2017':0,'SMS_TChiHH_HToGG_m900_2017':0,'SMS_TChiHH_HToGG_m925_2017':0,'SMS_TChiHH_HToGG_m950_2017':0,'SMS_TChiHH_HToGG_m975_2017':0,'SMS_TChiHH_HToGG_m1000_2017':0,'higgs_2017':3}
 
 
 
 
+#combProc = {'bkg_mass':'bkg_mass','higgs_2016':'higgs_2016','SMS_TChiHZ_HToGG_m1':'SMS_TChiHZ_HToGG_m1','SMS_TChiHZ_HToGG_m25':'SMS_TChiHZ_HToGG_m25','SMS_TChiHZ_HToGG_m50':'SMS_TChiHZ_HToGG_m50','SMS_TChiHZ_HToGG_m75':'SMS_TChiHZ_HToGG_m75','SMS_TChiHZ_HToGG_m100':'SMS_TChiHZ_HToGG_m100','SMS_TChiHZ_HToGG_m127':'SMS_TChiHZ_HToGG_m127','SMS_TChiHZ_HToGG_m150':'SMS_TChiHZ_HToGG_m150','SMS_TChiHZ_HToGG_m175':'SMS_TChiHZ_HToGG_m175','SMS_TChiHZ_HToGG_m200':'SMS_TChiHZ_HToGG_m200','SMS_TChiHZ_HToGG_m225':'SMS_TChiHZ_HToGG_m225','SMS_TChiHZ_HToGG_m250':'SMS_TChiHZ_HToGG_m250','SMS_TChiHZ_HToGG_m275':'SMS_TChiHZ_HToGG_m275','SMS_TChiHZ_HToGG_m300':'SMS_TChiHZ_HToGG_m300','SMS_TChiHZ_HToGG_m325':'SMS_TChiHZ_HToGG_m325','SMS_TChiHZ_HToGG_m350':'SMS_TChiHZ_HToGG_m350','SMS_TChiHZ_HToGG_m375':'SMS_TChiHZ_HToGG_m375','SMS_TChiHZ_HToGG_m400':'SMS_TChiHZ_HToGG_m400','SMS_TChiHZ_HToGG_m425':'SMS_TChiHZ_HToGG_m425','SMS_TChiHZ_HToGG_m450':'SMS_TChiHZ_HToGG_m450','SMS_TChiHZ_HToGG_m475':'SMS_TChiHZ_HToGG_m475','SMS_TChiHZ_HToGG_m500':'SMS_TChiHZ_HToGG_m500','SMS_TChiHZ_HToGG_m525':'SMS_TChiHZ_HToGG_m525','SMS_TChiHZ_HToGG_m550':'SMS_TChiHZ_HToGG_m550','SMS_TChiHZ_HToGG_m575':'SMS_TChiHZ_HToGG_m575','SMS_TChiHZ_HToGG_m600':'SMS_TChiHZ_HToGG_m600','SMS_TChiHZ_HToGG_m625':'SMS_TChiHZ_HToGG_m625','SMS_TChiHZ_HToGG_m650':'SMS_TChiHZ_HToGG_m650','SMS_TChiHZ_HToGG_m675':'SMS_TChiHZ_HToGG_m675','SMS_TChiHZ_HToGG_m700':'SMS_TChiHZ_HToGG_m700','SMS_TChiHZ_HToGG_m725':'SMS_TChiHZ_HToGG_m725','SMS_TChiHZ_HToGG_m750':'SMS_TChiHZ_HToGG_m750','SMS_TChiHZ_HToGG_m775':'SMS_TChiHZ_HToGG_m775','SMS_TChiHZ_HToGG_m800':'SMS_TChiHZ_HToGG_m800','SMS_TChiHZ_HToGG_m825':'SMS_TChiHZ_HToGG_m825','SMS_TChiHZ_HToGG_m850':'SMS_TChiHZ_HToGG_m850','SMS_TChiHZ_HToGG_m875':'SMS_TChiHZ_HToGG_m875','SMS_TChiHZ_HToGG_m900':'SMS_TChiHZ_HToGG_m900','SMS_TChiHZ_HToGG_m925':'SMS_TChiHZ_HToGG_m925','SMS_TChiHZ_HToGG_m950':'SMS_TChiHZ_HToGG_m950','SMS_TChiHZ_HToGG_m975':'SMS_TChiHZ_HToGG_m975','SMS_TChiHZ_HToGG_m1000':'SMS_TChiHZ_HToGG_m1000','higgs_2017':'higgs_2017','SMS_TChiHZ_HToGG_m1_2017':'SMS_TChiHZ_HToGG_m1_2017','SMS_TChiHZ_HToGG_m25_2017':'SMS_TChiHZ_HToGG_m25_2017','SMS_TChiHZ_HToGG_m50_2017':'SMS_TChiHZ_HToGG_m50_2017','SMS_TChiHZ_HToGG_m75_2017':'SMS_TChiHZ_HToGG_m75_2017','SMS_TChiHZ_HToGG_m100_2017':'SMS_TChiHZ_HToGG_m100_2017','SMS_TChiHZ_HToGG_m127_2017':'SMS_TChiHZ_HToGG_m127_2017','SMS_TChiHZ_HToGG_m150_2017':'SMS_TChiHZ_HToGG_m150_2017','SMS_TChiHZ_HToGG_m175_2017':'SMS_TChiHZ_HToGG_m175_2017','SMS_TChiHZ_HToGG_m200_2017':'SMS_TChiHZ_HToGG_m200_2017','SMS_TChiHZ_HToGG_m225_2017':'SMS_TChiHZ_HToGG_m225_2017','SMS_TChiHZ_HToGG_m250_2017':'SMS_TChiHZ_HToGG_m250_2017','SMS_TChiHZ_HToGG_m275_2017':'SMS_TChiHZ_HToGG_m275_2017','SMS_TChiHZ_HToGG_m300_2017':'SMS_TChiHZ_HToGG_m300_2017','SMS_TChiHZ_HToGG_m325_2017':'SMS_TChiHZ_HToGG_m325_2017','SMS_TChiHZ_HToGG_m350_2017':'SMS_TChiHZ_HToGG_m350_2017','SMS_TChiHZ_HToGG_m375_2017':'SMS_TChiHZ_HToGG_m375_2017','SMS_TChiHZ_HToGG_m400_2017':'SMS_TChiHZ_HToGG_m400_2017','SMS_TChiHZ_HToGG_m425_2017':'SMS_TChiHZ_HToGG_m425_2017','SMS_TChiHZ_HToGG_m450_2017':'SMS_TChiHZ_HToGG_m450_2017','SMS_TChiHZ_HToGG_m475_2017':'SMS_TChiHZ_HToGG_m475_2017','SMS_TChiHZ_HToGG_m500_2017':'SMS_TChiHZ_HTo0GG_m500_2017','SMS_TChiHZ_HToGG_m525_2017':'SMS_TChiHZ_HToGG_m525_2017','SMS_TChiHZ_HToGG_m550_2017':'SMS_TChiHZ_HToGG_m550_2017','SMS_TChiHZ_HToGG_m575_2017':'SMS_TChiHZ_HToGG_m575_2017','SMS_TChiHZ_HToGG_m600_2017':'SMS_TChiHZ_HToGG_m600_2017','SMS_TChiHZ_HToGG_m625_2017':'SMS_TChiHZ_HToGG_m625_2017','SMS_TChiHZ_HToGG_m650_2017':'SMS_TChiHZ_HToGG_m650_2017','SMS_TChiHZ_HToGG_m675_2017':'SMS_TChiHZ_HToGG_m675_2017','SMS_TChiHZ_HToGG_m700_2017':'SMS_TChiHZ_HToGG_m700_2017','SMS_TChiHZ_HToGG_m725_2017':'SMS_TChiHZ_HToGG_m725_2017','SMS_TChiHZ_HToGG_m750_2017':'SMS_TChiHZ_HToGG_m750_2017','SMS_TChiHZ_HToGG_m775_2017':'SMS_TChiHZ_HToGG_m775_2017','SMS_TChiHZ_HToGG_m800_2017':'SMS_TChiHZ_HToGG_m800_2017','SMS_TChiHZ_HToGG_m825_2017':'SMS_TChiHZ_HToGG_m825_2017','SMS_TChiHZ_HToGG_m850_2017':'SMS_TChiHZ_HToGG_m850_2017','SMS_TChiHZ_HToGG_m875_2017':'SMS_TChiHZ_HToGG_m875_2017','SMS_TChiHZ_HToGG_m900_2017':'SMS_TChiHZ_HToGG_m900_2017','SMS_TChiHZ_HToGG_m925_2017':'SMS_TChiHZ_HToGG_m925_2017','SMS_TChiHZ_HToGG_m950_2017':'SMS_TChiHZ_HToGG_m950_2017','SMS_TChiHZ_HToGG_m975_2017':'SMS_TChiHZ_HToGG_m975_2017','SMS_TChiHZ_HToGG_m1000_2017':'SMS_TChiHZ_HToGG_m1000_2017'}
+
+#flashggProc = {'bkg_mass':'bkg_mass','higgs_2016':'higgs_2016','SMS_TChiHZ_HToGG_m1':'SMS_TChiHZ_HToGG_m1','SMS_TChiHZ_HToGG_m25':'SMS_TChiHZ_HToGG_m25','SMS_TChiHZ_HToGG_m50':'SMS_TChiHZ_HToGG_m50','SMS_TChiHZ_HToGG_m75':'SMS_TChiHZ_HToGG_m75','SMS_TChiHZ_HToGG_m100':'SMS_TChiHZ_HToGG_m100','SMS_TChiHZ_HToGG_m127':'SMS_TChiHZ_HToGG_m127','SMS_TChiHZ_HToGG_m150':'SMS_TChiHZ_HToGG_m150','SMS_TChiHZ_HToGG_m175':'SMS_TChiHZ_HToGG_m175','SMS_TChiHZ_HToGG_m200':'SMS_TChiHZ_HToGG_m200','SMS_TChiHZ_HToGG_m225':'SMS_TChiHZ_HToGG_m225','SMS_TChiHZ_HToGG_m250':'SMS_TChiHZ_HToGG_m250','SMS_TChiHZ_HToGG_m275':'SMS_TChiHZ_HToGG_m275','SMS_TChiHZ_HToGG_m300':'SMS_TChiHZ_HToGG_m300','SMS_TChiHZ_HToGG_m325':'SMS_TChiHZ_HToGG_m325','SMS_TChiHZ_HToGG_m350':'SMS_TChiHZ_HToGG_m350','SMS_TChiHZ_HToGG_m375':'SMS_TChiHZ_HToGG_m375','SMS_TChiHZ_HToGG_m400':'SMS_TChiHZ_HToGG_m400','SMS_TChiHZ_HToGG_m425':'SMS_TChiHZ_HToGG_m425','SMS_TChiHZ_HToGG_m450':'SMS_TChiHZ_HToGG_m450','SMS_TChiHZ_HToGG_m475':'SMS_TChiHZ_HToGG_m475','SMS_TChiHZ_HToGG_m500':'SMS_TChiHZ_HToGG_m500','SMS_TChiHZ_HToGG_m525':'SMS_TChiHZ_HToGG_m525','SMS_TChiHZ_HToGG_m550':'SMS_TChiHZ_HToGG_m550','SMS_TChiHZ_HToGG_m575':'SMS_TChiHZ_HToGG_m575','SMS_TChiHZ_HToGG_m600':'SMS_TChiHZ_HToGG_m600','SMS_TChiHZ_HToGG_m625':'SMS_TChiHZ_HToGG_m625','SMS_TChiHZ_HToGG_m650':'SMS_TChiHZ_HToGG_m650','SMS_TChiHZ_HToGG_m675':'SMS_TChiHZ_HToGG_m675','SMS_TChiHZ_HToGG_m700':'SMS_TChiHZ_HToGG_m700','SMS_TChiHZ_HToGG_m725':'SMS_TChiHZ_HToGG_m725','SMS_TChiHZ_HToGG_m750':'SMS_TChiHZ_HToGG_m750','SMS_TChiHZ_HToGG_m775':'SMS_TChiHZ_HToGG_m775','SMS_TChiHZ_HToGG_m800':'SMS_TChiHZ_HToGG_m800','SMS_TChiHZ_HToGG_m825':'SMS_TChiHZ_HToGG_m825','SMS_TChiHZ_HToGG_m850':'SMS_TChiHZ_HToGG_m850','SMS_TChiHZ_HToGG_m875':'SMS_TChiHZ_HToGG_m875','SMS_TChiHZ_HToGG_m900':'SMS_TChiHZ_HToGG_m900','SMS_TChiHZ_HToGG_m925':'SMS_TChiHZ_HToGG_m925','SMS_TChiHZ_HToGG_m950':'SMS_TChiHZ_HToGG_m950','SMS_TChiHZ_HToGG_m975':'SMS_TChiHZ_HToGG_m975','SMS_TChiHZ_HToGG_m1000':'SMS_TChiHZ_HToGG_m1000','higgs_2017':'higgs_2017','SMS_TChiHZ_HToGG_m1_2017':'SMS_TChiHZ_HToGG_m1_2017','SMS_TChiHZ_HToGG_m25_2017':'SMS_TChiHZ_HToGG_m25_2017','SMS_TChiHZ_HToGG_m50_2017':'SMS_TChiHZ_HToGG_m50_2017','SMS_TChiHZ_HToGG_m75_2017':'SMS_TChiHZ_HToGG_m75_2017','SMS_TChiHZ_HToGG_m100_2017':'SMS_TChiHZ_HToGG_m100_2017','SMS_TChiHZ_HToGG_m127_2017':'SMS_TChiHZ_HToGG_m127_2017','SMS_TChiHZ_HToGG_m150_2017':'SMS_TChiHZ_HToGG_m150_2017','SMS_TChiHZ_HToGG_m175_2017':'SMS_TChiHZ_HToGG_m175_2017','SMS_TChiHZ_HToGG_m200_2017':'SMS_TChiHZ_HToGG_m200_2017','SMS_TChiHZ_HToGG_m225_2017':'SMS_TChiHZ_HToGG_m225_2017','SMS_TChiHZ_HToGG_m250_2017':'SMS_TChiHZ_HToGG_m250_2017','SMS_TChiHZ_HToGG_m275_2017':'SMS_TChiHZ_HToGG_m275_2017','SMS_TChiHZ_HToGG_m300_2017':'SMS_TChiHZ_HToGG_m300_2017','SMS_TChiHZ_HToGG_m325_2017':'SMS_TChiHZ_HToGG_m325_2017','SMS_TChiHZ_HToGG_m350_2017':'SMS_TChiHZ_HToGG_m350_2017','SMS_TChiHZ_HToGG_m375_2017':'SMS_TChiHZ_HToGG_m375_2017','SMS_TChiHZ_HToGG_m400_2017':'SMS_TChiHZ_HToGG_m400_2017','SMS_TChiHZ_HToGG_m425_2017':'SMS_TChiHZ_HToGG_m425_2017','SMS_TChiHZ_HToGG_m450_2017':'SMS_TChiHZ_HToGG_m450_2017','SMS_TChiHZ_HToGG_m475_2017':'SMS_TChiHZ_HToGG_m475_2017','SMS_TChiHZ_HToGG_m500_2017':'SMS_TChiHZ_HToGG_m500_2017','SMS_TChiHZ_HToGG_m525_2017':'SMS_TChiHZ_HToGG_m525_2017','SMS_TChiHZ_HToGG_m550_2017':'SMS_TChiHZ_HToGG_m550_2017','SMS_TChiHZ_HToGG_m575_2017':'SMS_TChiHZ_HToGG_m575_2017','SMS_TChiHZ_HToGG_m600_2017':'SMS_TChiHZ_HToGG_m600_2017','SMS_TChiHZ_HToGG_m625_2017':'SMS_TChiHZ_HToGG_m625_2017','SMS_TChiHZ_HToGG_m650_2017':'SMS_TChiHZ_HToGG_m650_2017','SMS_TChiHZ_HToGG_m675_2017':'SMS_TChiHZ_HToGG_m675_2017','SMS_TChiHZ_HToGG_m700_2017':'SMS_TChiHZ_HToGG_m700_2017','SMS_TChiHZ_HToGG_m725_2017':'SMS_TChiHZ_HToGG_m725_2017','SMS_TChiHZ_HToGG_m750_2017':'SMS_TChiHZ_HToGG_m750_2017','SMS_TChiHZ_HToGG_m775_2017':'SMS_TChiHZ_HToGG_m775_2017','SMS_TChiHZ_HToGG_m800_2017':'SMS_TChiHZ_HToGG_m800_2017','SMS_TChiHZ_HToGG_m825_2017':'SMS_TChiHZ_HToGG_m825_2017','SMS_TChiHZ_HToGG_m850_2017':'SMS_TChiHZ_HToGG_m850_2017','SMS_TChiHZ_HToGG_m875_2017':'SMS_TChiHZ_HToGG_m875_2017','SMS_TChiHZ_HToGG_m900_2017':'SMS_TChiHZ_HToGG_m900_2017','SMS_TChiHZ_HToGG_m925_2017':'SMS_TChiHZ_HToGG_m925_2017','SMS_TChiHZ_HToGG_m950_2017':'SMS_TChiHZ_HToGG_m950_2017','SMS_TChiHZ_HToGG_m975_2017':'SMS_TChiHZ_HToGG_m975_2017','SMS_TChiHZ_HToGG_m1000_2017':'SMS_TChiHZ_HToGG_m1000_2017'}
+
+#procId = {'SMS_TChiHZ_HToGG_m1':0,'SMS_TChiHZ_HToGG_m25':0,'SMS_TChiHZ_HToGG_m50':0,'SMS_TChiHZ_HToGG_m75':0,'SMS_TChiHZ_HToGG_m100':0,'SMS_TChiHZ_HToGG_m127':0,'SMS_TChiHZ_HToGG_m150':0,'SMS_TChiHZ_HToGG_m175':0,'SMS_TChiHZ_HToGG_m200':0,'SMS_TChiHZ_HToGG_m225':0,'SMS_TChiHZ_HToGG_m250':0,'SMS_TChiHZ_HToGG_m275':0,'SMS_TChiHZ_HToGG_m300':0,'SMS_TChiHZ_HToGG_m325':0,'SMS_TChiHZ_HToGG_m350':0,'SMS_TChiHZ_HToGG_m375':0,'SMS_TChiHZ_HToGG_m400':0,'SMS_TChiHZ_HToGG_m425':0,'SMS_TChiHZ_HToGG_m450':0,'SMS_TChiHZ_HToGG_m475':0,'SMS_TChiHZ_HToGG_m500':0,'SMS_TChiHZ_HToGG_m525':0,'SMS_TChiHZ_HToGG_m550':0,'SMS_TChiHZ_HToGG_m575':0,'SMS_TChiHZ_HToGG_m600':0,'SMS_TChiHZ_HToGG_m625':0,'SMS_TChiHZ_HToGG_m650':0,'SMS_TChiHZ_HToGG_m675':0,'SMS_TChiHZ_HToGG_m700':0,'SMS_TChiHZ_HToGG_m725':0,'SMS_TChiHZ_HToGG_m750':0,'SMS_TChiHZ_HToGG_m775':0,'SMS_TChiHZ_HToGG_m800':0,'SMS_TChiHZ_HToGG_m825':0,'SMS_TChiHZ_HToGG_m850':0,'SMS_TChiHZ_HToGG_m875':0,'SMS_TChiHZ_HToGG_m900':0,'SMS_TChiHZ_HToGG_m925':0,'SMS_TChiHZ_HToGG_m950':0,'SMS_TChiHZ_HToGG_m975':0,'SMS_TChiHZ_HToGG_m1000':0,'bkg_mass':2,'higgs_2016':1,'SMS_TChiHZ_HToGG_m1_2017':0,'SMS_TChiHZ_HToGG_m25_2017':0,'SMS_TChiHZ_HToGG_m50_2017':0,'SMS_TChiHZ_HToGG_m75_2017':0,'SMS_TChiHZ_HToGG_m100_2017':0,'SMS_TChiHZ_HToGG_m127_2017':0,'SMS_TChiHZ_HToGG_m150_2017':0,'SMS_TChiHZ_HToGG_m175_2017':0,'SMS_TChiHZ_HToGG_m200_2017':0,'SMS_TChiHZ_HToGG_m225_2017':0,'SMS_TChiHZ_HToGG_m250_2017':0,'SMS_TChiHZ_HToGG_m275_2017':0,'SMS_TChiHZ_HToGG_m300_2017':0,'SMS_TChiHZ_HToGG_m325_2017':0,'SMS_TChiHZ_HToGG_m350_2017':0,'SMS_TChiHZ_HToGG_m375_2017':0,'SMS_TChiHZ_HToGG_m400_2017':0,'SMS_TChiHZ_HToGG_m425_2017':0,'SMS_TChiHZ_HToGG_m450_2017':0,'SMS_TChiHZ_HToGG_m475_2017':0,'SMS_TChiHZ_HToGG_m500_2017':0,'SMS_TChiHZ_HToGG_m525_2017':0,'SMS_TChiHZ_HToGG_m550_2017':0,'SMS_TChiHZ_HToGG_m575_2017':0,'SMS_TChiHZ_HToGG_m600_2017':0,'SMS_TChiHZ_HToGG_m625_2017':0,'SMS_TChiHZ_HToGG_m650_2017':0,'SMS_TChiHZ_HToGG_m675_2017':0,'SMS_TChiHZ_HToGG_m700_2017':0,'SMS_TChiHZ_HToGG_m725_2017':0,'SMS_TChiHZ_HToGG_m750_2017':0,'SMS_TChiHZ_HToGG_m775_2017':0,'SMS_TChiHZ_HToGG_m800_2017':0,'SMS_TChiHZ_HToGG_m825_2017':0,'SMS_TChiHZ_HToGG_m850_2017':0,'SMS_TChiHZ_HToGG_m875_2017':0,'SMS_TChiHZ_HToGG_m900_2017':0,'SMS_TChiHZ_HToGG_m925_2017':0,'SMS_TChiHZ_HToGG_m950_2017':0,'SMS_TChiHZ_HToGG_m975_2017':0,'SMS_TChiHZ_HToGG_m1000_2017':0,'higgs_2017':3}
 
 
 
-#combProc = {'bkg_mass':'bkg_mass','higgs':'higgs','SMS_T2bH_mSbottom250_mLSP100':'SMS_T2bH_mSbottom250_mLSP100','SMS_T2bH_mSbottom250_mLSP1':'SMS_T2bH_mSbottom250_mLSP1','SMS_T2bH_mSbottom250_mLSP50':'SMS_T2bH_mSbottom250_mLSP50','SMS_T2bH_mSbottom300_mLSP100':'SMS_T2bH_mSbottom300_mLSP100','SMS_T2bH_mSbottom300_mLSP150':'SMS_T2bH_mSbottom300_mLSP150','SMS_T2bH_mSbottom300_mLSP1':'SMS_T2bH_mSbottom300_mLSP1','SMS_T2bH_mSbottom300_mLSP50':'SMS_T2bH_mSbottom300_mLSP50','SMS_T2bH_mSbottom350_mLSP100':'SMS_T2bH_mSbottom350_mLSP100','SMS_T2bH_mSbottom350_mLSP150':'SMS_T2bH_mSbottom350_mLSP150','SMS_T2bH_mSbottom350_mLSP1':'SMS_T2bH_mSbottom350_mLSP1','SMS_T2bH_mSbottom350_mLSP200':'SMS_T2bH_mSbottom350_mLSP200','SMS_T2bH_mSbottom350_mLSP50':'SMS_T2bH_mSbottom350_mLSP50','SMS_T2bH_mSbottom400_mLSP100':'SMS_T2bH_mSbottom400_mLSP100','SMS_T2bH_mSbottom400_mLSP150':'SMS_T2bH_mSbottom400_mLSP150','SMS_T2bH_mSbottom400_mLSP1':'SMS_T2bH_mSbottom400_mLSP1','SMS_T2bH_mSbottom400_mLSP200':'SMS_T2bH_mSbottom400_mLSP200','SMS_T2bH_mSbottom400_mLSP250':'SMS_T2bH_mSbottom400_mLSP250','SMS_T2bH_mSbottom400_mLSP50':'SMS_T2bH_mSbottom400_mLSP50','SMS_T2bH_mSbottom450_mLSP1':'SMS_T2bH_mSbottom450_mLSP1','SMS_T2bH_mSbottom450_mLSP100':'SMS_T2bH_mSbottom450_mLSP100','SMS_T2bH_mSbottom450_mLSP150':'SMS_T2bH_mSbottom450_mLSP150','SMS_T2bH_mSbottom450_mLSP200':'SMS_T2bH_mSbottom450_mLSP200','SMS_T2bH_mSbottom450_mLSP250':'SMS_T2bH_mSbottom450_mLSP250','SMS_T2bH_mSbottom450_mLSP300':'SMS_T2bH_mSbottom450_mLSP300','SMS_T2bH_mSbottom450_mLSP50':'SMS_T2bH_mSbottom450_mLSP50','SMS_T2bH_mSbottom500_mLSP100':'SMS_T2bH_mSbottom500_mLSP100','SMS_T2bH_mSbottom500_mLSP150':'SMS_T2bH_mSbottom500_mLSP150','SMS_T2bH_mSbottom500_mLSP1':'SMS_T2bH_mSbottom500_mLSP1','SMS_T2bH_mSbottom500_mLSP200':'SMS_T2bH_mSbottom500_mLSP200','SMS_T2bH_mSbottom500_mLSP250':'SMS_T2bH_mSbottom500_mLSP250','SMS_T2bH_mSbottom500_mLSP300':'SMS_T2bH_mSbottom500_mLSP300','SMS_T2bH_mSbottom500_mLSP50':'SMS_T2bH_mSbottom500_mLSP50','SMS_T2bH_mSbottom600_mLSP1':'SMS_T2bH_mSbottom600_mLSP1','SMS_T2bH_mSbottom600_mLSP100':'SMS_T2bH_mSbottom600_mLSP100','SMS_T2bH_mSbottom600_mLSP200':'SMS_T2bH_mSbottom600_mLSP200','SMS_T2bH_mSbottom600_mLSP300':'SMS_T2bH_mSbottom600_mLSP300'}
 
-#flashggProc = {'bkg_mass':'bkg_mass','higgs':'higgs','SMS_T2bH_mSbottom250_mLSP100':'SMS_T2bH_mSbottom250_mLSP100','SMS_T2bH_mSbottom250_mLSP1':'SMS_T2bH_mSbottom250_mLSP1','SMS_T2bH_mSbottom250_mLSP50':'SMS_T2bH_mSbottom250_mLSP50','SMS_T2bH_mSbottom300_mLSP100':'SMS_T2bH_mSbottom300_mLSP100','SMS_T2bH_mSbottom300_mLSP150':'SMS_T2bH_mSbottom300_mLSP150','SMS_T2bH_mSbottom300_mLSP1':'SMS_T2bH_mSbottom300_mLSP1','SMS_T2bH_mSbottom300_mLSP50':'SMS_T2bH_mSbottom300_mLSP50','SMS_T2bH_mSbottom350_mLSP100':'SMS_T2bH_mSbottom350_mLSP100','SMS_T2bH_mSbottom350_mLSP150':'SMS_T2bH_mSbottom350_mLSP150','SMS_T2bH_mSbottom350_mLSP1':'SMS_T2bH_mSbottom350_mLSP1','SMS_T2bH_mSbottom350_mLSP200':'SMS_T2bH_mSbottom350_mLSP200','SMS_T2bH_mSbottom350_mLSP50':'SMS_T2bH_mSbottom350_mLSP50','SMS_T2bH_mSbottom400_mLSP100':'SMS_T2bH_mSbottom400_mLSP100','SMS_T2bH_mSbottom400_mLSP150':'SMS_T2bH_mSbottom400_mLSP150','SMS_T2bH_mSbottom400_mLSP1':'SMS_T2bH_mSbottom400_mLSP1','SMS_T2bH_mSbottom400_mLSP200':'SMS_T2bH_mSbottom400_mLSP200','SMS_T2bH_mSbottom400_mLSP250':'SMS_T2bH_mSbottom400_mLSP250','SMS_T2bH_mSbottom400_mLSP50':'SMS_T2bH_mSbottom400_mLSP50','SMS_T2bH_mSbottom450_mLSP1':'SMS_T2bH_mSbottom450_mLSP1','SMS_T2bH_mSbottom450_mLSP100':'SMS_T2bH_mSbottom450_mLSP100','SMS_T2bH_mSbottom450_mLSP150':'SMS_T2bH_mSbottom450_mLSP150','SMS_T2bH_mSbottom450_mLSP200':'SMS_T2bH_mSbottom450_mLSP200','SMS_T2bH_mSbottom450_mLSP250':'SMS_T2bH_mSbottom450_mLSP250','SMS_T2bH_mSbottom450_mLSP300':'SMS_T2bH_mSbottom450_mLSP300','SMS_T2bH_mSbottom450_mLSP50':'SMS_T2bH_mSbottom450_mLSP50','SMS_T2bH_mSbottom500_mLSP100':'SMS_T2bH_mSbottom500_mLSP100','SMS_T2bH_mSbottom500_mLSP150':'SMS_T2bH_mSbottom500_mLSP150','SMS_T2bH_mSbottom500_mLSP1':'SMS_T2bH_mSbottom500_mLSP1','SMS_T2bH_mSbottom500_mLSP200':'SMS_T2bH_mSbottom500_mLSP200','SMS_T2bH_mSbottom500_mLSP250':'SMS_T2bH_mSbottom500_mLSP250','SMS_T2bH_mSbottom500_mLSP300':'SMS_T2bH_mSbottom500_mLSP300','SMS_T2bH_mSbottom500_mLSP50':'SMS_T2bH_mSbottom500_mLSP50','SMS_T2bH_mSbottom600_mLSP1':'SMS_T2bH_mSbottom600_mLSP1','SMS_T2bH_mSbottom600_mLSP100':'SMS_T2bH_mSbottom600_mLSP100','SMS_T2bH_mSbottom600_mLSP200':'SMS_T2bH_mSbottom600_mLSP200','SMS_T2bH_mSbottom600_mLSP300':'SMS_T2bH_mSbottom600_mLSP300'}
 
-#procId = {'SMS_T2bH_mSbottom250_mLSP50':0,'SMS_T2bH_mSbottom300_mLSP100':0,'SMS_T2bH_mSbottom300_mLSP150':0,'SMS_T2bH_mSbottom300_mLSP1':0,'SMS_T2bH_mSbottom300_mLSP50':0,'SMS_T2bH_mSbottom350_mLSP100':0,'SMS_T2bH_mSbottom350_mLSP150':0,'SMS_T2bH_mSbottom350_mLSP1':0,'SMS_T2bH_mSbottom350_mLSP200':0,'SMS_T2bH_mSbottom350_mLSP50':0,'SMS_T2bH_mSbottom400_mLSP100':0,'SMS_T2bH_mSbottom400_mLSP150':0,'SMS_T2bH_mSbottom400_mLSP1':0,'SMS_T2bH_mSbottom400_mLSP200':0,'SMS_T2bH_mSbottom400_mLSP250':0,'SMS_T2bH_mSbottom400_mLSP50':0,'SMS_T2bH_mSbottom450_mLSP1':0,'SMS_T2bH_mSbottom450_mLSP100':0,'SMS_T2bH_mSbottom450_mLSP150':0,'SMS_T2bH_mSbottom450_mLSP200':0,'SMS_T2bH_mSbottom450_mLSP250':0,'SMS_T2bH_mSbottom450_mLSP300':0,'SMS_T2bH_mSbottom450_mLSP50':0,'SMS_T2bH_mSbottom500_mLSP100':0,'SMS_T2bH_mSbottom500_mLSP150':0,'SMS_T2bH_mSbottom500_mLSP1':0,'SMS_T2bH_mSbottom500_mLSP200':0,'SMS_T2bH_mSbottom500_mLSP250':0,'SMS_T2bH_mSbottom500_mLSP300':0,'SMS_T2bH_mSbottom500_mLSP50':0,'SMS_T2bH_mSbottom600_mLSP1':0,'SMS_T2bH_mSbottom600_mLSP100':0,'SMS_T2bH_mSbottom600_mLSP200':0,'SMS_T2bH_mSbottom600_mLSP300':0,'SMS_T2bH_mSbottom250_mLSP1':0,'SMS_T2bH_mSbottom250_mLSP100':0,'bkg_mass':2,'higgs':1}
+
+#PROCS="higgs_2017,higgs_2016,SMS_TChiWH_HToGG_127_1,SMS_TChiWH_HToGG_150_1,SMS_TChiWH_HToGG_150_24,SMS_TChiWH_HToGG_175_1,SMS_TChiWH_HToGG_175_25,SMS_TChiWH_HToGG_175_49,SMS_TChiWH_HToGG_200_1,SMS_TChiWH_HToGG_200_25,SMS_TChiWH_HToGG_200_50,SMS_TChiWH_HToGG_200_74,SMS_TChiWH_HToGG_225_1,SMS_TChiWH_HToGG_225_25,SMS_TChiWH_HToGG_225_50,SMS_TChiWH_HToGG_225_75,SMS_TChiWH_HToGG_225_99,SMS_TChiWH_HToGG_250_1,SMS_TChiWH_HToGG_250_25,SMS_TChiWH_HToGG_250_50,SMS_TChiWH_HToGG_250_75,SMS_TChiWH_HToGG_250_100,SMS_TChiWH_HToGG_250_124,SMS_TChiWH_HToGG_127_1_2017,SMS_TChiWH_HToGG_150_1_2017,SMS_TChiWH_HToGG_150_24_2017,SMS_TChiWH_HToGG_175_1_2017,SMS_TChiWH_HToGG_175_25_2017,SMS_TChiWH_HToGG_175_49_2017,SMS_TChiWH_HToGG_200_1_2017,SMS_TChiWH_HToGG_200_25_2017,SMS_TChiWH_HToGG_200_50_2017,SMS_TChiWH_HToGG_200_74_2017,SMS_TChiWH_HToGG_225_1_2017,SMS_TChiWH_HToGG_225_25_2017,SMS_TChiWH_HToGG_225_50_2017,SMS_TChiWH_HToGG_225_75_2017,SMS_TChiWH_HToGG_225_99_2017,SMS_TChiWH_HToGG_250_1_2017,SMS_TChiWH_HToGG_250_25_2017,SMS_TChiWH_HToGG_250_50_2017,SMS_TChiWH_HToGG_250_75_2017,SMS_TChiWH_HToGG_250_100_2017,SMS_TChiWH_HToGG_250_124_2017"
+
+
+combProc = {'bkg_mass':'bkg_mass','higgs_2016':'higgs_2016','SMS_TChiWH_HToGG_127_1':'SMS_TChiWH_HToGG_127_1','SMS_TChiWH_HToGG_150_1':'SMS_TChiWH_HToGG_150_1','SMS_TChiWH_HToGG_150_24':'SMS_TChiWH_HToGG_150_24','SMS_TChiWH_HToGG_175_1':'SMS_TChiWH_HToGG_175_1','SMS_TChiWH_HToGG_175_25':'SMS_TChiWH_HToGG_175_25','SMS_TChiWH_HToGG_175_49':'SMS_TChiWH_HToGG_175_49','SMS_TChiWH_HToGG_200_1':'SMS_TChiWH_HToGG_200_1','SMS_TChiWH_HToGG_200_25':'SMS_TChiWH_HToGG_200_25','SMS_TChiWH_HToGG_200_50':'SMS_TChiWH_HToGG_200_50','SMS_TChiWH_HToGG_200_74':'SMS_TChiWH_HToGG_200_74','higgs_2017':'higgs_2017','SMS_TChiWH_HToGG_127_1_2017':'SMS_TChiWH_HToGG_127_1_2017','SMS_TChiWH_HToGG_150_1_2017':'SMS_TChiWH_HToGG_150_1_2017','SMS_TChiWH_HToGG_150_24_2017':'SMS_TChiWH_HToGG_150_24_2017','SMS_TChiWH_HToGG_175_1_2017':'SMS_TChiWH_HToGG_175_1_2017','SMS_TChiWH_HToGG_175_25_2017':'SMS_TChiWH_HToGG_175_25_2017','SMS_TChiWH_HToGG_175_49_2017':'SMS_TChiWH_HToGG_175_49_2017','SMS_TChiWH_HToGG_200_1_2017':'SMS_TChiWH_HToGG_200_1_2017','SMS_TChiWH_HToGG_200_25_2017':'SMS_TChiWH_HToGG_200_25_2017','SMS_TChiWH_HToGG_200_50_2017':'SMS_TChiWH_HToGG_200_50_2017','SMS_TChiWH_HToGG_200_74_2017':'SMS_TChiWH_HToGG_200_74_2017','SMS_TChiWH_HToGG_225_1':'SMS_TChiWH_HToGG_225_1','SMS_TChiWH_HToGG_225_25':'SMS_TChiWH_HToGG_225_25','SMS_TChiWH_HToGG_225_50':'SMS_TChiWH_HToGG_225_50','SMS_TChiWH_HToGG_225_75':'SMS_TChiWH_HToGG_225_75','SMS_TChiWH_HToGG_225_99':'SMS_TChiWH_HToGG_225_99','SMS_TChiWH_HToGG_250_1':'SMS_TChiWH_HToGG_250_1','SMS_TChiWH_HToGG_250_25':'SMS_TChiWH_HToGG_250_25','SMS_TChiWH_HToGG_250_50':'SMS_TChiWH_HToGG_250_50','SMS_TChiWH_HToGG_250_75':'SMS_TChiWH_HToGG_250_75','SMS_TChiWH_HToGG_250_100':'SMS_TChiWH_HToGG_250_100','SMS_TChiWH_HToGG_250_124':'SMS_TChiWH_HToGG_250_124','SMS_TChiWH_HToGG_225_1_2017':'SMS_TChiWH_HToGG_225_1_2017','SMS_TChiWH_HToGG_225_25_2017':'SMS_TChiWH_HToGG_225_25_2017','SMS_TChiWH_HToGG_225_50_2017':'SMS_TChiWH_HToGG_225_50_2017','SMS_TChiWH_HToGG_225_75_2017':'SMS_TChiWH_HToGG_225_75_2017','SMS_TChiWH_HToGG_225_99_2017':'SMS_TChiWH_HToGG_225_99_2017','SMS_TChiWH_HToGG_250_1_2017':'SMS_TChiWH_HToGG_250_1_2017','SMS_TChiWH_HToGG_250_25_2017':'SMS_TChiWH_HToGG_250_25_2017','SMS_TChiWH_HToGG_250_50_2017':'SMS_TChiWH_HToGG_250_50_2017','SMS_TChiWH_HToGG_250_75_2017':'SMS_TChiWH_HToGG_250_75_2017','SMS_TChiWH_HToGG_250_100_2017':'SMS_TChiWH_HToGG_250_100_2017','SMS_TChiWH_HToGG_250_124_2017':'SMS_TChiWH_HToGG_250_124_2017'}
+
+
+flashggProc = {'bkg_mass':'bkg_mass','higgs_2016':'higgs_2016','SMS_TChiWH_HToGG_127_1':'SMS_TChiWH_HToGG_127_1','SMS_TChiWH_HToGG_150_1':'SMS_TChiWH_HToGG_150_1','SMS_TChiWH_HToGG_150_24':'SMS_TChiWH_HToGG_150_24','SMS_TChiWH_HToGG_175_1':'SMS_TChiWH_HToGG_175_1','SMS_TChiWH_HToGG_175_25':'SMS_TChiWH_HToGG_175_25','SMS_TChiWH_HToGG_175_49':'SMS_TChiWH_HToGG_175_49','SMS_TChiWH_HToGG_200_1':'SMS_TChiWH_HToGG_200_1','SMS_TChiWH_HToGG_200_25':'SMS_TChiWH_HToGG_200_25','SMS_TChiWH_HToGG_200_50':'SMS_TChiWH_HToGG_200_50','SMS_TChiWH_HToGG_200_74':'SMS_TChiWH_HToGG_200_74','higgs_2017':'higgs_2017','SMS_TChiWH_HToGG_127_1_2017':'SMS_TChiWH_HToGG_127_1_2017','SMS_TChiWH_HToGG_150_1_2017':'SMS_TChiWH_HToGG_150_1_2017','SMS_TChiWH_HToGG_150_24_2017':'SMS_TChiWH_HToGG_150_24_2017','SMS_TChiWH_HToGG_175_1_2017':'SMS_TChiWH_HToGG_175_1_2017','SMS_TChiWH_HToGG_175_25_2017':'SMS_TChiWH_HToGG_175_25_2017','SMS_TChiWH_HToGG_175_49_2017':'SMS_TChiWH_HToGG_175_49_2017','SMS_TChiWH_HToGG_200_1_2017':'SMS_TChiWH_HToGG_200_1_2017','SMS_TChiWH_HToGG_200_25_2017':'SMS_TChiWH_HToGG_200_25_2017','SMS_TChiWH_HToGG_200_50_2017':'SMS_TChiWH_HToGG_200_50_2017','SMS_TChiWH_HToGG_200_74_2017':'SMS_TChiWH_HToGG_200_74_2017','SMS_TChiWH_HToGG_225_1':'SMS_TChiWH_HToGG_225_1','SMS_TChiWH_HToGG_225_25':'SMS_TChiWH_HToGG_225_25','SMS_TChiWH_HToGG_225_50':'SMS_TChiWH_HToGG_225_50','SMS_TChiWH_HToGG_225_74':'SMS_TChiWH_HToGG_225_74','SMS_TChiWH_HToGG_225_99':'SMS_TChiWH_HToGG_225_99','SMS_TChiWH_HToGG_250_1':'SMS_TChiWH_HToGG_250_1','SMS_TChiWH_HToGG_250_25':'SMS_TChiWH_HToGG_250_25','SMS_TChiWH_HToGG_250_50':'SMS_TChiWH_HToGG_250_50','SMS_TChiWH_HToGG_250_74':'SMS_TChiWH_HToGG_250_74','SMS_TChiWH_HToGG_250_100':'SMS_TChiWH_HToGG_250_100','SMS_TChiWH_HToGG_250_124':'SMS_TChiWH_HToGG_250_124','SMS_TChiWH_HToGG_225_1_2017':'SMS_TChiWH_HToGG_225_1_2017','SMS_TChiWH_HToGG_225_25_2017':'SMS_TChiWH_HToGG_225_25_2017','SMS_TChiWH_HToGG_225_50_2017':'SMS_TChiWH_HToGG_225_50_2017','SMS_TChiWH_HToGG_225_74_2017':'SMS_TChiWH_HToGG_225_74_2017','SMS_TChiWH_HToGG_225_99_2017':'SMS_TChiWH_HToGG_225_99_2017','SMS_TChiWH_HToGG_250_1_2017':'SMS_TChiWH_HToGG_250_1_2017','SMS_TChiWH_HToGG_250_25_2017':'SMS_TChiWH_HToGG_250_25_2017','SMS_TChiWH_HToGG_250_50_2017':'SMS_TChiWH_HToGG_250_50_2017','SMS_TChiWH_HToGG_250_74_2017':'SMS_TChiWH_HToGG_250_74_2017','SMS_TChiWH_HToGG_250_100_2017':'SMS_TChiWH_HToGG_250_100_2017','SMS_TChiWH_HToGG_250_124_2017':'SMS_TChiWH_HToGG_250_124_2017'}
+
+procId = {'SMS_TChiWH_HToGG_150_24':0,'SMS_TChiWH_HToGG_175_25':0,'SMS_TChiWH_HToGG_175_49':0,'SMS_TChiWH_HToGG_200_1':0,'SMS_TChiWH_HToGG_200_25':0,'SMS_TChiWH_HToGG_200_50':0,'SMS_TChiWH_HToGG_200_74':0,'SMS_TChiWH_HToGG_127_1':0,'SMS_TChiWH_HToGG_150_1':0,'SMS_TChiWH_HToGG_175_1':0,'bkg_mass':2,'higgs_2016':1,'SMS_TChiWH_HToGG_150_24_2017':0,'SMS_TChiWH_HToGG_175_25_2017':0,'SMS_TChiWH_HToGG_175_49_2017':0,'SMS_TChiWH_HToGG_200_1_2017':0,'SMS_TChiWH_HToGG_200_25_2017':0,'SMS_TChiWH_HToGG_200_50_2017':0,'SMS_TChiWH_HToGG_200_74_2017':0,'SMS_TChiWH_HToGG_127_1_2017':0,'SMS_TChiWH_HToGG_150_1_2017':0,'SMS_TChiWH_HToGG_175_1_2017':0,'higgs_2017':3,'SMS_TChiWH_HToGG_225_1':0,'SMS_TChiWH_HToGG_225_25':0,'SMS_TChiWH_HToGG_225_50':0,'SMS_TChiWH_HToGG_225_75':0,'SMS_TChiWH_HToGG_225_99':0,'SMS_TChiWH_HToGG_250_1':0,'SMS_TChiWH_HToGG_250_25':0,'SMS_TChiWH_HToGG_250_50':0,'SMS_TChiWH_HToGG_250_75':0,'SMS_TChiWH_HToGG_250_100':0,'SMS_TChiWH_HToGG_250_124':0,'SMS_TChiWH_HToGG_225_1_2017':0,'SMS_TChiWH_HToGG_225_25_2017':0,'SMS_TChiWH_HToGG_225_50_2017':0,'SMS_TChiWH_HToGG_225_75_2017':0,'SMS_TChiWH_HToGG_225_99_2017':0,'SMS_TChiWH_HToGG_250_1_2017':0,'SMS_TChiWH_HToGG_250_25_2017':0,'SMS_TChiWH_HToGG_250_50_2017':0,'SMS_TChiWH_HToGG_250_75_2017':0,'SMS_TChiWH_HToGG_250_100_2017':0,'SMS_TChiWH_HToGG_250_124_2017':0 }
+
+
+
+#combProc = {'bkg_mass':'bkg_mass','higgs_2016':'higgs_2016','SMS_T2bH_mSbottom250_mLSP100':'SMS_T2bH_mSbottom250_mLSP100','SMS_T2bH_mSbottom250_mLSP1':'SMS_T2bH_mSbottom250_mLSP1','SMS_T2bH_mSbottom250_mLSP50':'SMS_T2bH_mSbottom250_mLSP50','SMS_T2bH_mSbottom300_mLSP100':'SMS_T2bH_mSbottom300_mLSP100','SMS_T2bH_mSbottom300_mLSP150':'SMS_T2bH_mSbottom300_mLSP150','SMS_T2bH_mSbottom300_mLSP1':'SMS_T2bH_mSbottom300_mLSP1','SMS_T2bH_mSbottom300_mLSP50':'SMS_T2bH_mSbottom300_mLSP50','SMS_T2bH_mSbottom350_mLSP100':'SMS_T2bH_mSbottom350_mLSP100','SMS_T2bH_mSbottom350_mLSP150':'SMS_T2bH_mSbottom350_mLSP150','SMS_T2bH_mSbottom350_mLSP1':'SMS_T2bH_mSbottom350_mLSP1','SMS_T2bH_mSbottom350_mLSP200':'SMS_T2bH_mSbottom350_mLSP200','SMS_T2bH_mSbottom350_mLSP50':'SMS_T2bH_mSbottom350_mLSP50','SMS_T2bH_mSbottom400_mLSP100':'SMS_T2bH_mSbottom400_mLSP100','SMS_T2bH_mSbottom400_mLSP150':'SMS_T2bH_mSbottom400_mLSP150','SMS_T2bH_mSbottom400_mLSP1':'SMS_T2bH_mSbottom400_mLSP1','SMS_T2bH_mSbottom400_mLSP200':'SMS_T2bH_mSbottom400_mLSP200','SMS_T2bH_mSbottom400_mLSP250':'SMS_T2bH_mSbottom400_mLSP250','SMS_T2bH_mSbottom400_mLSP50':'SMS_T2bH_mSbottom400_mLSP50','SMS_T2bH_mSbottom450_mLSP1':'SMS_T2bH_mSbottom450_mLSP1','SMS_T2bH_mSbottom450_mLSP100':'SMS_T2bH_mSbottom450_mLSP100','SMS_T2bH_mSbottom450_mLSP150':'SMS_T2bH_mSbottom450_mLSP150','SMS_T2bH_mSbottom450_mLSP200':'SMS_T2bH_mSbottom450_mLSP200','SMS_T2bH_mSbottom450_mLSP250':'SMS_T2bH_mSbottom450_mLSP250','SMS_T2bH_mSbottom450_mLSP300':'SMS_T2bH_mSbottom450_mLSP300','SMS_T2bH_mSbottom450_mLSP50':'SMS_T2bH_mSbottom450_mLSP50','SMS_T2bH_mSbottom500_mLSP100':'SMS_T2bH_mSbottom500_mLSP100','SMS_T2bH_mSbottom500_mLSP150':'SMS_T2bH_mSbottom500_mLSP150','SMS_T2bH_mSbottom500_mLSP1':'SMS_T2bH_mSbottom500_mLSP1','SMS_T2bH_mSbottom500_mLSP200':'SMS_T2bH_mSbottom500_mLSP200','SMS_T2bH_mSbottom500_mLSP250':'SMS_T2bH_mSbottom500_mLSP250','SMS_T2bH_mSbottom500_mLSP300':'SMS_T2bH_mSbottom500_mLSP300','SMS_T2bH_mSbottom500_mLSP50':'SMS_T2bH_mSbottom500_mLSP50','SMS_T2bH_mSbottom600_mLSP1':'SMS_T2bH_mSbottom600_mLSP1','SMS_T2bH_mSbottom600_mLSP100':'SMS_T2bH_mSbottom600_mLSP100','SMS_T2bH_mSbottom600_mLSP200':'SMS_T2bH_mSbottom600_mLSP200','SMS_T2bH_mSbottom600_mLSP300':'SMS_T2bH_mSbottom600_mLSP300','higgs_2017':'higgs_2017','SMS_T2bH_mSbottom250_mLSP100_2017':'SMS_T2bH_mSbottom250_mLSP100_2017','SMS_T2bH_mSbottom250_mLSP1_2017':'SMS_T2bH_mSbottom250_mLSP1_2017','SMS_T2bH_mSbottom250_mLSP50_2017':'SMS_T2bH_mSbottom250_mLSP50_2017','SMS_T2bH_mSbottom300_mLSP100_2017':'SMS_T2bH_mSbottom300_mLSP100_2017','SMS_T2bH_mSbottom300_mLSP150_2017':'SMS_T2bH_mSbottom300_mLSP150_2017','SMS_T2bH_mSbottom300_mLSP1_2017':'SMS_T2bH_mSbottom300_mLSP1_2017','SMS_T2bH_mSbottom300_mLSP50_2017':'SMS_T2bH_mSbottom300_mLSP50_2017','SMS_T2bH_mSbottom350_mLSP100_2017':'SMS_T2bH_mSbottom350_mLSP100_2017','SMS_T2bH_mSbottom350_mLSP150_2017':'SMS_T2bH_mSbottom350_mLSP150_2017','SMS_T2bH_mSbottom350_mLSP1_2017':'SMS_T2bH_mSbottom350_mLSP1_2017','SMS_T2bH_mSbottom350_mLSP200_2017':'SMS_T2bH_mSbottom350_mLSP200_2017','SMS_T2bH_mSbottom350_mLSP50_2017':'SMS_T2bH_mSbottom350_mLSP50_2017','SMS_T2bH_mSbottom400_mLSP100_2017':'SMS_T2bH_mSbottom400_mLSP100_2017','SMS_T2bH_mSbottom400_mLSP150_2017':'SMS_T2bH_mSbottom400_mLSP150_2017','SMS_T2bH_mSbottom400_mLSP1_2017':'SMS_T2bH_mSbottom400_mLSP1_2017','SMS_T2bH_mSbottom400_mLSP200_2017':'SMS_T2bH_mSbottom400_mLSP200_2017','SMS_T2bH_mSbottom400_mLSP250_2017':'SMS_T2bH_mSbottom400_mLSP250_2017','SMS_T2bH_mSbottom400_mLSP50_2017':'SMS_T2bH_mSbottom400_mLSP50_2017','SMS_T2bH_mSbottom450_mLSP1_2017':'SMS_T2bH_mSbottom450_mLSP1_2017','SMS_T2bH_mSbottom450_mLSP100_2017':'SMS_T2bH_mSbottom450_mLSP100_2017','SMS_T2bH_mSbottom450_mLSP150_2017':'SMS_T2bH_mSbottom450_mLSP150_2017','SMS_T2bH_mSbottom450_mLSP200_2017':'SMS_T2bH_mSbottom450_mLSP200_2017','SMS_T2bH_mSbottom450_mLSP250_2017':'SMS_T2bH_mSbottom450_mLSP250_2017','SMS_T2bH_mSbottom450_mLSP300_2017':'SMS_T2bH_mSbottom450_mLSP300_2017','SMS_T2bH_mSbottom450_mLSP50_2017':'SMS_T2bH_mSbottom450_mLSP50_2017','SMS_T2bH_mSbottom500_mLSP100_2017':'SMS_T2bH_mSbottom500_mLSP100_2017','SMS_T2bH_mSbottom500_mLSP150_2017':'SMS_T2bH_mSbottom500_mLSP150_2017','SMS_T2bH_mSbottom500_mLSP1_2017':'SMS_T2bH_mSbottom500_mLSP1_2017','SMS_T2bH_mSbottom500_mLSP200_2017':'SMS_T2bH_mSbottom500_mLSP200_2017','SMS_T2bH_mSbottom500_mLSP250_2017':'SMS_T2bH_mSbottom500_mLSP250_2017','SMS_T2bH_mSbottom500_mLSP300_2017':'SMS_T2bH_mSbottom500_mLSP300_2017','SMS_T2bH_mSbottom500_mLSP50_2017':'SMS_T2bH_mSbottom500_mLSP50_2017','SMS_T2bH_mSbottom600_mLSP1_2017':'SMS_T2bH_mSbottom600_mLSP1_2017','SMS_T2bH_mSbottom600_mLSP100_2017':'SMS_T2bH_mSbottom600_mLSP100_2017','SMS_T2bH_mSbottom600_mLSP200_2017':'SMS_T2bH_mSbottom600_mLSP200_2017','SMS_T2bH_mSbottom600_mLSP300_2017':'SMS_T2bH_mSbottom600_mLSP300_2017'}
+
+#flashggProc = {'bkg_mass':'bkg_mass','higgs_2016':'higgs_2016','SMS_T2bH_mSbottom250_mLSP100':'SMS_T2bH_mSbottom250_mLSP100','SMS_T2bH_mSbottom250_mLSP1':'SMS_T2bH_mSbottom250_mLSP1','SMS_T2bH_mSbottom250_mLSP50':'SMS_T2bH_mSbottom250_mLSP50','SMS_T2bH_mSbottom300_mLSP100':'SMS_T2bH_mSbottom300_mLSP100','SMS_T2bH_mSbottom300_mLSP150':'SMS_T2bH_mSbottom300_mLSP150','SMS_T2bH_mSbottom300_mLSP1':'SMS_T2bH_mSbottom300_mLSP1','SMS_T2bH_mSbottom300_mLSP50':'SMS_T2bH_mSbottom300_mLSP50','SMS_T2bH_mSbottom350_mLSP100':'SMS_T2bH_mSbottom350_mLSP100','SMS_T2bH_mSbottom350_mLSP150':'SMS_T2bH_mSbottom350_mLSP150','SMS_T2bH_mSbottom350_mLSP1':'SMS_T2bH_mSbottom350_mLSP1','SMS_T2bH_mSbottom350_mLSP200':'SMS_T2bH_mSbottom350_mLSP200','SMS_T2bH_mSbottom350_mLSP50':'SMS_T2bH_mSbottom350_mLSP50','SMS_T2bH_mSbottom400_mLSP100':'SMS_T2bH_mSbottom400_mLSP100','SMS_T2bH_mSbottom400_mLSP150':'SMS_T2bH_mSbottom400_mLSP150','SMS_T2bH_mSbottom400_mLSP1':'SMS_T2bH_mSbottom400_mLSP1','SMS_T2bH_mSbottom400_mLSP200':'SMS_T2bH_mSbottom400_mLSP200','SMS_T2bH_mSbottom400_mLSP250':'SMS_T2bH_mSbottom400_mLSP250','SMS_T2bH_mSbottom400_mLSP50':'SMS_T2bH_mSbottom400_mLSP50','SMS_T2bH_mSbottom450_mLSP1':'SMS_T2bH_mSbottom450_mLSP1','SMS_T2bH_mSbottom450_mLSP100':'SMS_T2bH_mSbottom450_mLSP100','SMS_T2bH_mSbottom450_mLSP150':'SMS_T2bH_mSbottom450_mLSP150','SMS_T2bH_mSbottom450_mLSP200':'SMS_T2bH_mSbottom450_mLSP200','SMS_T2bH_mSbottom450_mLSP250':'SMS_T2bH_mSbottom450_mLSP250','SMS_T2bH_mSbottom450_mLSP300':'SMS_T2bH_mSbottom450_mLSP300','SMS_T2bH_mSbottom450_mLSP50':'SMS_T2bH_mSbottom450_mLSP50','SMS_T2bH_mSbottom500_mLSP100':'SMS_T2bH_mSbottom500_mLSP100','SMS_T2bH_mSbottom500_mLSP150':'SMS_T2bH_mSbottom500_mLSP150','SMS_T2bH_mSbottom500_mLSP1':'SMS_T2bH_mSbottom500_mLSP1','SMS_T2bH_mSbottom500_mLSP200':'SMS_T2bH_mSbottom500_mLSP200','SMS_T2bH_mSbottom500_mLSP250':'SMS_T2bH_mSbottom500_mLSP250','SMS_T2bH_mSbottom500_mLSP300':'SMS_T2bH_mSbottom500_mLSP300','SMS_T2bH_mSbottom500_mLSP50':'SMS_T2bH_mSbottom500_mLSP50','SMS_T2bH_mSbottom600_mLSP1':'SMS_T2bH_mSbottom600_mLSP1','SMS_T2bH_mSbottom600_mLSP100':'SMS_T2bH_mSbottom600_mLSP100','SMS_T2bH_mSbottom600_mLSP200':'SMS_T2bH_mSbottom600_mLSP200','SMS_T2bH_mSbottom600_mLSP300':'SMS_T2bH_mSbottom600_mLSP300','higgs_2017':'higgs_2017','SMS_T2bH_mSbottom250_mLSP100_2017':'SMS_T2bH_mSbottom250_mLSP100_2017','SMS_T2bH_mSbottom250_mLSP1_2017':'SMS_T2bH_mSbottom250_mLSP1_2017','SMS_T2bH_mSbottom250_mLSP50_2017':'SMS_T2bH_mSbottom250_mLSP50_2017','SMS_T2bH_mSbottom300_mLSP100_2017':'SMS_T2bH_mSbottom300_mLSP100_2017','SMS_T2bH_mSbottom300_mLSP150_2017':'SMS_T2bH_mSbottom300_mLSP150_2017','SMS_T2bH_mSbottom300_mLSP1_2017':'SMS_T2bH_mSbottom300_mLSP1_2017','SMS_T2bH_mSbottom300_mLSP50_2017':'SMS_T2bH_mSbottom300_mLSP50_2017','SMS_T2bH_mSbottom350_mLSP100_2017':'SMS_T2bH_mSbottom350_mLSP100_2017','SMS_T2bH_mSbottom350_mLSP150_2017':'SMS_T2bH_mSbottom350_mLSP150_2017','SMS_T2bH_mSbottom350_mLSP1_2017':'SMS_T2bH_mSbottom350_mLSP1_2017','SMS_T2bH_mSbottom350_mLSP200_2017':'SMS_T2bH_mSbottom350_mLSP200_2017','SMS_T2bH_mSbottom350_mLSP50_2017':'SMS_T2bH_mSbottom350_mLSP50_2017','SMS_T2bH_mSbottom400_mLSP100_2017':'SMS_T2bH_mSbottom400_mLSP100_2017','SMS_T2bH_mSbottom400_mLSP150_2017':'SMS_T2bH_mSbottom400_mLSP150_2017','SMS_T2bH_mSbottom400_mLSP1_2017':'SMS_T2bH_mSbottom400_mLSP1_2017','SMS_T2bH_mSbottom400_mLSP200_2017':'SMS_T2bH_mSbottom400_mLSP200_2017','SMS_T2bH_mSbottom400_mLSP250_2017':'SMS_T2bH_mSbottom400_mLSP250_2017','SMS_T2bH_mSbottom400_mLSP50_2017':'SMS_T2bH_mSbottom400_mLSP50_2017','SMS_T2bH_mSbottom450_mLSP1_2017':'SMS_T2bH_mSbottom450_mLSP1_2017','SMS_T2bH_mSbottom450_mLSP100_2017':'SMS_T2bH_mSbottom450_mLSP100_2017','SMS_T2bH_mSbottom450_mLSP150_2017':'SMS_T2bH_mSbottom450_mLSP150_2017','SMS_T2bH_mSbottom450_mLSP200_2017':'SMS_T2bH_mSbottom450_mLSP200_2017','SMS_T2bH_mSbottom450_mLSP250_2017':'SMS_T2bH_mSbottom450_mLSP250_2017','SMS_T2bH_mSbottom450_mLSP300_2017':'SMS_T2bH_mSbottom450_mLSP300_2017','SMS_T2bH_mSbottom450_mLSP50_2017':'SMS_T2bH_mSbottom450_mLSP50_2017','SMS_T2bH_mSbottom500_mLSP100_2017':'SMS_T2bH_mSbottom500_mLSP100_2017','SMS_T2bH_mSbottom500_mLSP150_2017':'SMS_T2bH_mSbottom500_mLSP150_2017','SMS_T2bH_mSbottom500_mLSP1_2017':'SMS_T2bH_mSbottom500_mLSP1_2017','SMS_T2bH_mSbottom500_mLSP200_2017':'SMS_T2bH_mSbottom500_mLSP200_2017','SMS_T2bH_mSbottom500_mLSP250_2017':'SMS_T2bH_mSbottom500_mLSP250_2017','SMS_T2bH_mSbottom500_mLSP300_2017':'SMS_T2bH_mSbottom500_mLSP300_2017','SMS_T2bH_mSbottom500_mLSP50_2017':'SMS_T2bH_mSbottom500_mLSP50_2017','SMS_T2bH_mSbottom600_mLSP1_2017':'SMS_T2bH_mSbottom600_mLSP1_2017','SMS_T2bH_mSbottom600_mLSP100_2017':'SMS_T2bH_mSbottom600_mLSP100_2017','SMS_T2bH_mSbottom600_mLSP200_2017':'SMS_T2bH_mSbottom600_mLSP200_2017','SMS_T2bH_mSbottom600_mLSP300_2017':'SMS_T2bH_mSbottom600_mLSP300_2017'}
+
+#procId = {'SMS_T2bH_mSbottom250_mLSP50':0,'SMS_T2bH_mSbottom300_mLSP100':0,'SMS_T2bH_mSbottom300_mLSP150':0,'SMS_T2bH_mSbottom300_mLSP1':0,'SMS_T2bH_mSbottom300_mLSP50':0,'SMS_T2bH_mSbottom350_mLSP100':0,'SMS_T2bH_mSbottom350_mLSP150':0,'SMS_T2bH_mSbottom350_mLSP1':0,'SMS_T2bH_mSbottom350_mLSP200':0,'SMS_T2bH_mSbottom350_mLSP50':0,'SMS_T2bH_mSbottom400_mLSP100':0,'SMS_T2bH_mSbottom400_mLSP150':0,'SMS_T2bH_mSbottom400_mLSP1':0,'SMS_T2bH_mSbottom400_mLSP200':0,'SMS_T2bH_mSbottom400_mLSP250':0,'SMS_T2bH_mSbottom400_mLSP50':0,'SMS_T2bH_mSbottom450_mLSP1':0,'SMS_T2bH_mSbottom450_mLSP100':0,'SMS_T2bH_mSbottom450_mLSP150':0,'SMS_T2bH_mSbottom450_mLSP200':0,'SMS_T2bH_mSbottom450_mLSP250':0,'SMS_T2bH_mSbottom450_mLSP300':0,'SMS_T2bH_mSbottom450_mLSP50':0,'SMS_T2bH_mSbottom500_mLSP100':0,'SMS_T2bH_mSbottom500_mLSP150':0,'SMS_T2bH_mSbottom500_mLSP1':0,'SMS_T2bH_mSbottom500_mLSP200':0,'SMS_T2bH_mSbottom500_mLSP250':0,'SMS_T2bH_mSbottom500_mLSP300':0,'SMS_T2bH_mSbottom500_mLSP50':0,'SMS_T2bH_mSbottom600_mLSP1':0,'SMS_T2bH_mSbottom600_mLSP100':0,'SMS_T2bH_mSbottom600_mLSP200':0,'SMS_T2bH_mSbottom600_mLSP300':0,'SMS_T2bH_mSbottom250_mLSP1':0,'SMS_T2bH_mSbottom250_mLSP100':0,'bkg_mass':2,'higgs_2016':1,'SMS_T2bH_mSbottom250_mLSP50_2017':0,'SMS_T2bH_mSbottom300_mLSP100_2017':0,'SMS_T2bH_mSbottom300_mLSP150_2017':0,'SMS_T2bH_mSbottom300_mLSP1_2017':0,'SMS_T2bH_mSbottom300_mLSP50_2017':0,'SMS_T2bH_mSbottom350_mLSP100_2017':0,'SMS_T2bH_mSbottom350_mLSP150_2017':0,'SMS_T2bH_mSbottom350_mLSP1_2017':0,'SMS_T2bH_mSbottom350_mLSP200_2017':0,'SMS_T2bH_mSbottom350_mLSP50_2017':0,'SMS_T2bH_mSbottom400_mLSP100_2017':0,'SMS_T2bH_mSbottom400_mLSP150_2017':0,'SMS_T2bH_mSbottom400_mLSP1_2017':0,'SMS_T2bH_mSbottom400_mLSP200_2017':0,'SMS_T2bH_mSbottom400_mLSP250_2017':0,'SMS_T2bH_mSbottom400_mLSP50_2017':0,'SMS_T2bH_mSbottom450_mLSP1_2017':0,'SMS_T2bH_mSbottom450_mLSP100_2017':0,'SMS_T2bH_mSbottom450_mLSP150_2017':0,'SMS_T2bH_mSbottom450_mLSP200_2017':0,'SMS_T2bH_mSbottom450_mLSP250_2017':0,'SMS_T2bH_mSbottom450_mLSP300_2017':0,'SMS_T2bH_mSbottom450_mLSP50_2017':0,'SMS_T2bH_mSbottom500_mLSP100_2017':0,'SMS_T2bH_mSbottom500_mLSP150_2017':0,'SMS_T2bH_mSbottom500_mLSP1_2017':0,'SMS_T2bH_mSbottom500_mLSP200_2017':0,'SMS_T2bH_mSbottom500_mLSP250_2017':0,'SMS_T2bH_mSbottom500_mLSP300_2017':0,'SMS_T2bH_mSbottom500_mLSP50_2017':0,'SMS_T2bH_mSbottom600_mLSP1_2017':0,'SMS_T2bH_mSbottom600_mLSP100_2017':0,'SMS_T2bH_mSbottom600_mLSP200_2017':0,'SMS_T2bH_mSbottom600_mLSP300_2017':0,'SMS_T2bH_mSbottom250_mLSP1_2017':0,'SMS_T2bH_mSbottom250_mLSP100_2017':0,'bkg_mass_2016':2,'higgs_2017':3}
 
 
 
@@ -283,6 +327,7 @@ inWS = WSTFileWrapper(options.infilename,"ws_sig")
 #intL = inWS.var('IntLumi').getVal() #FIXME
 #intL = 2600
 intL = 1000* options.intLumi
+intL_2017 = 1000* options.intLumi2017
 #sqrts = inWS.var('IntLumi').getVal() #FIXME
 print "[INFO] Get Intlumi from file, value : ", intL," pb^{-1}", " sqrts ", sqrts
 ###############################################################################
@@ -298,7 +343,12 @@ print "[INFO] Get Intlumi from file, value : ", intL," pb^{-1}", " sqrts ", sqrt
 #file_ext = 'sep27_b012'
 #file_ext = 'sep15'
 #file_ext = 'mva'
-file_ext = 'nov22_bl'
+#file_ext = 'nov22_bl'
+#file_ext = 'data2017_2017feb14'
+#file_ext = 'data2016_2017feb14'
+#file_ext = 'data2016_2017mar12'
+file_ext = 'dataTotal_2018aug13'
+#file_ext = 'data2016_2017apr11_0jsplit'
 dataFile = 'CMS-HGG_multipdf_%s.root'%(file_ext)
 
 print dataFile
@@ -309,22 +359,13 @@ bkgFile = 'CMS-HGG_multipdf_%s.root'%(file_ext)
 
 dataWS = 'multipdf'
 bkgWS = 'multipdf'
-sigFile = 'CMS-HGG_13TeV_sigfit_nov22_WH_bl.root'
+sigFile = 'CMS-HGG_13TeV_sigfit_2018aug13_WH.root'
+#sigFile = 'CMS-HGG_13TeV_sigfit_2018aug13_T2bH.root'
+#sigFile = 'CMS-HGG_13TeV_sigfit_mc2016twice_2017may16_WH.root'
+#sigFile = 'CMS-HGG_13TeV_sigfit_mc2016twice_2017may16_T2bH.root'
+#sigFile = 'CMS-HGG_13TeV_sigfit_mc2016_WH_2017apr12.root'
+#sigFile = 'CMS-HGG_13TeV_sigfit_nov22_WH_bl.root'
 #sigFile = 'CMS-HGG_%s_%dTeV_sigfit.root'%(file_ext,sqrts)
-#sigFile = 'CMS-HGG_13TeV_sigfit_oct10_b012V2_T2bH.root'
-#sigFile = 'CMS-HGG_13TeV_sigfit_oct15_HZmix.root'
-#sigFile = 'CMS-HGG_13TeV_sigfit_oct27_T2bH_b012ISR.root'
-#sigFile = 'CMS-HGG_13TeV_sigfit_oct24_T2bH_llbb.root'
-#sigFile = 'CMS-HGG_13TeV_sigfit_oct15_HZ_LLbin.root'
-#sigFile = 'CMS-HGG_13TeV_sigfit_oct15_isr.root'
-#sigFile = 'CMS-HGG_13TeV_sigfit_oct04_mt2bin_HH.root'
-#sigFile = 'CMS-HGG_13TeV_sigfit_oct04_mt2bin_T2bH.root'
-#sigFile = 'CMS-HGG_13TeV_sigfit_oct03_b012V2_HH.root'
-#sigFile = 'CMS-HGG_13TeV_sigfit_sep27_b012.root'
-#sigFile = 'CMS-HGG_sigfit_13TeV_sep26_fixedXsec.root'
-#sigFile = 'CMS-HGG_sigfit_13TeV_sep25_lowPtCut.root'
-#sigFile = 'CMS-HGG_sigfit_sep20.root'
-#sigFile = 'CMS-HGG_mva_13TeV_sigfit.root'
 #sigFile = 'CMS-HGG_sigfit_%s_$PROC_$CAT.root'%(file_ext)
 #print "making sigfile " ,sigFile
 sigWS = 'wsig_%dTeV'%(sqrts)
@@ -333,7 +374,42 @@ fileDetails = {}
 fileDetails['data_obs'] = [dataFile,dataWS,'roohist_data_mass_$CHANNEL']
 fileDetails['bkg_mass']  = [bkgFile,bkgWS,'CMS_hgg_$CHANNEL_%dTeV_bkgshape'%sqrts]
 
-fileDetails['higgs']       = [sigFile.replace('$PROC',"higgs"),sigWS,'hggpdfsmrel_%dTeV_higgs_$CHANNEL'%sqrts]
+
+fileDetails['higgs_2016']       = [sigFile.replace('$PROC',"higgs_2016"),sigWS,'hggpdfsmrel_%dTeV_higgs_2016_$CHANNEL'%sqrts]
+
+fileDetails['higgs_2017']       = [sigFile.replace('$PROC',"higgs_2017"),sigWS,'hggpdfsmrel_%dTeV_higgs_2017_$CHANNEL'%sqrts]
+
+
+fileDetails['SMS_TChiWH_HToGG_127_1_2017' ]   = [sigFile.replace('$PROC',"SMS_TChiWH_HToGG_127_1_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiWH_HToGG_127_1_2017_$CHANNEL'%sqrts]
+
+fileDetails['SMS_TChiWH_HToGG_150_1_2017' ]   = [sigFile.replace('$PROC',"SMS_TChiWH_HToGG_150_1_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiWH_HToGG_150_1_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiWH_HToGG_150_24_2017']   = [sigFile.replace('$PROC',"SMS_TChiWH_HToGG_150_24_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiWH_HToGG_150_24_2017_$CHANNEL'%sqrts]
+
+
+fileDetails['SMS_TChiWH_HToGG_175_1_2017' ]   = [sigFile.replace('$PROC',"SMS_TChiWH_HToGG_175_1_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiWH_HToGG_175_1_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiWH_HToGG_175_25_2017']   = [sigFile.replace('$PROC',"SMS_TChiWH_HToGG_175_25_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiWH_HToGG_175_25_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiWH_HToGG_175_49_2017']   = [sigFile.replace('$PROC',"SMS_TChiWH_HToGG_175_49_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiWH_HToGG_175_49_2017_$CHANNEL'%sqrts]
+
+fileDetails['SMS_TChiWH_HToGG_200_1_2017' ]   = [sigFile.replace('$PROC',"SMS_TChiWH_HToGG_200_1_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiWH_HToGG_200_1_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiWH_HToGG_200_25_2017']   = [sigFile.replace('$PROC',"SMS_TChiWH_HToGG_200_25_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiWH_HToGG_200_25_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiWH_HToGG_200_50_2017']   = [sigFile.replace('$PROC',"SMS_TChiWH_HToGG_200_50_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiWH_HToGG_200_50_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiWH_HToGG_200_74_2017']   = [sigFile.replace('$PROC',"SMS_TChiWH_HToGG_200_74_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiWH_HToGG_200_74_2017_$CHANNEL'%sqrts]
+
+fileDetails['SMS_TChiWH_HToGG_225_1_2017' ]   = [sigFile.replace('$PROC',"SMS_TChiWH_HToGG_225_1_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiWH_HToGG_225_1_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiWH_HToGG_225_25_2017']   = [sigFile.replace('$PROC',"SMS_TChiWH_HToGG_225_25_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiWH_HToGG_225_25_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiWH_HToGG_225_50_2017']   = [sigFile.replace('$PROC',"SMS_TChiWH_HToGG_225_50_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiWH_HToGG_225_50_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiWH_HToGG_225_75_2017']   = [sigFile.replace('$PROC',"SMS_TChiWH_HToGG_225_75_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiWH_HToGG_225_75_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiWH_HToGG_225_99_2017']   = [sigFile.replace('$PROC',"SMS_TChiWH_HToGG_225_99_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiWH_HToGG_225_99_2017_$CHANNEL'%sqrts]
+
+fileDetails['SMS_TChiWH_HToGG_250_1_2017' ]   = [sigFile.replace('$PROC',"SMS_TChiWH_HToGG_250_1_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiWH_HToGG_250_1_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiWH_HToGG_250_25_2017']   = [sigFile.replace('$PROC',"SMS_TChiWH_HToGG_250_25_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiWH_HToGG_250_25_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiWH_HToGG_250_50_2017']   = [sigFile.replace('$PROC',"SMS_TChiWH_HToGG_250_50_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiWH_HToGG_250_50_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiWH_HToGG_250_75_2017']   = [sigFile.replace('$PROC',"SMS_TChiWH_HToGG_250_75_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiWH_HToGG_250_75_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiWH_HToGG_250_100_2017']   = [sigFile.replace('$PROC',"SMS_TChiWH_HToGG_250_100_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiWH_HToGG_250_100_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiWH_HToGG_250_124_2017']   = [sigFile.replace('$PROC',"SMS_TChiWH_HToGG_250_124_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiWH_HToGG_250_124_2017_$CHANNEL'%sqrts]
+
+
+
 
 
 fileDetails['SMS_TChiWH_HToGG_127_1' ]   = [sigFile.replace('$PROC',"SMS_TChiWH_HToGG_127_1"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiWH_HToGG_127_1_$CHANNEL'%sqrts]
@@ -350,6 +426,18 @@ fileDetails['SMS_TChiWH_HToGG_200_25']   = [sigFile.replace('$PROC',"SMS_TChiWH_
 fileDetails['SMS_TChiWH_HToGG_200_50']   = [sigFile.replace('$PROC',"SMS_TChiWH_HToGG_200_50"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiWH_HToGG_200_50_$CHANNEL'%sqrts]
 fileDetails['SMS_TChiWH_HToGG_200_74']   = [sigFile.replace('$PROC',"SMS_TChiWH_HToGG_200_74"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiWH_HToGG_200_74_$CHANNEL'%sqrts]
 
+fileDetails['SMS_TChiWH_HToGG_225_1' ]   = [sigFile.replace('$PROC',"SMS_TChiWH_HToGG_225_1"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiWH_HToGG_225_1_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiWH_HToGG_225_25']   = [sigFile.replace('$PROC',"SMS_TChiWH_HToGG_225_25"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiWH_HToGG_225_25_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiWH_HToGG_225_50']   = [sigFile.replace('$PROC',"SMS_TChiWH_HToGG_225_50"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiWH_HToGG_225_50_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiWH_HToGG_225_75']   = [sigFile.replace('$PROC',"SMS_TChiWH_HToGG_225_75"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiWH_HToGG_225_75_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiWH_HToGG_225_99']   = [sigFile.replace('$PROC',"SMS_TChiWH_HToGG_225_99"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiWH_HToGG_225_99_$CHANNEL'%sqrts]
+
+fileDetails['SMS_TChiWH_HToGG_250_1' ]   = [sigFile.replace('$PROC',"SMS_TChiWH_HToGG_250_1"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiWH_HToGG_250_1_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiWH_HToGG_250_25']   = [sigFile.replace('$PROC',"SMS_TChiWH_HToGG_250_25"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiWH_HToGG_250_25_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiWH_HToGG_250_50']   = [sigFile.replace('$PROC',"SMS_TChiWH_HToGG_250_50"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiWH_HToGG_250_50_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiWH_HToGG_250_75']   = [sigFile.replace('$PROC',"SMS_TChiWH_HToGG_250_75"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiWH_HToGG_250_75_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiWH_HToGG_250_100']   = [sigFile.replace('$PROC',"SMS_TChiWH_HToGG_250_100"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiWH_HToGG_250_100_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiWH_HToGG_250_124']   = [sigFile.replace('$PROC',"SMS_TChiWH_HToGG_250_124"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiWH_HToGG_250_124_$CHANNEL'%sqrts]
 
 
 
@@ -400,20 +488,63 @@ fileDetails['SMS_TChiHH_HToGG_m25']     = [sigFile.replace('$PROC',"SMS_TChiHH_H
 fileDetails['SMS_TChiHH_HToGG_m1']      = [sigFile.replace('$PROC',"SMS_TChiHH_HToGG_m1"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHH_HToGG_m1_$CHANNEL'%sqrts]
 
 
+fileDetails['SMS_TChiHH_HToGG_m1000_2017']   = [sigFile.replace('$PROC',"SMS_TChiHH_HToGG_m1000_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHH_HToGG_m1000_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHH_HToGG_m975_2017']    = [sigFile.replace('$PROC',"SMS_TChiHH_HToGG_m975_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHH_HToGG_m975_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHH_HToGG_m950_2017']    = [sigFile.replace('$PROC',"SMS_TChiHH_HToGG_m950_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHH_HToGG_m950_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHH_HToGG_m925_2017']    = [sigFile.replace('$PROC',"SMS_TChiHH_HToGG_m925_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHH_HToGG_m925_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHH_HToGG_m900_2017']    = [sigFile.replace('$PROC',"SMS_TChiHH_HToGG_m900_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHH_HToGG_m900_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHH_HToGG_m875_2017']    = [sigFile.replace('$PROC',"SMS_TChiHH_HToGG_m875_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHH_HToGG_m875_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHH_HToGG_m850_2017']    = [sigFile.replace('$PROC',"SMS_TChiHH_HToGG_m850_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHH_HToGG_m850_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHH_HToGG_m825_2017']    = [sigFile.replace('$PROC',"SMS_TChiHH_HToGG_m825_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHH_HToGG_m825_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHH_HToGG_m800_2017']    = [sigFile.replace('$PROC',"SMS_TChiHH_HToGG_m800_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHH_HToGG_m800_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHH_HToGG_m775_2017']    = [sigFile.replace('$PROC',"SMS_TChiHH_HToGG_m775_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHH_HToGG_m775_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHH_HToGG_m750_2017']    = [sigFile.replace('$PROC',"SMS_TChiHH_HToGG_m750_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHH_HToGG_m750_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHH_HToGG_m725_2017']    = [sigFile.replace('$PROC',"SMS_TChiHH_HToGG_m725_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHH_HToGG_m725_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHH_HToGG_m700_2017']    = [sigFile.replace('$PROC',"SMS_TChiHH_HToGG_m700_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHH_HToGG_m700_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHH_HToGG_m675_2017']    = [sigFile.replace('$PROC',"SMS_TChiHH_HToGG_m675_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHH_HToGG_m675_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHH_HToGG_m650_2017']    = [sigFile.replace('$PROC',"SMS_TChiHH_HToGG_m650_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHH_HToGG_m650_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHH_HToGG_m625_2017']    = [sigFile.replace('$PROC',"SMS_TChiHH_HToGG_m625_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHH_HToGG_m625_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHH_HToGG_m600_2017']    = [sigFile.replace('$PROC',"SMS_TChiHH_HToGG_m600_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHH_HToGG_m600_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHH_HToGG_m575_2017']    = [sigFile.replace('$PROC',"SMS_TChiHH_HToGG_m575_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHH_HToGG_m575_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHH_HToGG_m550_2017']    = [sigFile.replace('$PROC',"SMS_TChiHH_HToGG_m550_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHH_HToGG_m550_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHH_HToGG_m525_2017']    = [sigFile.replace('$PROC',"SMS_TChiHH_HToGG_m525_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHH_HToGG_m525_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHH_HToGG_m500_2017']    = [sigFile.replace('$PROC',"SMS_TChiHH_HToGG_m500_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHH_HToGG_m500_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHH_HToGG_m475_2017']    = [sigFile.replace('$PROC',"SMS_TChiHH_HToGG_m475_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHH_HToGG_m475_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHH_HToGG_m450_2017']    = [sigFile.replace('$PROC',"SMS_TChiHH_HToGG_m450_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHH_HToGG_m450_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHH_HToGG_m425_2017']    = [sigFile.replace('$PROC',"SMS_TChiHH_HToGG_m425_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHH_HToGG_m425_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHH_HToGG_m400_2017']    = [sigFile.replace('$PROC',"SMS_TChiHH_HToGG_m400_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHH_HToGG_m400_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHH_HToGG_m375_2017']    = [sigFile.replace('$PROC',"SMS_TChiHH_HToGG_m375_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHH_HToGG_m375_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHH_HToGG_m350_2017']    = [sigFile.replace('$PROC',"SMS_TChiHH_HToGG_m350_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHH_HToGG_m350_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHH_HToGG_m325_2017']    = [sigFile.replace('$PROC',"SMS_TChiHH_HToGG_m325_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHH_HToGG_m325_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHH_HToGG_m300_2017']    = [sigFile.replace('$PROC',"SMS_TChiHH_HToGG_m300_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHH_HToGG_m300_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHH_HToGG_m275_2017']    = [sigFile.replace('$PROC',"SMS_TChiHH_HToGG_m275_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHH_HToGG_m275_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHH_HToGG_m250_2017']    = [sigFile.replace('$PROC',"SMS_TChiHH_HToGG_m250_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHH_HToGG_m250_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHH_HToGG_m225_2017']    = [sigFile.replace('$PROC',"SMS_TChiHH_HToGG_m225_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHH_HToGG_m225_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHH_HToGG_m200_2017']    = [sigFile.replace('$PROC',"SMS_TChiHH_HToGG_m200_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHH_HToGG_m200_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHH_HToGG_m175_2017']    = [sigFile.replace('$PROC',"SMS_TChiHH_HToGG_m175_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHH_HToGG_m175_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHH_HToGG_m150_2017']    = [sigFile.replace('$PROC',"SMS_TChiHH_HToGG_m150_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHH_HToGG_m150_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHH_HToGG_m127_2017']    = [sigFile.replace('$PROC',"SMS_TChiHH_HToGG_m127_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHH_HToGG_m127_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHH_HToGG_m100_2017']    = [sigFile.replace('$PROC',"SMS_TChiHH_HToGG_m100_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHH_HToGG_m100_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHH_HToGG_m75_2017']     = [sigFile.replace('$PROC',"SMS_TChiHH_HToGG_m75_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHH_HToGG_m75_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHH_HToGG_m50_2017']     = [sigFile.replace('$PROC',"SMS_TChiHH_HToGG_m50_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHH_HToGG_m50_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHH_HToGG_m25_2017']     = [sigFile.replace('$PROC',"SMS_TChiHH_HToGG_m25_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHH_HToGG_m25_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHH_HToGG_m1_2017']      = [sigFile.replace('$PROC',"SMS_TChiHH_HToGG_m1_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHH_HToGG_m1_2017_$CHANNEL'%sqrts]
 
 
-fileDetails['SMS_TChiHZ_HToGG_m1000']   = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m1000"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m1000_$CHANNEL'%sqrts]
-fileDetails['SMS_TChiHZ_HToGG_m975']    = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m975"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m975_$CHANNEL'%sqrts]
-fileDetails['SMS_TChiHZ_HToGG_m950']    = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m950"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m950_$CHANNEL'%sqrts]
-fileDetails['SMS_TChiHZ_HToGG_m925']    = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m925"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m925_$CHANNEL'%sqrts]
-fileDetails['SMS_TChiHZ_HToGG_m900']    = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m900"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m900_$CHANNEL'%sqrts]
-fileDetails['SMS_TChiHZ_HToGG_m875']    = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m875"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m875_$CHANNEL'%sqrts]
-fileDetails['SMS_TChiHZ_HToGG_m850']    = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m850"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m850_$CHANNEL'%sqrts]
-fileDetails['SMS_TChiHZ_HToGG_m825']    = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m825"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m825_$CHANNEL'%sqrts]
-fileDetails['SMS_TChiHZ_HToGG_m800']    = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m800"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m800_$CHANNEL'%sqrts]
-fileDetails['SMS_TChiHZ_HToGG_m775']    = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m775"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m775_$CHANNEL'%sqrts]
-fileDetails['SMS_TChiHZ_HToGG_m750']    = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m750"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m750_$CHANNEL'%sqrts]
-fileDetails['SMS_TChiHZ_HToGG_m725']    = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m725"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m725_$CHANNEL'%sqrts]
+
+
+fileDetails['SMS_TChiHZ_HToGG_m1000'] = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m1000"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m1000_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHZ_HToGG_m975']  = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m975"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m975_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHZ_HToGG_m950']  = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m950"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m950_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHZ_HToGG_m925']  = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m925"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m925_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHZ_HToGG_m900']  = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m900"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m900_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHZ_HToGG_m875']  = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m875"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m875_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHZ_HToGG_m850']  = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m850"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m850_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHZ_HToGG_m825']  = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m825"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m825_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHZ_HToGG_m800']  = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m800"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m800_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHZ_HToGG_m775']  = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m775"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m775_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHZ_HToGG_m750']  = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m750"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m750_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHZ_HToGG_m725']  = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m725"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m725_$CHANNEL'%sqrts]
 fileDetails['SMS_TChiHZ_HToGG_m700']    = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m700"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m700_$CHANNEL'%sqrts]
 fileDetails['SMS_TChiHZ_HToGG_m675']    = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m675"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m675_$CHANNEL'%sqrts]
 fileDetails['SMS_TChiHZ_HToGG_m650']    = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m650"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m650_$CHANNEL'%sqrts]
@@ -444,43 +575,123 @@ fileDetails['SMS_TChiHZ_HToGG_m50']     = [sigFile.replace('$PROC',"SMS_TChiHZ_H
 fileDetails['SMS_TChiHZ_HToGG_m25']     = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m25"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m25_$CHANNEL'%sqrts]
 fileDetails['SMS_TChiHZ_HToGG_m1']      = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m1"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m1_$CHANNEL'%sqrts]
 
+fileDetails['SMS_TChiHZ_HToGG_m1000_2017'] = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m1000_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m1000_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHZ_HToGG_m975_2017']  = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m975_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m975_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHZ_HToGG_m950_2017']  = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m950_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m950_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHZ_HToGG_m925_2017']  = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m925_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m925_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHZ_HToGG_m900_2017']  = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m900_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m900_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHZ_HToGG_m875_2017']  = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m875_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m875_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHZ_HToGG_m850_2017']  = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m850_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m850_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHZ_HToGG_m825_2017']  = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m825_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m825_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHZ_HToGG_m800_2017']  = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m800_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m800_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHZ_HToGG_m775_2017']  = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m775_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m775_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHZ_HToGG_m750_2017']  = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m750_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m750_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHZ_HToGG_m725_2017']  = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m725_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m725_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHZ_HToGG_m700_2017']    = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m700_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m700_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHZ_HToGG_m675_2017']    = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m675_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m675_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHZ_HToGG_m650_2017']    = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m650_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m650_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHZ_HToGG_m625_2017']    = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m625_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m625_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHZ_HToGG_m600_2017']    = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m600_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m600_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHZ_HToGG_m575_2017']    = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m575_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m575_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHZ_HToGG_m550_2017']    = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m550_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m550_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHZ_HToGG_m525_2017']    = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m525_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m525_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHZ_HToGG_m500_2017']    = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m500_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m500_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHZ_HToGG_m475_2017']    = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m475_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m475_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHZ_HToGG_m450_2017']    = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m450_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m450_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHZ_HToGG_m425_2017']    = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m425_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m425_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHZ_HToGG_m400_2017']    = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m400_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m400_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHZ_HToGG_m375_2017']    = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m375_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m375_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHZ_HToGG_m350_2017']    = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m350_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m350_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHZ_HToGG_m325_2017']    = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m325_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m325_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHZ_HToGG_m300_2017']    = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m300_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m300_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHZ_HToGG_m275_2017']    = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m275_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m275_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHZ_HToGG_m250_2017']    = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m250_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m250_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHZ_HToGG_m225_2017']    = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m225_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m225_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHZ_HToGG_m200_2017']    = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m200_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m200_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHZ_HToGG_m175_2017']    = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m175_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m175_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHZ_HToGG_m150_2017']    = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m150_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m150_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHZ_HToGG_m127_2017']    = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m127_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m127_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHZ_HToGG_m100_2017']    = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m100_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m100_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHZ_HToGG_m75_2017']     = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m75_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m75_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHZ_HToGG_m50_2017']     = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m50_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m50_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHZ_HToGG_m25_2017']     = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m25_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m25_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_TChiHZ_HToGG_m1_2017']      = [sigFile.replace('$PROC',"SMS_TChiHZ_HToGG_m1_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_TChiHZ_HToGG_m1_2017_$CHANNEL'%sqrts]
 
-fileDetails['SMS_T2bH_mSbottom600_mLSP300']     = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom600_mLSP300"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom600_mLSP300_$CHANNEL'%sqrts]
-fileDetails['SMS_T2bH_mSbottom600_mLSP200']       = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom600_mLSP200"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom600_mLSP200_$CHANNEL'%sqrts]
-fileDetails['SMS_T2bH_mSbottom600_mLSP100']       = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom600_mLSP100"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom600_mLSP100_$CHANNEL'%sqrts]
-fileDetails['SMS_T2bH_mSbottom600_mLSP1']       = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom600_mLSP1"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom600_mLSP1_$CHANNEL'%sqrts]
-fileDetails['SMS_T2bH_mSbottom500_mLSP50']       = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom500_mLSP50"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom500_mLSP50_$CHANNEL'%sqrts]
-fileDetails['SMS_T2bH_mSbottom500_mLSP300']       = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom500_mLSP300"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom500_mLSP300_$CHANNEL'%sqrts]
-fileDetails['SMS_T2bH_mSbottom500_mLSP250']       = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom500_mLSP250"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom500_mLSP250_$CHANNEL'%sqrts]
-fileDetails['SMS_T2bH_mSbottom500_mLSP200']       = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom500_mLSP200"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom500_mLSP200_$CHANNEL'%sqrts]
-fileDetails['SMS_T2bH_mSbottom500_mLSP1']       = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom500_mLSP1"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom500_mLSP1_$CHANNEL'%sqrts]
-fileDetails['SMS_T2bH_mSbottom500_mLSP150']       = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom500_mLSP150"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom500_mLSP150_$CHANNEL'%sqrts]
-fileDetails['SMS_T2bH_mSbottom500_mLSP100']       = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom500_mLSP100"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom500_mLSP100_$CHANNEL'%sqrts]
-fileDetails['SMS_T2bH_mSbottom450_mLSP50']       = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom450_mLSP50"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom450_mLSP50_$CHANNEL'%sqrts]
-fileDetails['SMS_T2bH_mSbottom450_mLSP300']       = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom450_mLSP300"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom450_mLSP300_$CHANNEL'%sqrts]
-fileDetails['SMS_T2bH_mSbottom450_mLSP250']       = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom450_mLSP250"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom450_mLSP250_$CHANNEL'%sqrts]
-fileDetails['SMS_T2bH_mSbottom450_mLSP200']       = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom450_mLSP200"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom450_mLSP200_$CHANNEL'%sqrts]
-fileDetails['SMS_T2bH_mSbottom450_mLSP150']       = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom450_mLSP150"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom450_mLSP150_$CHANNEL'%sqrts]
-fileDetails['SMS_T2bH_mSbottom450_mLSP100']       = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom450_mLSP100"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom450_mLSP100_$CHANNEL'%sqrts]
-fileDetails['SMS_T2bH_mSbottom450_mLSP1']       = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom450_mLSP1"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom450_mLSP1_$CHANNEL'%sqrts]
-fileDetails['SMS_T2bH_mSbottom400_mLSP50']       = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom400_mLSP50"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom400_mLSP50_$CHANNEL'%sqrts]
-fileDetails['SMS_T2bH_mSbottom400_mLSP250']       = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom400_mLSP250"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom400_mLSP250_$CHANNEL'%sqrts]
-fileDetails['SMS_T2bH_mSbottom400_mLSP200']       = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom400_mLSP200"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom400_mLSP200_$CHANNEL'%sqrts]
-fileDetails['SMS_T2bH_mSbottom400_mLSP1']       = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom400_mLSP1"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom400_mLSP1_$CHANNEL'%sqrts]
-fileDetails['SMS_T2bH_mSbottom400_mLSP150']       = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom400_mLSP150"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom400_mLSP150_$CHANNEL'%sqrts]
-fileDetails['SMS_T2bH_mSbottom400_mLSP100']       = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom400_mLSP100"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom400_mLSP100_$CHANNEL'%sqrts]
-fileDetails['SMS_T2bH_mSbottom350_mLSP50']       = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom350_mLSP50"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom350_mLSP50_$CHANNEL'%sqrts]
-fileDetails['SMS_T2bH_mSbottom350_mLSP200']       = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom350_mLSP200"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom350_mLSP200_$CHANNEL'%sqrts]
-fileDetails['SMS_T2bH_mSbottom350_mLSP1']       = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom350_mLSP1"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom350_mLSP1_$CHANNEL'%sqrts]
-fileDetails['SMS_T2bH_mSbottom350_mLSP150']       = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom350_mLSP150"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom350_mLSP150_$CHANNEL'%sqrts]
-fileDetails['SMS_T2bH_mSbottom350_mLSP100']       = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom350_mLSP100"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom350_mLSP100_$CHANNEL'%sqrts]
-fileDetails['SMS_T2bH_mSbottom300_mLSP50']       = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom300_mLSP50"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom300_mLSP50_$CHANNEL'%sqrts]
-fileDetails['SMS_T2bH_mSbottom300_mLSP1']       = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom300_mLSP1"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom300_mLSP1_$CHANNEL'%sqrts]
-fileDetails['SMS_T2bH_mSbottom300_mLSP150']       = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom300_mLSP150"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom300_mLSP150_$CHANNEL'%sqrts]
-fileDetails['SMS_T2bH_mSbottom300_mLSP100']       = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom300_mLSP100"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom300_mLSP100_$CHANNEL'%sqrts]
-fileDetails['SMS_T2bH_mSbottom250_mLSP50']       = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom250_mLSP50"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom250_mLSP50_$CHANNEL'%sqrts]
-fileDetails['SMS_T2bH_mSbottom250_mLSP100']       = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom250_mLSP100"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom250_mLSP100_$CHANNEL'%sqrts]
-fileDetails['SMS_T2bH_mSbottom250_mLSP1']       = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom250_mLSP1"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom250_mLSP1_$CHANNEL'%sqrts]
+
+fileDetails['SMS_T2bH_mSbottom600_mLSP300'] = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom600_mLSP300"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom600_mLSP300_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom600_mLSP200'] = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom600_mLSP200"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom600_mLSP200_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom600_mLSP100'] = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom600_mLSP100"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom600_mLSP100_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom600_mLSP1']   = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom600_mLSP1"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom600_mLSP1_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom500_mLSP50']  = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom500_mLSP50"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom500_mLSP50_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom500_mLSP300'] = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom500_mLSP300"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom500_mLSP300_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom500_mLSP250'] = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom500_mLSP250"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom500_mLSP250_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom500_mLSP200'] = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom500_mLSP200"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom500_mLSP200_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom500_mLSP1']   = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom500_mLSP1"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom500_mLSP1_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom500_mLSP150'] = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom500_mLSP150"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom500_mLSP150_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom500_mLSP100'] = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom500_mLSP100"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom500_mLSP100_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom450_mLSP50']  = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom450_mLSP50"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom450_mLSP50_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom450_mLSP300'] = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom450_mLSP300"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom450_mLSP300_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom450_mLSP250'] = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom450_mLSP250"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom450_mLSP250_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom450_mLSP200'] = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom450_mLSP200"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom450_mLSP200_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom450_mLSP150'] = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom450_mLSP150"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom450_mLSP150_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom450_mLSP100'] = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom450_mLSP100"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom450_mLSP100_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom450_mLSP1']   = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom450_mLSP1"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom450_mLSP1_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom400_mLSP50']  = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom400_mLSP50"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom400_mLSP50_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom400_mLSP250'] = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom400_mLSP250"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom400_mLSP250_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom400_mLSP200'] = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom400_mLSP200"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom400_mLSP200_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom400_mLSP1']   = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom400_mLSP1"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom400_mLSP1_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom400_mLSP150'] = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom400_mLSP150"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom400_mLSP150_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom400_mLSP100'] = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom400_mLSP100"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom400_mLSP100_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom350_mLSP50']  = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom350_mLSP50"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom350_mLSP50_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom350_mLSP200'] = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom350_mLSP200"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom350_mLSP200_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom350_mLSP1']   = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom350_mLSP1"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom350_mLSP1_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom350_mLSP150'] = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom350_mLSP150"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom350_mLSP150_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom350_mLSP100'] = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom350_mLSP100"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom350_mLSP100_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom300_mLSP50']  = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom300_mLSP50"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom300_mLSP50_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom300_mLSP1']   = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom300_mLSP1"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom300_mLSP1_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom300_mLSP150'] = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom300_mLSP150"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom300_mLSP150_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom300_mLSP100'] = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom300_mLSP100"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom300_mLSP100_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom250_mLSP50']  = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom250_mLSP50"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom250_mLSP50_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom250_mLSP100'] = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom250_mLSP100"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom250_mLSP100_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom250_mLSP1']   = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom250_mLSP1"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom250_mLSP1_$CHANNEL'%sqrts]
+
+
+fileDetails['SMS_T2bH_mSbottom600_mLSP300_2017'] = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom600_mLSP300_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom600_mLSP300_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom600_mLSP200_2017'] = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom600_mLSP200_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom600_mLSP200_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom600_mLSP100_2017'] = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom600_mLSP100_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom600_mLSP100_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom600_mLSP1_2017']   = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom600_mLSP1_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom600_mLSP1_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom500_mLSP50_2017']  = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom500_mLSP50_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom500_mLSP50_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom500_mLSP300_2017'] = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom500_mLSP300_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom500_mLSP300_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom500_mLSP250_2017'] = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom500_mLSP250_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom500_mLSP250_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom500_mLSP200_2017'] = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom500_mLSP200_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom500_mLSP200_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom500_mLSP1_2017']   = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom500_mLSP1_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom500_mLSP1_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom500_mLSP150_2017'] = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom500_mLSP150_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom500_mLSP150_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom500_mLSP100_2017'] = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom500_mLSP100_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom500_mLSP100_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom450_mLSP50_2017']  = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom450_mLSP50_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom450_mLSP50_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom450_mLSP300_2017'] = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom450_mLSP300_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom450_mLSP300_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom450_mLSP250_2017'] = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom450_mLSP250_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom450_mLSP250_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom450_mLSP200_2017'] = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom450_mLSP200_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom450_mLSP200_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom450_mLSP150_2017'] = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom450_mLSP150_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom450_mLSP150_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom450_mLSP100_2017'] = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom450_mLSP100_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom450_mLSP100_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom450_mLSP1_2017']   = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom450_mLSP1_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom450_mLSP1_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom400_mLSP50_2017']  = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom400_mLSP50_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom400_mLSP50_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom400_mLSP250_2017'] = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom400_mLSP250_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom400_mLSP250_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom400_mLSP200_2017'] = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom400_mLSP200_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom400_mLSP200_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom400_mLSP1_2017']   = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom400_mLSP1_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom400_mLSP1_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom400_mLSP150_2017'] = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom400_mLSP150_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom400_mLSP150_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom400_mLSP100_2017'] = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom400_mLSP100_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom400_mLSP100_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom350_mLSP50_2017']  = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom350_mLSP50_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom350_mLSP50_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom350_mLSP200_2017'] = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom350_mLSP200_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom350_mLSP200_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom350_mLSP1_2017']   = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom350_mLSP1_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom350_mLSP1_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom350_mLSP150_2017'] = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom350_mLSP150_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom350_mLSP150_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom350_mLSP100_2017'] = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom350_mLSP100_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom350_mLSP100_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom300_mLSP50_2017']  = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom300_mLSP50_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom300_mLSP50_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom300_mLSP1_2017']   = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom300_mLSP1_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom300_mLSP1_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom300_mLSP150_2017'] = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom300_mLSP150_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom300_mLSP150_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom300_mLSP100_2017'] = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom300_mLSP100_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom300_mLSP100_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom250_mLSP50_2017']  = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom250_mLSP50_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom250_mLSP50_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom250_mLSP100_2017'] = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom250_mLSP100_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom250_mLSP100_2017_$CHANNEL'%sqrts]
+fileDetails['SMS_T2bH_mSbottom250_mLSP1_2017']   = [sigFile.replace('$PROC',"SMS_T2bH_mSbottom250_mLSP1_2017"),sigWS,'hggpdfsmrel_%dTeV_SMS_T2bH_mSbottom250_mLSP1_2017_$CHANNEL'%sqrts]
 
 
 
@@ -817,11 +1028,14 @@ def getFlashggLineTheoryEnvelope(proc,cat,name,details):
 brSyst = [0.0206,-0.0208] #13TeV Values, from YR4 taking  in quadrature THU (+1.73 -1.72), PU(mq) (+0.93,-0.99) , PU(as) (+0.61 -0.62)
 # lumi syst
 ####lumiSyst = 0.026 #8TeV Values
-lumiSyst=0.062  #Correct for ICHEP 
+lumiSyst=0.025  #Correct for 2016
+lumiSyst_2017=0.023  #Correct for 2017
+ 
+
 sigSyst=0.1 #preliminary guess
-isrSyst_j0=0.01
-isrSyst_j1to3=0.07
-isrSyst_j4toInf=0.12
+# isrSyst_j0=0.01
+# isrSyst_j1to3=0.07
+# isrSyst_j4toInf=0.12
 
 
 
@@ -849,64 +1063,295 @@ def printLumiSyst():
          if p in bkgProcs:
             outFile.write('- ')
          else:
-            outFile.write('%5.3f '%(1.+lumiSyst))
+            if( not  "2017" in p):
+               outFile.write('%5.3f '%(1.+lumiSyst))
+            else:
+               outFile.write('%5.3f '%(1.+lumiSyst_2017))
+
+            #outFile.write('%5.3f '%(1.+lumiSyst))
    outFile.write('\n')
    outFile.write('\n')
 
 
 inputFile = r.TFile ( options.infilename )
 
+
+
+#/shome/mschoene/9_2_4_gg/src/myMT2Analysis/analysis/EventYields_data_2016_11jul18/WS/btagsf_heavy_higgs_2017_comb_mt2_30.txt
+
+inFile_lepsf_2017 =  "/shome/mschoene/9_2_4_gg/src/myMT2Analysis/analysis/EventYields_data_2016_11jul18/WS/lepsf_higgs_2017_comb_mt2_30.txt"
+inFile_lepsf =  "/shome/mschoene/9_2_4_gg/src/myMT2Analysis/analysis/EventYields_data_2016_11jul18/WS/lepsf_higgs_comb_mt2_30.txt"
+
+inFile_btagsf_heavy_2017 =  "/shome/mschoene/9_2_4_gg/src/myMT2Analysis/analysis/EventYields_data_2016_11jul18/WS/btagsf_heavy_higgs_2017_comb_mt2_30.txt"
+inFile_btagsf_heavy =  "/shome/mschoene/9_2_4_gg/src/myMT2Analysis/analysis/EventYields_data_2016_11jul18/WS/btagsf_heavy_higgs_comb_mt2_30.txt"
+
+inFile_btagsf_light_2017 =  "/shome/mschoene/9_2_4_gg/src/myMT2Analysis/analysis/EventYields_data_2016_11jul18/WS/btagsf_light_higgs_2017_comb_mt2_30.txt"
+inFile_btagsf_light =  "/shome/mschoene/9_2_4_gg/src/myMT2Analysis/analysis/EventYields_data_2016_11jul18/WS/btagsf_light_higgs_comb_mt2_30.txt"
+
+
 def printSigSyst():
    print '[INFO] Sig...'
-   outFile.write('%-35s   lnN   '%('Sig_syst'))
+   outFile.write('%-35s   lnN   '%('isr_syst'))
+#   outFile.write('%-35s   lnN   '%('Sig_syst'))
    for c in options.cats:
       for p in options.procs:
          if '%s:%s'%(p,c) in options.toSkip: continue
          if p in bkgProcs or "higgs" in p:
             outFile.write('- ')
+
+         else:
+            
+            if( not  "2017" in p):
+               isrSystHist = inputFile.Get( "h2D_isr_err_%s"%(c) )
+            else:
+               isrSystHist = inputFile.Get( "h2D_isr_2017_err_%s"%(c) )
+
+            regex = re.compile('Sbottom([0-9]*)')
+            regex2 = re.compile('mLSP([0-9]*)')
+
+            if( "TChiH" in p):
+               regex = re.compile('HToGG_m([0-9]*)')
+               regex2 = re.compile('_([0-9]*)')
+               
+            if( "TChiWH" in p):
+               regex = re.compile('HToGG_([0-9]*)')
+               regex2 = re.compile('_([0-9]*)')
+                  
+            mSbottom = regex.findall( p )
+            mChi = regex2.findall( p )
+
+            m1 = list(map(float, mSbottom))
+            m2 = 1.
+
+            if( not "TChiH" in p and not "TChiWH" in p):
+               m2 = map(float, mChi[0] )
+            if(  "TChiWH" in p):
+               m2 = map(float, mChi[3] )
+
+            binx = isrSystHist.GetXaxis().FindBin( m1[0] );
+            biny = isrSystHist.GetYaxis().FindBin( m2[0] );
+
+#            print c
+#            print p
+#            print isrSystHist.GetBinContent( binx, biny )
+            isrWeightHisto = isrSystHist.GetBinContent( binx, biny )
+
+            outFile.write('%5.3f '%(1. + isrWeightHisto))
+
+            # if "j0" in c:
+            #    outFile.write('%5.3f '%(1. - isrSyst_j0))
+            #    print "Found j0 category"
+            # elif "j1to3" in c:
+            #    outFile.write('%5.3f '%(1. - isrSyst_j1to3 ))
+            # elif  "j4" in c:
+            #    outFile.write('%5.3f '%(1. + isrSyst_j4toInf ))    
+            # else:     
+            #    outFile.write('%5.3f '%(1. + 0.01 ))    
+ 
+   outFile.write('\n')
+   outFile.write('\n')
+
+
+
+
+
+
+def printSigSyst_lepsf():
+   print '[INFO] Lep Syst'
+   outFile.write('%-35s   lnN   '%('lepsf_syst'))
+   for c in options.cats:
+      for p in options.procs:
+         if '%s:%s'%(p,c) in options.toSkip: continue 
+#         if p in bkgProcs or "higgs" in p:
+#            outFile.write('- ')
+         if p in bkgProcs and not "higgs" in p:
+            outFile.write('- ')
+
+         elif "higgs" in p:
+            if( not  "2017" in p):
+               with open( inFile_lepsf ) as f:
+                  for num, line in enumerate(f, 1):
+                     if c in line:
+                       # num = str(num)
+#                        print line.split('\t')[1]
+                        outFile.write('%5.3f '%(1. + float( line.split('\t')[1]  ) ))
+            else:
+               with open( inFile_lepsf_2017 ) as f:
+                  for num, line in enumerate(f, 1):
+                     if c in line:
+                       # num = str(num)
+                        outFile.write('%5.3f '%(1. + float(line.split('\t')[1] ) ))
+
+         elif "SMS" in p: #else:
+            
+            if( not  "2017" in p):
+               lepsfSystHist = inputFile.Get( "h2D_lepsf_err_%s"%(c) )
+            else:
+               lepsfSystHist = inputFile.Get( "h2D_lepsf_2017_err_%s"%(c) )
+
+            regex = re.compile('Sbottom([0-9]*)')
+            regex2 = re.compile('mLSP([0-9]*)')
+            mSbottom = regex.findall( p )
+            mChi = regex2.findall( p )
+
+            if( "TChiH" in p):
+               regex = re.compile('HToGG_m([0-9]*)')
+               regex2 = re.compile('_([0-9]*)')
+               
+            if( "TChiWH" in p):
+               regex = re.compile('HToGG_([0-9]*)')
+               regex2 = re.compile('_([0-9]*)')
+                  
+            mSbottom = regex.findall( p )
+            mChi = regex2.findall( p )
+
+            m1 = list(map(float, mSbottom))
+            m2=list([1.])
+
+            if( not "TChiH" in p and not "TChiWH" in p):
+               m2 = (map(float, mChi[0]))
+            elif(  "TChiWH" in p):
+               m2 = (map(float, mChi[3] ))
+
+
+            binx = lepsfSystHist.GetXaxis().FindBin( m1[0] );
+            biny = lepsfSystHist.GetYaxis().FindBin( m2[0] );
+           
+
+            lepsfWeightHisto = lepsfSystHist.GetBinContent( binx, biny )
+
+            outFile.write('%5.3f '%(1. + lepsfWeightHisto))
+            
+         else:
+            print "not doing anything... check logic"
+
+   outFile.write('\n')
+   outFile.write('\n')
+
+def printSigSyst_btagsf_heavy():
+   print '[INFO] Sig...'
+   outFile.write('%-35s   lnN   '%('btagsf_heavy_syst'))
+   for c in options.cats:
+      for p in options.procs:
+         if '%s:%s'%(p,c) in options.toSkip: continue
+         # if p in bkgProcs or "higgs" in p:
+         #    outFile.write('- ')
+         if p in bkgProcs  and not "higgs" in p:
+            outFile.write('- ')
+
+         elif "higgs" in p:
+            if( not  "2017" in p):
+               with open( inFile_btagsf_heavy ) as f:
+                  for num, line in enumerate(f, 1):
+                     if c in line:
+                        outFile.write('%5.3f '%(1. + float( line.split('\t')[1]  ) ))
+            else:
+               with open( inFile_btagsf_heavy_2017 ) as f:
+                  for num, line in enumerate(f, 1):
+                     if c in line:
+                        outFile.write('%5.3f '%(1. + float(line.split('\t')[1] ) ))
+
+         else:
+            if( not  "2017" in p): 
+               btagsf_heavySystHist = inputFile.Get( "h2D_btagsf_heavy_err_%s"%(c) )
+            else:
+               btagsf_heavySystHist = inputFile.Get( "h2D_btagsf_heavy_2017_err_%s"%(c) )
+
+            regex = re.compile('Sbottom([0-9]*)')
+            regex2 = re.compile('mLSP([0-9]*)')
+
+            mSbottom = regex.findall( p )
+            mChi = regex2.findall( p )
+
+            if( "TChiH" in p):
+               regex = re.compile('HToGG_m([0-9]*)')
+               regex2 = re.compile('_([0-9]*)')
+               
+            if( "TChiWH" in p):
+               regex = re.compile('HToGG_([0-9]*)')
+               regex2 = re.compile('_([0-9]*)')
+                  
+            mSbottom = regex.findall( p )
+            mChi = regex2.findall( p )
+
+            m1 = list(map(float, mSbottom))
+            m2=list([1.])
+
+            if( not "TChiH" in p and not "TChiWH" in p):
+               m2 = (map(float, mChi[0]))
+            elif(  "TChiWH" in p):
+               m2 = (map(float, mChi[3] ))
+
+            binx = btagsf_heavySystHist.GetXaxis().FindBin( m1[0] );
+            biny = btagsf_heavySystHist.GetYaxis().FindBin( m2[0] );
+            btagsf_heavyWeightHisto = btagsf_heavySystHist.GetBinContent( binx, biny )
+
+            outFile.write('%5.3f '%(1. + btagsf_heavyWeightHisto))
+ 
+   outFile.write('\n')
+   outFile.write('\n')
+
+def printSigSyst_btagsf_light():
+   print '[INFO] Sig...'
+   outFile.write('%-35s   lnN   '%('btagsf_light_syst'))
+   for c in options.cats:
+      for p in options.procs:
+         if '%s:%s'%(p,c) in options.toSkip: continue
+         if p in bkgProcs  and not "higgs" in p :
+            outFile.write('- ')
+
+         elif "higgs" in p:
+            if( not  "2017" in p):
+               with open( inFile_btagsf_light ) as f:
+                  for num, line in enumerate(f, 1):
+                     if c in line:
+                        outFile.write('%5.3f '%(1. + float( line.split('\t')[1]  ) ))
+            else:
+               with open( inFile_btagsf_light_2017 ) as f:
+                  for num, line in enumerate(f, 1):
+                     if c in line:
+                        outFile.write('%5.3f '%(1. + float(line.split('\t')[1] ) ))
+
          else:
            
-            # isrSystHist = inputFile.Get( "h2D_isr_err_%s"%(c) )
-            # regex = re.compile('Sbottom([0-9]*)')
-            # regex2 = re.compile('mLSP([0-9]*)')
-            # mSbottom = regex.findall( p )
-            # mChi = regex2.findall( p )
-            # m1 = list(map(float, mSbottom))
-            # m2 = list(map(float, mChi))
-            # binx = isrSystHist.GetXaxis().FindBin( m1[0] );
-            # biny = isrSystHist.GetYaxis().FindBin( m2[0] );
-            # print c
-            # print isrSystHist.GetBinContent( binx, biny )
-            # isrWeightHisto = isrSystHist.GetBinContent( binx, biny )
+            if( not  "2017" in p):
+               btagsf_lightSystHist = inputFile.Get( "h2D_btagsf_light_err_%s"%(c) )
+            else:
+               btagsf_lightSystHist = inputFile.Get( "h2D_btagsf_light_2017_err_%s"%(c) )
 
-            # outFile.write('%5.3f '%(1. + isrWeightHisto))
+            regex = re.compile('Sbottom([0-9]*)')
+            regex2 = re.compile('mLSP([0-9]*)')
+            mSbottom = regex.findall( p )
+            mChi = regex2.findall( p )
 
-            if "j0" in c:
-               outFile.write('%5.3f '%(1. - isrSyst_j0))
-               print "Found j0 category"
-            elif "j1to3" in c:
-               outFile.write('%5.3f '%(1. - isrSyst_j1to3 ))
-            elif  "j4" in c:
-               outFile.write('%5.3f '%(1. + isrSyst_j4toInf ))    
-            else:     
-               outFile.write('%5.3f '%(1. + 0.01 ))    
+            if( "TChiH" in p):
+               regex = re.compile('HToGG_m([0-9]*)')
+               regex2 = re.compile('_([0-9]*)')
+               
+            if( "TChiWH" in p):
+               regex = re.compile('HToGG_([0-9]*)')
+               regex2 = re.compile('_([0-9]*)')
+                  
+            mSbottom = regex.findall( p )
+            mChi = regex2.findall( p )
 
+            m1 = list(map(float, mSbottom))
+            m2=list([1.])
+
+            if( not "TChiH" in p and not "TChiWH" in p):
+               m2 = (map(float, mChi[0]))
+            elif(  "TChiWH" in p):
+               m2 = (map(float, mChi[3] ))
+
+            binx = btagsf_lightSystHist.GetXaxis().FindBin( m1[0] );
+            biny = btagsf_lightSystHist.GetYaxis().FindBin( m2[0] );
+            btagsf_lightWeightHisto = btagsf_lightSystHist.GetBinContent( binx, biny )
+
+            outFile.write('%5.3f '%(1. + btagsf_lightWeightHisto))
+ 
    outFile.write('\n')
    outFile.write('\n')
 
-
-# def printSigSyst():
-#    print '[INFO] Sig...'
-#    outFile.write('%-35s   lnN   '%('Sig_syst'))
-#    for c in options.cats:
-#       for p in options.procs:
-#          if '%s:%s'%(p,c) in options.toSkip: continue
-#          if p in bkgProcs or "higgs" in p:
-#             outFile.write('- ')
-#          else:
-#             outFile.write('%5.3f '%(1.+ sigSyst))
-#    outFile.write('\n')
-#    outFile.write('\n')
 
 def printTrigSyst():
    print '[INFO] Trig...'
@@ -1071,10 +1516,11 @@ def printFileOptions():
 ###############################################################################
 def printObsProcBinLines():
   print '[INFO] Rates...'
-  outFile.write('%-15s '%'bin')
-  for c in options.cats:
-    outFile.write('%s '%(c)) ###   outFile.write('%s_%dTeV '%(c,sqrts))
-  outFile.write('\n')
+ 
+  # outFile.write('%-15s '%'bin')
+  # for c in options.cats:
+  #   outFile.write('%s '%(c)) ###   outFile.write('%s_%dTeV '%(c,sqrts))
+  # outFile.write('\n')
   
   outFile.write('%-15s '%'observation')
   for c in options.cats:
@@ -1116,7 +1562,10 @@ def printObsProcBinLines():
         if c in tthCats:
           if c in tthLepCat: scale *= tthLepRateScale
           else: scale *= tthHadRateScale
-        outFile.write('%7.1f '%(intL*scale))
+        if( not( "2017"in p)):
+           outFile.write('%7.1f '%(intL*scale))
+        else:
+           outFile.write('%7.1f '%(intL_2017*scale))
   outFile.write('\n')
   outFile.write('\n')
 ###############################################################################
@@ -1604,17 +2053,25 @@ def printMultiPdf():
 
 print "JustThisSyst == " , options.justThisSyst
 if ((options.justThisSyst== "batch_split") or options.justThisSyst==""):
-  printPreamble()
+   printPreamble()
   #shape systematic files
-  printFileOptions()
+   printFileOptions()
   #obs proc/tag bins
-  printObsProcBinLines()
+   printObsProcBinLines()
   #nuisance param systematics
 #mininotneed  printNuisParams()
-#mininotneed  printMultiPdf()
-  printBRSyst()
-  printLumiSyst()
-  printSigSyst()
+   
+   #very much need
+   printMultiPdf()
+   
+   printBRSyst()
+   printLumiSyst()
+   printSigSyst()
+   printSigSyst_lepsf()
+
+   printSigSyst_btagsf_heavy()
+   printSigSyst_btagsf_light()
+
   #printTrigSyst() # now a weight in the main roodataset!
 ##mininotneed  printSimpleTTHSysts()
 
