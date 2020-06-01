@@ -1,0 +1,56 @@
++ touch /work/mschoene/CMSSW_7_4_7_gg/src/flashggFinalFit/Signal/outdir_WH_forThesis_oct21/fTestJobs/sub41.sh.run
++ cd /work/mschoene/CMSSW_7_4_7_gg/src/flashggFinalFit/Signal
++ source /cvmfs/cms.cern.ch/cmsset_default.sh
+++ cms_basedir=/cvmfs/cms.cern.ch
+++ here=/cvmfs/cms.cern.ch
+++ export PATH=/cvmfs/cms.cern.ch/common:/cvmfs/cms.cern.ch/bin:/bin:/tmp/9853219.1.short.q:/usr/local/bin:/usr/bin
+++ PATH=/cvmfs/cms.cern.ch/common:/cvmfs/cms.cern.ch/bin:/bin:/tmp/9853219.1.short.q:/usr/local/bin:/usr/bin
+++ '[' /cvmfs/cms.cern.ch '!=' '' ']'
+++ here=/cvmfs/cms.cern.ch
+++ '[' '!' ']'
++++ /cvmfs/cms.cern.ch/common/cmsarch
+++ SCRAM_ARCH=slc6_amd64_gcc472
+++ '[' '!' -d /cvmfs/cms.cern.ch/slc6_amd64_gcc472/etc/profile.d ']'
+++ export SCRAM_ARCH
+++ '[' -d /cvmfs/cms.cern.ch/slc6_amd64_gcc472/etc/profile.d ']'
++++ /bin/ls /cvmfs/cms.cern.ch/slc6_amd64_gcc472/etc/profile.d/
++++ grep 'S.*[.]sh'
+++ '[' '!' ']'
+++ export CMS_PATH=/cvmfs/cms.cern.ch
+++ CMS_PATH=/cvmfs/cms.cern.ch
+++ alias 'cmsenv=eval `scramv1 runtime -sh`'
+++ alias 'cmsrel=scramv1 project CMSSW'
+++ '[' -f /cvmfs/cms.cern.ch/SITECONF/local/JobConfig/cmsset_local.sh ']'
+++ '[' '!' ']'
+++ CVSROOT=:gserver:cmssw.cvs.cern.ch:/local/reps/CMSSW
+++ export CVSROOT
+++ MANPATH=/cvmfs/cms.cern.ch/share/man:/opt/glite/share/man::
+++ export MANPATH
++ source /swshare/glite/external/etc/profile.d/grid-env.sh
+/gridware/sge/default/spool/t3wn32/job_scripts/9853219: line 6: /swshare/glite/external/etc/profile.d/grid-env.sh: No such file or directory
++ export SCRAM_ARCH=slc6_amd64_gcc481
++ SCRAM_ARCH=slc6_amd64_gcc481
++ export LD_LIBRARY_PATH=/swshare/glite/d-cache/dcap/lib/:
++ LD_LIBRARY_PATH=/swshare/glite/d-cache/dcap/lib/:
++ set +x
++ cd /scratch/tmpdir-9853219.1.short.q
++ number=1512
++ mkdir -p scratch_1512
++ cd scratch_1512
++ /work/mschoene/CMSSW_7_4_7_gg/src/flashggFinalFit/Signal/bin/signalFTest -i /work/mschoene/9_2_4_gg/src/myMT2Analysis/analysis/EventYields_data_2016_mar13/WS/ws_SMHDonly_comb_mt2_30_part1.root,/work/mschoene/9_2_4_gg/src/myMT2Analysis/analysis/EventYields_data_2016_mar13/WS/ws_SMS_TChiWH_HToGG_comb_mt2_30_part1.root -p higgs_2017 -f j1to3_b0_pT0_mt2_0,j1to3_b0_pT1_mt2_0,j1to3_b0_pT2_mt2_0,j4toInf_b0_pT0_mt2_0,j4toInf_b0_pT1_mt2_0,j4toInf_b0_pT2_mt2_0,j1to3_b1_pT0_mt2_0,j1to3_b1_pT1_mt2_0,j1to3_b1_pT2_mt2_0,j4toInf_b1_pT0_mt2_0,j4toInf_b1_pT1_mt2_0,j4toInf_b1_pT2_mt2_0,j1to3_b2toInf_pT0_mt2_0,j1to3_b2toInf_pT1_mt2_0,j1to3_b2toInf_pT2_mt2_0,j4toInf_b2toInf_pT0_mt2_0,j4toInf_b2toInf_pT1_mt2_0,j4toInf_b2toInf_pT2_mt2_0,j1to3_b0_pT0_mt2_30,j1to3_b0_pT1_mt2_30,j1to3_b0_pT2_mt2_30,j4toInf_b0_pT0_mt2_30,j4toInf_b0_pT1_mt2_30,j4toInf_b0_pT2_mt2_30,j1to3_b1_pT0_mt2_30,j1to3_b1_pT1_mt2_30,j1to3_b1_pT2_mt2_30,j4toInf_b1_pT0_mt2_30,j4toInf_b1_pT1_mt2_30,j4toInf_b1_pT2_mt2_30,j1to3_b2toInf_pT0_mt2_30,j1to3_b2toInf_pT1_mt2_30,j1to3_b2toInf_pT2_mt2_30,j4toInf_b2toInf_pT0_mt2_30,j4toInf_b2toInf_pT1_mt2_30,j4toInf_b2toInf_pT2_mt2_30,is1El_pT0_mt2_0,is1Mu_pT0_mt2_0,is1El_pT0_mt2_30,is1Mu_pT0_mt2_30,is1El_pT1_mt2_0,is1Mu_pT1_mt2_0,is1El_pT1_mt2_30,is1Mu_pT1_mt2_30,is1El_pT2_mt2_0,is1Mu_pT2_mt2_0,is1El_pT2_mt2_30,is1Mu_pT2_mt2_30,diBBZ_pT0_mt2_0,diBBZ_pT1_mt2_0,diBBZ_pT2_mt2_0,diBBH_pT0_mt2_0,diBBH_pT1_mt2_0,diBBH_pT2_mt2_0,diBBZ_pT0_mt2_30,diBBZ_pT1_mt2_30,diBBZ_pT2_mt2_30,diBBH_pT0_mt2_30,diBBH_pT1_mt2_30,diBBH_pT2_mt2_30,diLepZ,j0_b0toInf_pT0,j0_b0toInf_pT1,j0_b0toInf_pT2 --considerOnly is1Mu_pT1_mt2_0 -o /work/mschoene/CMSSW_7_4_7_gg/src/flashggFinalFit/Signal/outdir_WH_forThesis_oct21 --datfilename /work/mschoene/CMSSW_7_4_7_gg/src/flashggFinalFit/Signal/outdir_WH_forThesis_oct21/fTestJobs/outputs/config_42.dat
+Error in <TCling::RegisterModule>: cannot find dictionary module RootDict_rdict.pcm
+Warning in <TClassTable::Add>: class FinalModelConstruction already in TClassTable
+Warning in <TClassTable::Add>: class InitialFit already in TClassTable
+Warning in <TClassTable::Add>: class LinearInterp already in TClassTable
+Warning in <TClassTable::Add>: class Normalization_8TeV already in TClassTable
+Warning in <TClassTable::Add>: class Packager already in TClassTable
+Warning in <TClassTable::Add>: class RooGaussBern2D already in TClassTable
+Warning in <TClassTable::Add>: class WSTFileWrapper already in TClassTable
+Error in <TCling::RegisterModule>: cannot find dictionary module RootDict_rdict.pcm
+Info in <TCanvas::Print>: pdf file /work/mschoene/CMSSW_7_4_7_gg/src/flashggFinalFit/Signal/outdir_WH_forThesis_oct21/fTest/rv_higgs_2017_is1Mu_pT1_mt2_0.pdf has been created
+Info in <TCanvas::Print>: png file /work/mschoene/CMSSW_7_4_7_gg/src/flashggFinalFit/Signal/outdir_WH_forThesis_oct21/fTest/rv_higgs_2017_is1Mu_pT1_mt2_0.png has been created
+Info in <TCanvas::Print>: pdf file /work/mschoene/CMSSW_7_4_7_gg/src/flashggFinalFit/Signal/outdir_WH_forThesis_oct21/fTest/wv_higgs_2017_is1Mu_pT1_mt2_0.pdf has been created
+Info in <TCanvas::Print>: png file /work/mschoene/CMSSW_7_4_7_gg/src/flashggFinalFit/Signal/outdir_WH_forThesis_oct21/fTest/wv_higgs_2017_is1Mu_pT1_mt2_0.png has been created
++ touch /work/mschoene/CMSSW_7_4_7_gg/src/flashggFinalFit/Signal/outdir_WH_forThesis_oct21/fTestJobs/sub41.sh.done
++ rm -f /work/mschoene/CMSSW_7_4_7_gg/src/flashggFinalFit/Signal/outdir_WH_forThesis_oct21/fTestJobs/sub41.sh.run
++ rm -rf scratch_1512
