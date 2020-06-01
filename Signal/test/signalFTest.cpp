@@ -587,6 +587,7 @@ int main(int argc, char *argv[]){
       
       //actual plotting
       RooPlot *plot = plotIt->second.at(cat);
+      plot->SetXTitle("m_{#gamma#gamma}");
       plot->Draw();
 
       //make it a nice CMS style plot!
@@ -597,13 +598,40 @@ int main(int argc, char *argv[]){
 
       //legend
       leg->Draw();
-      
+
+      TString procLabel_humanReadable = proc.c_str();
+      procLabel_humanReadable.ReplaceAll("_"," ");
+      procLabel_humanReadable.ReplaceAll("higgs","SM Higgs");
+
+      TString catLabel_humanReadable = flashggCats_[cat].c_str();
+      catLabel_humanReadable.ReplaceAll("_"," ");
+      //      catLabel_humanReadable.ReplaceAll("toInf","-#inf");
+      //      catLabel_humanReadable.ReplaceAll("toInf","-#infty");
+      catLabel_humanReadable.ReplaceAll("diBBH","H_{bb}, ");    
+      catLabel_humanReadable.ReplaceAll("diBBZ","Z_{bb}, ");    
+      catLabel_humanReadable.ReplaceAll("diLepZ","Z_{ll}, ");    
+
+      catLabel_humanReadable.ReplaceAll("pT0","p_{T}^{0}, ");
+      catLabel_humanReadable.ReplaceAll("pT1","p_{T}^{75}, ");
+      catLabel_humanReadable.ReplaceAll("pT2","p_{T}^{125}, ");
+      catLabel_humanReadable.ReplaceAll("mt2 0","M_{T2}^{0}");
+      catLabel_humanReadable.ReplaceAll("mt2 30","M_{T2}^{30}");
+      catLabel_humanReadable.ReplaceAll("j1to3","1#leqj#leq3, ");
+      catLabel_humanReadable.ReplaceAll("b0toInf","b#geq0, ");
+      catLabel_humanReadable.ReplaceAll("b0","b=0, ");
+      catLabel_humanReadable.ReplaceAll("b1","b=1, ");
+      catLabel_humanReadable.ReplaceAll("j0","j=0, ");
+      catLabel_humanReadable.ReplaceAll("b2toInf","b#geq2, ");
+      catLabel_humanReadable.ReplaceAll("j4toInf","j#geq4, ");
+      //      catLabel_humanReadable.ReplaceAll("","");
+
       //catname
       TLatex *latex = new TLatex();	
       latex->SetTextSize(0.038);
       latex->SetNDC();
-      latex->DrawLatex(0.16,0.78,Form("#splitline{%s}{%s}",proc.c_str(),flashggCats_[cat].c_str()));
-      latex->DrawLatex(0.16,0.88,Form("Right Vertex (#Delta Z < 1.)"));
+      latex->DrawLatex(0.16,0.84,procLabel_humanReadable );
+      latex->DrawLatex(0.16,0.78,catLabel_humanReadable );
+      //latex->DrawLatex(0.16,0.88,Form("Right Vertex (#Delta Z < 1.)"));
 
       // save it !
       canv->Print(Form("%s/fTest/rv_%s_%s.pdf",

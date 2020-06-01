@@ -17,23 +17,25 @@ parser.add_option("-s","--siginput",default="signumbers.txt")
 parser.add_option("-w","--workspaces",default="")
 parser.add_option("-v","--sigworkspaces",default="")
 parser.add_option("-u","--bkgworkspaces",default="")
-parser.add_option("-o","--order",default="",help="tell teh script what order to print tags and procs in. Usage proc1,proc2,proc3..:tag1,tag2,tag3...")
-parser.add_option("-f","--flashggCats",default="UntaggedTag_0,UntaggedTag_1,UntaggedTag_2,UntaggedTag_3,UntaggedTag_4,VBFTag_0,VBFTag_1,VBFTag_2,TTHHadronicTag,TTHLeptonicTag,VHHadronicTag,VHTightTag,VHLooseTag,VHEtTag")
+parser.add_option("-o","--order",default="",help="tell the script what order to print tags and procs in. Usage proc1,proc2,proc3..:tag1,tag2,tag3...")
+#parser.add_option("-f","--flashggCats",default="UntaggedTag_0,UntaggedTag_1,UntaggedTag_2,UntaggedTag_3,UntaggedTag_4,VBFTag_0,VBFTag_1,VBFTag_2,TTHHadronicTag,TTHLeptonicTag,VHHadronicTag,VHTightTag,VHLooseTag,VHEtTag")
+parser.add_option("-f","--flashggCats",default="diBBZ_pT0,diBBZ_pT1,diBBH_pT0,diBBH_pT1,diLepZ,j0_b0toInf_pT0,j0_b0toInf_pT1,is1El_pT0_mt2_0,is1Mu_pT0_mt2_0,is1El_pT0_mt2_30,is1Mu_pT0_mt2_30,is1El_pT1_mt2_0,is1Mu_pT1_mt2_0,is1El_pT1_mt2_30,is1Mu_pT1_mt2_30,j1to3_b0_pT0_mt2_0,j1to3_b0_pT1_mt2_0,j4toInf_b0_pT0_mt2_0,j4toInf_b0_pT1_mt2_0,j1to3_b1_pT0_mt2_0,j1to3_b1_pT1_mt2_0,j4toInf_b1_pT0_mt2_0,j4toInf_b1_pT1_mt2_0,j1to3_b2toInf_pT0_mt2_0,j1to3_b2toInf_pT1_mt2_0,j4toInf_b2toInf_pT0_mt2_0,j4toInf_b2toInf_pT1_mt2_0,j1to3_b0_pT0_mt2_30,j1to3_b0_pT1_mt2_30,j4toInf_b0_pT0_mt2_30,j4toInf_b0_pT1_mt2_30,j1to3_b1_pT0_mt2_30,j1to3_b1_pT1_mt2_30,j4toInf_b1_pT0_mt2_30,j4toInf_b1_pT1_mt2_30,j1to3_b2toInf_pT0_mt2_30,j1to3_b2toInf_pT1_mt2_30,j4toInf_b2toInf_pT0_mt2_30,j4toInf_b2toInf_pT1_mt2_30",help="Flashgg Categories (default: %default)")
+
 (options,args) = parser.parse_args()
 
 if not (options.workspaces ==""):
   print "execute"
   if (len(options.workspaces.split(","))>1) :
-    os.system("./Signal/bin/SignalFit -i %s --checkYield 1 | grep Tag | grep _125_ > %s"%(options.workspaces,options.input))
+    os.system("./Signal/bin/SignalFit -i %s --checkYield 1 | grep _mass_m125_ > %s"%(options.workspaces,options.input))
   else:
     os.system("./Background/bin/workspaceTool -i %s --print 1 | grep RooData | grep it > %s"%(options.workspaces,options.input))
-    os.system("./Background/bin/workspaceTool -i %s --print 1 | grep intLumi >> %s"%(options.workspaces,options.input))
+    #os.system("./Background/bin/workspaceTool -i %s --print 1 | grep intLumi >> %s"%(options.workspaces,options.input))
 
   if (len(options.workspaces.split(","))>1) :
-    os.system("./Signal/bin/SignalFit -i %s --checkYield 1 | grep Tag | grep _125_ > %s"%(options.workspaces,options.input))
+    os.system("./Signal/bin/SignalFit -i %s --checkYield 1 | grep _mass_m125_ > %s"%(options.workspaces,options.input))
   else:
     os.system("./Background/bin/workspaceTool -i %s --print 1 | grep RooData | grep it > %s"%(options.workspaces,options.input))
-    os.system("./Background/bin/workspaceTool -i %s --print 1 | grep intLumi >> %s"%(options.workspaces,options.input))
+   # os.system("./Background/bin/workspaceTool -i %s --print 1 | grep intLumi >> %s"%(options.workspaces,options.input))
 
 procs=[]
 tags=[]
@@ -54,20 +56,41 @@ options.factor=float(options.factor)
 with open(options.input) as i:
   lines  = i.readlines()
   for line in lines:
-    #print line
+    print line
     if "intLumi" in line: lumi=float(line[line.find("value")+6:])
+    lumi=35.9
     if "pdfWeight" in line : continue 
     line=line.replace("Tag_","Tag ")
     line=line.replace("Tag"," Tag")
     line=line.replace("TTH","TTH ")
+    line=line.replace("sig_SMS_TChiHZ_HToGG","HZ")
+    line=line.replace("HZ_m127","HZ127")
+    line=line.replace("HZ_m150","HZ150")
+    line=line.replace("m125","125")
+    line=line.replace("m120","120")
+    line=line.replace("m130","130")
+    line=line.replace("hgg_mass","hmass")
+    line=line.replace("_2017","2017")
+
+# line=line.replace("j1to3_b0_pT0_mt2_0","j1to3b0pT0mt20")
+
     line=line.replace(",","_ ")
     line=line.replace("\n","")
+    line=line.replace("=","_ ")
+    line=line.replace("[","_")
+    line=line.replace("]","_")
+    line=line.replace("(","_")
+    line=line.replace(")","_")
     words=line.split("_")  
     print words
-    procs.append(words[0])
-    tags.append(words[3])
-    weights.append(float(words[4]))
-    entries.append(float(words[4]))
+    procs.append(words[1])
+#    procs.append(words[0])
+    tags.append(words[6])
+#    tags.append(words[3])
+    weights.append(float(words[10]))
+    entries.append(float(words[10]))
+#    weights.append(float(words[4]))
+#    entries.append(float(words[4]))
     list=[words[0],words[3],options.factor*float(words[4])]
     yields.append(list)
     continue
@@ -108,6 +131,7 @@ for x in effSigma.keys():
   with open('bkg.tmp') as i:
     lines  = i.readlines()
     for line in lines:
+      print line
       if not "TABLE" in line: continue
       line=line.replace("Tag_","Tag ")
       line=line.replace("Tag"," Tag")

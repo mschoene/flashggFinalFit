@@ -1,36 +1,56 @@
 #!/bin/bash
 #bash variables
 FILE="";
-EXT="auto"; #extensiom for all folders and files created by this script
-PROCS="ggh"
-CATS="UntaggedTag_0,UntaggedTag_1,UntaggedTag_2,UntaggedTag_3,UntaggedTag_4,VBFTag_0,VBFTag_1,VBFTag_2,TTHHadronicTag,TTHLeptonicTag,VHHadronicTag,VHTightTag,VHLooseTag,VHEtTag"
+EXT="prod2018aug13"; #extensiom for all folders and files created by this script
+
+
+PROCS="higgs_2016,SMS_T2bH_mSbottom250_mLSP100,SMS_T2bH_mSbottom250_mLSP1,SMS_T2bH_mSbottom250_mLSP50,SMS_T2bH_mSbottom300_mLSP100,SMS_T2bH_mSbottom300_mLSP150,SMS_T2bH_mSbottom300_mLSP1,SMS_T2bH_mSbottom300_mLSP50,SMS_T2bH_mSbottom350_mLSP100,SMS_T2bH_mSbottom350_mLSP150,SMS_T2bH_mSbottom350_mLSP1,SMS_T2bH_mSbottom350_mLSP200,SMS_T2bH_mSbottom350_mLSP50,SMS_T2bH_mSbottom400_mLSP100,SMS_T2bH_mSbottom400_mLSP150,SMS_T2bH_mSbottom400_mLSP1,SMS_T2bH_mSbottom400_mLSP200,SMS_T2bH_mSbottom400_mLSP250,SMS_T2bH_mSbottom400_mLSP50,SMS_T2bH_mSbottom450_mLSP1,SMS_T2bH_mSbottom450_mLSP100,SMS_T2bH_mSbottom450_mLSP150,SMS_T2bH_mSbottom450_mLSP200,SMS_T2bH_mSbottom450_mLSP250,SMS_T2bH_mSbottom450_mLSP300,SMS_T2bH_mSbottom450_mLSP50,SMS_T2bH_mSbottom500_mLSP100,SMS_T2bH_mSbottom500_mLSP150,SMS_T2bH_mSbottom500_mLSP200,SMS_T2bH_mSbottom500_mLSP250,SMS_T2bH_mSbottom500_mLSP300,SMS_T2bH_mSbottom500_mLSP50,SMS_T2bH_mSbottom600_mLSP1,SMS_T2bH_mSbottom600_mLSP100,SMS_T2bH_mSbottom600_mLSP200,SMS_T2bH_mSbottom600_mLSP300,higgs_2017,SMS_T2bH_mSbottom250_mLSP100_2017,SMS_T2bH_mSbottom250_mLSP1_2017,SMS_T2bH_mSbottom250_mLSP50_2017,SMS_T2bH_mSbottom300_mLSP100_2017,SMS_T2bH_mSbottom300_mLSP150_2017,SMS_T2bH_mSbottom300_mLSP1_2017,SMS_T2bH_mSbottom300_mLSP50_2017,SMS_T2bH_mSbottom350_mLSP100_2017,SMS_T2bH_mSbottom350_mLSP150_2017,SMS_T2bH_mSbottom350_mLSP1_2017,SMS_T2bH_mSbottom350_mLSP200_2017,SMS_T2bH_mSbottom350_mLSP50_2017,SMS_T2bH_mSbottom400_mLSP100_2017,SMS_T2bH_mSbottom400_mLSP150_2017,SMS_T2bH_mSbottom400_mLSP1_2017,SMS_T2bH_mSbottom400_mLSP200_2017,SMS_T2bH_mSbottom400_mLSP250_2017,SMS_T2bH_mSbottom400_mLSP50_2017,SMS_T2bH_mSbottom450_mLSP1_2017,SMS_T2bH_mSbottom450_mLSP100_2017,SMS_T2bH_mSbottom450_mLSP150_2017,SMS_T2bH_mSbottom450_mLSP200_2017,SMS_T2bH_mSbottom450_mLSP250_2017,SMS_T2bH_mSbottom450_mLSP300_2017,SMS_T2bH_mSbottom450_mLSP50_2017,SMS_T2bH_mSbottom500_mLSP100_2017,SMS_T2bH_mSbottom500_mLSP150_2017,SMS_T2bH_mSbottom500_mLSP200_2017,SMS_T2bH_mSbottom500_mLSP250_2017,SMS_T2bH_mSbottom500_mLSP300_2017,SMS_T2bH_mSbottom500_mLSP50_2017,SMS_T2bH_mSbottom600_mLSP1_2017,SMS_T2bH_mSbottom600_mLSP100_2017,SMS_T2bH_mSbottom600_mLSP200_2017,SMS_T2bH_mSbottom600_mLSP300_2017"
+
+#PROCS="higgs_2017,SMS_TChiWH_HToGG_127_1_2017,SMS_TChiWH_HToGG_150_1_2017,SMS_TChiWH_HToGG_150_24_2017,higgs_2016,SMS_TChiWH_HToGG_127_1,SMS_TChiWH_HToGG_150_1,SMS_TChiWH_HToGG_150_24"
+#PROCS="sig,higgs"
+
+#CATS="is1El_pT1,is1Mu_pT1,is1El_pT0,is1Mu_pT0,diLepZ,diBBZ_pT0,diBBZ_pT1,diBBH_pT0,diBBH_pT1,j0_b0toInf_pT0,j0_b0toInf_pT1,j1to3_b0_pT0,j1to3_b0_pT1,j4toInf_b0_pT0,j4toInf_b0_pT1,j1to3_b1_pT0,j1to3_b1_pT1,j4toInf_b1_pT0,j4toInf_b1_pT1,j1to3_b2toInf_pT0,j1to3_b2toInf_pT1,j4toInf_b2toInf_pT0,j4toInf_b2toInf_pT1" 
+
+CATS="j1to3_b0_pT0_mt2_0,j1to3_b0_pT1_mt2_0,j4toInf_b0_pT0_mt2_0,j4toInf_b0_pT1_mt2_0,j1to3_b1_pT0_mt2_0,j1to3_b1_pT1_mt2_0,j4toInf_b1_pT0_mt2_0,j4toInf_b1_pT1_mt2_0,j1to3_b2toInf_pT0_mt2_0,j1to3_b2toInf_pT1_mt2_0,j4toInf_b2toInf_pT0_mt2_0,j4toInf_b2toInf_pT1_mt2_0,j1to3_b0_pT0_mt2_30,j1to3_b0_pT1_mt2_30,j4toInf_b0_pT0_mt2_30,j4toInf_b0_pT1_mt2_30,j1to3_b1_pT0_mt2_30,j1to3_b1_pT1_mt2_30,j4toInf_b1_pT0_mt2_30,j4toInf_b1_pT1_mt2_30,j1to3_b2toInf_pT0_mt2_30,j1to3_b2toInf_pT1_mt2_30,j4toInf_b2toInf_pT0_mt2_30,j4toInf_b2toInf_pT1_mt2_30,is1El_pT0_mt2_0,is1Mu_pT0_mt2_0,is1El_pT0_mt2_30,is1Mu_pT0_mt2_30,is1El_pT1_mt2_0,is1Mu_pT1_mt2_0,is1El_pT1_mt2_30,is1Mu_pT1_mt2_30,diBBZ_pT0,diBBZ_pT1,diBBH_pT0,diBBH_pT1,diLepZ,j0_b0toInf_pT0,j0_b0toInf_pT1"
+
+#CATS="HT0toInf_j0_b0_pT0,HT0toInf_j0_b0_pT1,HT0toInf_j1to3_b0_pT0,HT0toInf_j1to3_b0_pT1,HT0toInf_j4toInf_b0_pT0,HT0toInf_j4toInf_b0_pT1,HT0toInf_j0_b1toInf_pT0,HT0toInf_j0_b1toInf_pT1,HT0toInf_j1to3_b1toInf_pT0,HT0toInf_j1to3_b1toInf_pT1,HT0toInf_j4toInf_b1toInf_pT0,HT0toInf_j4toInf_b1toInf_pT1"
+#CATS="UntaggedTag_0,UntaggedTag_1,UntaggedTag_2,UntaggedTag_3,UntaggedTag_4,VBFTag_0,VBFTag_1,VBFTag_2,TTHHadronicTag,TTHLeptonicTag,VHHadronicTag,VHTightTag,VHLooseTag,VHEtTag"
 #CATS="UntaggedTag_0,UntaggedTag_1,UntaggedTag_2,UntaggedTag_3,UntaggedTag_4,VBFTag_0,VBFTag_1,VBFTag_2,TTHLeptonicTag,VHHadronicTag,VHTightTag,VHLooseTag"
 #CATS="UntaggedTag_0,UntaggedTag_1,UntaggedTag_2,UntaggedTag_3,UntaggedTag_4,VBFTag_0,VBFTag_1,VBFTag_2,VHHadronicTag,VHTightTag,VHLooseTag"
-SCALES="HighR9EE,LowR9EE,HighR9EB,LowR9EB"
+SCALES=""
+
+#SCALES="HighR9EE,LowR9EE,HighR9EB,LowR9EB"
 #SCALESCORR="MaterialCentral,MaterialForward,FNUFEE,FNUFEB,ShowerShapeHighR9EE,ShowerShapeHighR9EB,ShowerShapeLowR9EE,ShowerShapeLowR9EB"
-SCALESCORR="MaterialCentral,MaterialForward"
+SCALESCORR=""
+#SCALESCORR="MaterialCentral,MaterialForward"
 #SCALESGLOBAL="NonLinearity:0:2.6"
-SCALESGLOBAL="NonLinearity,Geant4,LightYield,Absolute"
-SMEARS="HighR9EE,LowR9EE,HighR9EB,LowR9EB" #DRY RUN
+SCALESGLOBAL=""
+#SCALESGLOBAL="NonLinearity,Geant4,LightYield,Absolute"
+SMEARS=""
+#SMEARS="HighR9EE,LowR9EE,HighR9EB,LowR9EB" #DRY RUN
 MASSLIST="120,125,130" #DRY RUN
+#MASSLIST="120,125,130" #DRY RUN
+
 PSEUDODATADAT=""
 SIGFILE=""
-SIGONLY=1
-BKGONLY=1
+SIGONLY=0
+BKGONLY=0
 DATACARDONLY=1
 COMBINEONLY=1
 COMBINEPLOTSONLY=0
 SUPERLOOP=1
 COUNTER=0
 CONTINUELOOP=0
-INTLUMI=1
+INTLUMI=78.343
+#INTLUMI=35.9
 DATAFILE=""
 UNBLIND=0
-ISDATA=0
+ISDATA=1 #ISDATA=0
 BS=0
 VERBOSE=0
-BATCH="LSF"
-DEFAULTQUEUE="1nh"
+BATCH="T3"
+DEFAULTQUEUE="short.q"
+
 usage(){
 	echo "The script runs background scripts:"
 		echo "options:"
@@ -122,6 +142,11 @@ DEFAULTQUEUE=1nh
 BATCHOPTION=" --batch $BATCH"
 fi
 
+if [[ $BATCH == "T3" ]]; then
+DEFAULTQUEUE=short.q
+BATCHOPTION=" --batch $BATCH"
+fi
+
 echo "[INFO] INTLUMI $INTLUMI"
 
 OUTDIR="outdir_${EXT}"
@@ -176,7 +201,7 @@ SIGFILES=$PWD/Signal/$OUTDIR/CMS-HGG_sigfit_${EXT}.root
 
 cd Background
 echo "./runBackgroundScripts.sh -p $PROCS -f $CATS --ext $EXT --sigFile $SIGFILES --seed $COUNTER --intLumi $INTLUMI $BLINDINGOPT $PSEUDODATAOPT $DATAOPT $DATAFILEOPT $BATCHOPTION "
-./runBackgroundScripts.sh -p $PROCS -f $CATS --ext $EXT --sigFile $SIGFILES --seed $COUNTER --intLumi $INTLUMI $BLINDINGOPT $PSEUDODATAOPT $DATAOPT $DATAFILEOPT $BATCHOPTION
+./runBackgroundScripts.sh -p $PROCS -f $CATS --ext $EXT --sigFile $SIGFILES --seed $COUNTER --intLumi $INTLUMI $BLINDINGOPT $PSEUDODATAOPT $DATAOPT $DATAFILEOPT  --batch $BATCH -q $DEFAULTQUEUE #$BATCHOPTION
 
 cd -
 if [ $USER == lcorpe ]; then
@@ -197,7 +222,8 @@ echo "------------------------------------------------"
 cd Datacard
 echo "./makeParametricModelDatacardFLASHgg.py -i $FILE  -o Datacard_13TeV_${EXT}.txt -p $PROCS -c UntaggedTag_0,UntaggedTag_1,UntaggedTag_2,UntaggedTag_3,VBFTag_0,VBFTag_1,TTHHadronicTag,TTHLeptonicTag --photonCatScales $SCALES --photonCatSmears $SMEARS --isMultiPdf --mass 125 --theoryNormFactors norm_factors.py --submitSelf #--intLumi $INTLUMI"
 #./makeParametricModelDatacardFLASHgg.py -i $FILE  -o Datacard_13TeV_${EXT}.txt -p $PROCS -c UntaggedTag_0,UntaggedTag_1,UntaggedTag_2,UntaggedTag_3,VBFTag_0,VBFTag_1,TTHHadronicTag,TTHLeptonicTag --photonCatScales $SCALES --photonCatSmears $SMEARS --isMultiPdf --mass 125 --theoryNormFactors norm_factors.py --submitSelf --intLumi $INTLUMI --batch $BATCH 
-./makeParametricModelDatacardFLASHgg.py -i $FILE  -o Datacard_13TeV_${EXT}.txt -p $PROCS -c UntaggedTag_0,UntaggedTag_1,UntaggedTag_2,UntaggedTag_3,VBFTag_0,VBFTag_1,TTHHadronicTag,TTHLeptonicTag --photonCatScales $SCALES --photonCatSmears $SMEARS --isMultiPdf --mass 125 --theoryNormFactors norm_factors.py --intLumi $INTLUMI #--submitSelf
+./makeParametricModelDatacardFLASHgg.py -i $FILE  -o Datacard_13TeV_${EXT}.txt -p $PROCS -c $CATS  --photonCatScales $SCALES --photonCatSmears $SMEARS --isMultiPdf --mass 125 --theoryNormFactors norm_factors.py --intLumi $INTLUMI #--submitSelf
+#./makeParametricModelDatacardFLASHgg.py -i $FILE  -o Datacard_13TeV_${EXT}.txt -p $PROCS -c UntaggedTag_0,UntaggedTag_1,UntaggedTag_2,UntaggedTag_3,VBFTag_0,VBFTag_1,TTHHadronicTag,TTHLeptonicTag --photonCatScales $SCALES --photonCatSmears $SMEARS --isMultiPdf --mass 125 --theoryNormFactors norm_factors.py --intLumi $INTLUMI #--submitSelf
 cd -
 fi
 

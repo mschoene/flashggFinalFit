@@ -53,7 +53,8 @@ using namespace boost;
 
 namespace po = program_options;
 
-bool BLIND = true;
+bool BLIND = false;
+//bool BLIND = true;
 bool runFtestCheckWithToys=false;
 int mgg_low =100;
 int mgg_high =180;
@@ -329,6 +330,9 @@ void plot(RooRealVar *mass, RooAbsPdf *pdf, RooDataSet *data, string name,vector
   pdf->paramOn(plot,RooFit::Layout(0.34,0.96,0.89),RooFit::Format("NEA",AutoPrecision(1)));
   if (BLIND) plot->SetMinimum(0.0001);
   plot->SetTitle("");
+  plot->GetYaxis()->SetTitle("Events / GeV");
+  plot->GetYaxis()->SetLabelOffset(0.1);  
+  plot->GetXaxis()->SetTitle("");
   plot->Draw();
   TLatex *lat = new TLatex();
   lat->SetNDC();
@@ -362,10 +366,10 @@ void plot(RooRealVar *mass, RooMultiPdf *pdfs, RooCategory *catIndex, RooDataSet
   ///start extra bit for ratio plot///
   RooHist *plotdata = (RooHist*)plot->getObject(plot->numItems()-1);
   bool doRatioPlot_=1;
-  TPad *pad1 = new TPad("pad1","pad1",0,0.25,1,1);
-  TPad *pad2 = new TPad("pad2","pad2",0,0,1,0.35);
+  TPad *pad1 = new TPad("pad1","pad1",0,0.21,1,0.99);
+  TPad *pad2 = new TPad("pad2","pad2",0,0,1,0.31);
   pad1->SetBottomMargin(0.18);
-  pad2->SetTopMargin(0.00001);
+  pad2->SetTopMargin(0.000001);
   pad2->SetBottomMargin(0.25);
   pad1->Draw();
   pad2->Draw();
@@ -398,6 +402,8 @@ void plot(RooRealVar *mass, RooMultiPdf *pdfs, RooCategory *catIndex, RooDataSet
   }
   plot->SetTitle(Form("Category %s",flashggCats_[cat].c_str()));
   if (BLIND) plot->SetMinimum(0.0001);
+  plot->GetYaxis()->SetTitle("Events / GeV");
+  // plot->GetYaxis()->SetTicks("+-");
   plot->Draw();
   leg->Draw("same");
   CMS_lumi( canv, 0, 0);
@@ -433,10 +439,17 @@ void plot(RooRealVar *mass, RooMultiPdf *pdfs, RooCategory *catIndex, RooDataSet
   TH1 *hdummy = new TH1D("hdummyweight","",mgg_high-mgg_low,mgg_low,mgg_high);
   hdummy->SetMaximum(hdatasub->GetHistogram()->GetMaximum()+1);
   hdummy->SetMinimum(hdatasub->GetHistogram()->GetMinimum()-1);
-  hdummy->GetYaxis()->SetTitle("data - best fit PDF");
-  hdummy->GetYaxis()->SetTitleSize(0.12);
-  hdummy->GetXaxis()->SetTitle("m_{#gamma#gamma} (GeV)");
+  hdummy->GetYaxis()->SetTitle("Data-best fit");
+  hdummy->GetYaxis()->SetTitleSize(0.095);
+  hdummy->GetXaxis()->SetTitleOffset(0.9);
+  hdummy->GetYaxis()->SetTitleOffset(0.58);
+  hdummy->GetXaxis()->SetTitle("m_{#gamma#gamma} [GeV]");
   hdummy->GetXaxis()->SetTitleSize(0.12);
+  hdummy->GetXaxis()->SetLabelSize(0.1);
+  hdummy->GetYaxis()->SetLabelSize(0.1);
+  //  hdummy->GetXaxis()->SetTicks("+-");
+  //  hdummy->GetYaxis()->SetTicks("+-");
+
   hdummy->Draw("HIST");
   hdummy->GetYaxis()->SetNdivisions(808);
 
@@ -451,6 +464,7 @@ void plot(RooRealVar *mass, RooMultiPdf *pdfs, RooCategory *catIndex, RooDataSet
   canv->SaveAs(Form("%s.png",name.c_str()));
   catIndex->setIndex(currentIndex);
   delete canv;
+  delete hdummy;
 }
 
 void plot(RooRealVar *mass, map<string,RooAbsPdf*> pdfs, RooDataSet *data, string name, vector<string> flashggCats_, int cat, int bestFitPdf=-1){
@@ -733,6 +747,7 @@ int main(int argc, char* argv[]){
   RooRealVar *mass = (RooRealVar*)inWS->var("hgg_mass");
   //	RooRealVar *mass = (RooRealVar*)inWS->var("CMS_hgg_mass");
   std:: cout << "[INFO] Got mass from ws " << mass << std::endl;
+
   pdfsModel.setObsVar(mass);
   double upperEnvThreshold = 0.1; // upper threshold on delta(chi2) to include function in envelope (looser than truth function)
 
@@ -952,7 +967,8 @@ int main(int argc, char* argv[]){
       }
       RooCategory catIndex(catindexname.c_str(),"c");
       RooMultiPdf *pdf = new RooMultiPdf(Form("CMS_hgg_%s_%s_bkgshape",catname.c_str(),ext.c_str()),"all pdfs",catIndex,storedPdfs);
-      RooRealVar nBackground(Form("CMS_hgg_%s_%s_bkgshape_norm",catname.c_str(),ext.c_str()),"nbkg",data->sumEntries(), -3.*data->sumEntries(), 3.*data->sumEntries() );
+      RooRealVar nBackground(Form("CMS_hgg_%s_%s_bkgshape_norm",catname.c_str(),ext.c_str()),"nbkg",data->sumEntries(), 0, 3.*data->sumEntries() );
+      //      RooRealVar nBackground(Form("CMS_hgg_%s_%s_bkgshape_norm",catname.c_str(),ext.c_str()),"nbkg",data->sumEntries(), -3.*data->sumEntries(), 3.*data->sumEntries() );
       //      RooRealVar nBackground(Form("CMS_hgg_%s_%s_bkgshape_norm",catname.c_str(),ext.c_str()),"nbkg",data->sumEntries(),0,10E8);
       //nBackground.removeRange(); // bug in roofit will break combine until dev branch brought in
       //double check the best pdf!

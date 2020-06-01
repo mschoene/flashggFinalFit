@@ -245,7 +245,7 @@ int main(int argc, char *argv[]) {
   RooSimultaneous *bpdf = (RooSimultaneous*)win->pdf("model_b");
   if (verbose_) std::cout << "[INFO]  get pdfs " << sbpdf << " " << bpdf << std::endl; 
   
-  RooRealVar *mass = win->var("CMS_hgg_mass");
+  RooRealVar *mass = win->var("hgg_mass");
   mass->SetTitle("#m_{#gamma#gamma}");
   mass->setUnit("GeV");
   RooCategory *chan = win->cat("CMS_channel");
@@ -292,12 +292,42 @@ int main(int argc, char *argv[]) {
     TString desc = Form("#splitline{%s}{}",chan->getLabel());
     //make human readbale labels
     desc.ReplaceAll("_"," ");
+
     desc.ReplaceAll("13TeV","");
     desc.ReplaceAll("UntaggedTag","Untagged");
     desc.ReplaceAll("VBFTag","VBF Tag");
     desc.ReplaceAll("TTHLeptonicTag","TTH Leptonic Tag");
     desc.ReplaceAll("TTHHadronicTag","TTH Hadronic Tag");
     desc.ReplaceAll("SigmaMpTTag","#sigma_{M}/M |_{decorr} category");
+
+    desc.ReplaceAll("mt2 0","M^{0}_{T2}");
+    desc.ReplaceAll("mt2 30","M^{30}_{T2}");
+    desc.ReplaceAll(" m"," m_{#chi}=");
+
+    desc.ReplaceAll("UntaggedTag","Untagged");
+    desc.ReplaceAll("VBFTag","VBF Tag");
+    desc.ReplaceAll("TTHLeptonicTag","TTH Leptonic Tag");
+    desc.ReplaceAll("TTHHadronicTag","TTH Hadronic Tag");
+    desc.ReplaceAll("all","All Categories");
+    desc.ReplaceAll("HToGG","");
+    desc.ReplaceAll("SMS","");
+    desc.ReplaceAll("TChi","");
+    desc.ReplaceAll("is1Mu","1#mu");
+    desc.ReplaceAll("is1El","1e");
+    desc.ReplaceAll("pT0","p_{T}^{to75}");
+    desc.ReplaceAll("pT1","p_{T}^{to125}");
+    desc.ReplaceAll("pT2","p_{T}^{toInf}");
+    desc.ReplaceAll("4toInf","#geq4");
+    desc.ReplaceAll("2toInf","#geq2");
+    desc.ReplaceAll("0toInf","#geq0");
+    desc.ReplaceAll("j1to3","1#leq j #leq3");
+    desc.ReplaceAll("j0","j=0");
+    desc.ReplaceAll("b0","b=0");
+    desc.ReplaceAll("b1","b=1");
+    desc.ReplaceAll("diBBZ","Z_{bb}");
+    desc.ReplaceAll("diBBH","H_{bb}");
+    desc.ReplaceAll("diLepZ","Z_{ll}");
+
     catdesc.push_back(desc);
     std::cout << "[INFO] --> description :" << desc << std::endl;
   }
@@ -312,7 +342,7 @@ int main(int argc, char *argv[]) {
   catnames.push_back("combcat_weighted");
   catdesc.push_back("#splitline{All categories}{S/(S+B) weighted}");
   
-  if (verbose_) std::cout << "[INFO] preparing weights verctor.." << std::endl; 
+  if (verbose_) std::cout << "[INFO] preparing weights vector.." << std::endl; 
   std::vector<double> catweights;
   RooArgList wcatnorms;
   std::vector<RooAbsData*> catdatams;
@@ -693,14 +723,14 @@ int main(int argc, char *argv[]) {
   
   hsigbkg->SetLineWidth(deflinewidth);
   hwsigbkg->SetLineWidth(deflinewidth);
-  hbkg->SetLineWidth(deflinewidth);
+  hbkg->SetLineWidth(deflinewidth+1);
   hwbkg->SetLineWidth(deflinewidth);
   hsig->SetLineWidth(deflinewidth);
   hwsig->SetLineWidth(deflinewidth);
   
   hsigbkgplotfine->SetLineWidth(deflinewidth);
   hwsigbkgplotfine->SetLineWidth(deflinewidth);
-  hbkgplotfine->SetLineWidth(deflinewidth);
+  hbkgplotfine->SetLineWidth(deflinewidth+1);
   hwbkgplotfine->SetLineWidth(deflinewidth);
   
   hsig->SetLineColor(kRed);
@@ -711,14 +741,14 @@ int main(int argc, char *argv[]) {
   hsigbkgplotfine->SetLineColor(kRed);
   hwsigbkgplotfine->SetLineColor(kRed);  
   
-  hbkg->SetLineColor(kRed);
+  hbkg->SetLineColor(kBlue+1);
   hbkg->SetLineStyle(kDashed);
-  hwbkg->SetLineColor(kRed);
+  hwbkg->SetLineColor(kBlue+1);
   hwbkg->SetLineStyle(kDashed);
 
-  hbkgplotfine->SetLineColor(kRed);
+  hbkgplotfine->SetLineColor(kBlue+1);
   hbkgplotfine->SetLineStyle(kDashed);
-  hwbkgplotfine->SetLineColor(kRed);
+  hwbkgplotfine->SetLineColor(kBlue+1);
   hwbkgplotfine->SetLineStyle(kDashed);  
   
   for (int isig=0; isig<hsigplotsfine.size(); ++isig) {
@@ -794,19 +824,23 @@ int main(int argc, char *argv[]) {
 
     if (i<ncats) {
     std::cout << "[INFO] draw " << chan->getLabel() << " s and b pdfs" << std::endl; 
-      catbpdf->plotOn(catplot,Normalization(catbpdf->expectedEvents(catdatam->get()),RooAbsPdf::NumEvent),LineColor(kRed),LineStyle(kDashed),LineWidth(deflinewidth));  
+
       sbcatpdf->plotOn(catplot,Normalization(sbcatpdf->expectedEvents(catdatam->get()),RooAbsPdf::NumEvent),LineColor(kRed),LineWidth(deflinewidth));      
+      catbpdf->plotOn(catplot,Normalization(catbpdf->expectedEvents(catdatam->get()),RooAbsPdf::NumEvent),LineColor(kGreen+1),LineStyle(kDashed),LineWidth(deflinewidth));  
     }
     else if (i==ncats) {
     std::cout << "[INFO] draw " << "unweighted " << " s and b pdfs" << std::endl; 
-      hbkgplotfine->Draw("LSAME");
-      hbkgplot->Draw("LSAME");
       hsigbkgplotfine->Draw("LSAME");
+
+      hbkgplot->Draw("LSAME");
+      hbkgplotfine->Draw("LSAME");
+
     }
     else if (i==(ncats+1)) {
     std::cout << "[INFO] draw " << "weighted " << " s and b pdfs" << std::endl; 
-      hwbkgplotfine->Draw("LSAME");
       hwsigbkgplotfine->Draw("LSAME");      
+      hwbkgplotfine->Draw("LSAME");
+
     }
     
     catdatam->plotOn(catplot,XErrorSize(0),MarkerSize(defmarkersize),MarkerStyle(defmarkerstyle),LineWidth(errlinewidth));
@@ -940,6 +974,7 @@ int main(int argc, char *argv[]) {
     line3->Draw();
     
     TH1D *hsigplotfine = hsigplotsfine[i];
+    //    hsigplotfine->SetLineColor(kGreen+);
     hsigplotfine->SetLineColor(kRed);
     hsigplotfine->SetLineWidth(deflinewidth);
     

@@ -61,7 +61,7 @@ float constraintValue_;
 int constraintValueMass_;
 bool spin_=false;
 vector<string> procs_;
-string procStr_;f
+string procStr_;
 bool isCutBased_=false;
 bool is2011_=false;
 bool is2012_=false;
@@ -69,8 +69,8 @@ string massesToSkip_;
 vector<int> skipMasses_;
 string massListStr_;
 vector<int> massList_;
-//bool splitRVWV_=false;
-bool splitRVWV_=true;
+bool splitRVWV_=false;
+//bool splitRVWV_=true;
 bool doSecondaryModels_=false;
 //bool doSecondaryModels_=true;
 bool doQuadraticSigmaSum_=false;
@@ -102,15 +102,15 @@ float originalIntLumi_;
 float mcBeamSpotWidth_=5.14; //cm // the beamspot has a certain width in MC which is not necessarily the same in data. for the data/MC to agree, we reweight the MC to match the data Beamspot width, using dZ as a proxy (they have a factor of sqrt(2) because you are subtracting one gaussain distributed quantity from another)
 //float dataBeamSpotWidth_=4.24; //cm
 float dataBeamSpotWidth_=3.5; //cm
-string referenceProc_="higgs";
-string referenceProcWV_="higgs";
-string referenceProcTTH_="higgs";
+string referenceProc_="higgs_2016";
+string referenceProcWV_="higgs_2016";
+string referenceProcTTH_="higgs_2016";
 
 // string referenceTagWV_="HT0toInf_j0_b0toInf_pT0_loPt";
 // string referenceTagRV_="HT0toInf_j0_b0toInf_pT0_loPt";
 
-string referenceTagWV_="HT0toInf_j0_b0toInf_pT0";
-string referenceTagRV_="HT0toInf_j0_b0toInf_pT0";
+string referenceTagWV_="j0_b0toInf_pT0";
+string referenceTagRV_="j0_b0toInf_pT0";
 
 // string referenceTagWV_="HT0toInf_j0_b0_pT0";
 // string referenceTagRV_="HT0toInf_j0_b0_pT0";
@@ -300,7 +300,7 @@ void makeCloneConfig(clonemap_t mapRV, clonemap_t mapWV, string newdatfilename){
 RooDataSet * reduceDataset(RooDataSet *data0){
 
   RooDataSet *data = (RooDataSet*) data0->emptyClone()->reduce(RooArgSet(*mass_, *dZ_));
-  RooRealVar *weight0 = new RooRealVar("weight","weight",-100000,1000000);
+  RooRealVar *weight0 = new RooRealVar("weight","weight",-1000000,10000000);
   for (unsigned int i=0 ; i < data0->numEntries() ; i++){
     mass_->setVal(data0->get(i)->getRealValue("hgg_mass"));
     weight0->setVal(data0->weight() ); // <--- is this correct?
@@ -313,7 +313,7 @@ RooDataSet * reduceDataset(RooDataSet *data0){
 // this is where we reweight the DZ distribution as a proxy for the beamspot.
 void plotBeamSpotDZdist(RooDataSet *data0, string suffix=""){
   gStyle->SetOptFit(1111);
-  RooRealVar *weight0 = new RooRealVar("weight","weight",-100000,1000000);
+  RooRealVar *weight0 = new RooRealVar("weight","weight",-1000000,10000000);
   TH1F *histSmallDZ = new TH1F ("h1sdz","h1sdz",20,-0.1,0.1);
   TH1F *histLargeDZ = new TH1F ("h1ldz","h1ldz",20,-25,25);
 
@@ -348,7 +348,7 @@ RooDataSet * rvwvDataset(RooDataSet *data0, string rvwv){
 
   RooDataSet *dataRV = (RooDataSet*) data0->emptyClone()->reduce(RooArgSet(*mass_, *dZ_));
   RooDataSet *dataWV = (RooDataSet*) data0->emptyClone()->reduce(RooArgSet(*mass_, *dZ_));
-  RooRealVar *weight0 = new RooRealVar("weight","weight",-100000,1000000);
+  RooRealVar *weight0 = new RooRealVar("weight","weight",-1000000,10000000);
   for (unsigned int i=0 ; i < data0->numEntries() ; i++){
     // mass_->setVal( 125.);
     mass_->setVal(data0->get(i)->getRealValue("hgg_mass"));
@@ -412,7 +412,7 @@ RooDataSet * intLumiReweigh(RooDataSet *data0 /*original dataset*/){
   if (verbose_) std::cout << "[INFO] Changing weights of dataset by a factor " << factor << " as per newIntLumi option" << std::endl;
   
   RooDataSet *data = (RooDataSet*) data0->emptyClone();
-  RooRealVar *weight0 = new RooRealVar("weight","weight",-100000,1000000);
+  RooRealVar *weight0 = new RooRealVar("weight","weight",-1000000,10000000);
   for (int i = 0; i < data0->numEntries(); i++) {
     mass_->setVal(data0->get(i)->getRealValue("hgg_mass"));
     dZ_->setVal(data0->get(i)->getRealValue("dZ"));
@@ -445,14 +445,14 @@ int main(int argc, char *argv[]){
   // reference details for low stats cats
   // need to make this configurable ?! -LC
 
-  referenceProc_="higgs";
-  referenceProcTTH_="higgs";
+  referenceProc_="higgs_2016";
+  referenceProcTTH_="higgs_2016";
 
   // referenceTagWV_="HT0toInf_j0_b0toInf_pT0_loPt; // histest stats WV is ggh Untagged 3. 
   // referenceTagRV_="HT0toInf_j0_b0toInf_pT0_loPt; // fairly low resolution tag even for ggh, more approprioate as te default than re-using the original tag.
 
-  referenceTagWV_="HT0toInf_j0_b0toInf_pT0"; // histest stats WV is ggh Untagged 3. 
-  referenceTagRV_="HT0toInf_j0_b0toInf_pT0"; // fairly  low resolution tag even for ggh, more approprioate as te default than re-using the original tag.
+  referenceTagWV_="j0_b0toInf_pT0"; // histest stats WV is ggh Untagged 3. 
+  referenceTagRV_="j0_b0toInf_pT0"; // fairly  low resolution tag even for ggh, more approprioate as te default than re-using the original tag.
 
   //  referenceTagWV_="HT0toInf_j0_b0_pT0"; // histest stats WV is ggh Untagged 3. 
   //  referenceTagRV_="HT0toInf_j0_b0_pT0"; // fairly low resolution tag even for ggh, more approprioate as te default than re-using the original tag.
@@ -480,7 +480,8 @@ int main(int argc, char *argv[]){
   if (checkYields_){
 	  
     //    WSTFileWrapper * inWS0 = new WSTFileWrapper(filenameStr_,"tagsDumper/cms_hgg_13TeV");
-    WSTFileWrapper * inWS0 = new WSTFileWrapper(filenameStr_,"ws_sig");
+    WSTFileWrapper * inWS0 = new WSTFileWrapper(filenameStr_,"wsig_13TeV");
+    //    WSTFileWrapper * inWS0 = new WSTFileWrapper(filenameStr_,"ws_sig");
     std::list<RooAbsData*> data =  (inWS0->allData()) ;
     for (std::list<RooAbsData*>::const_iterator iterator = data.begin(), end = data.end();
 	 iterator != end;
@@ -717,6 +718,8 @@ int main(int argc, char *argv[]){
       float nEntriesWV =dataWV->numEntries();
       float sEntriesWV= dataWV->sumEntries(); // count the number of entries and total weight on the RV/WV datasets
         
+      //      std::cout << "        mh = " << mh << "  events = " << nEntriesRV << std::endl;
+
       // if there are few atcual entries or if there is an  overall negative sum of weights...
       // or if it was specified that one should use the replacement dataset, then need to replace!
       if (nEntriesRV < 100 || sEntriesRV < 0 || ( userSkipRV)){
@@ -834,20 +837,20 @@ int main(int argc, char *argv[]){
     for (std::map<int,RooDataSet*>::iterator it=FITdatasetsRV.begin(); it!=FITdatasetsRV.end(); ++it){
       if (check=="") {
 	TString name=it->second->GetName();
-        check = name.ReplaceAll(TString(Form("%d",it->first)),TString(""));
+        check = name.ReplaceAll(TString(Form("_%d",it->first)),TString("_"));
       } else {
 	TString name=it->second->GetName();
-	assert (check ==name.ReplaceAll(TString(Form("%d",it->first)),TString("")) );
+	assert (check ==name.ReplaceAll(TString(Form("_%d",it->first)),TString("_")) );
       }
     }
     check="";
     for (std::map<int,RooDataSet*>::iterator it=FITdatasetsWV.begin(); it!=FITdatasetsWV.end(); ++it){
       if (check=="") {
 	TString name=it->second->GetName();
-        check = name.ReplaceAll(TString(Form("%d",it->first)),TString(""));
+        check = name.ReplaceAll(TString(Form("_%d",it->first)),TString("_"));
       } else {
 	TString name=it->second->GetName();
-	assert (check ==name.ReplaceAll(TString(Form("%d",it->first)),TString("")) );
+	assert (check ==name.ReplaceAll(TString(Form("_%d",it->first)),TString("_")) );
       }
     }
 

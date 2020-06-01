@@ -82,7 +82,8 @@ void OptionParser(int argc, char *argv[]){
     ("doCrossCheck",  po::value<bool>(&doCrossCheck_)->default_value(false),                          "output additional details")
     ("verbose",  po::value<bool>(&verbose_)->default_value(false),                          "output additional details")
     ("markNegativeBins",  po::value<bool>(&markNegativeBins_)->default_value(false),                          " show with red arrow if a bin has a negative total value")
-    ("flashggCats,f", po::value<string>(&flashggCatsStr_)->default_value("DiPhotonUntaggedCategory_0,DiPhotonUntaggedCategory_1,DiPhotonUntaggedCategory_2,DiPhotonUntaggedCategory_3,DiPhotonUntaggedCategory_4,VBFTag_0,VBFTag_1,VBFTag_2"),       "Flashgg category names to consider")
+    ("flashggCats,f", po::value<string>(&flashggCatsStr_)->default_value("j1to3_b0_pT0_mt2_0"),       "Flashgg category names to consider")
+    //    ("flashggCats,f", po::value<string>(&flashggCatsStr_)->default_value("DiPhotonUntaggedCategory_0,DiPhotonUntaggedCategory_1,DiPhotonUntaggedCategory_2,DiPhotonUntaggedCategory_3,DiPhotonUntaggedCategory_4,VBFTag_0,VBFTag_1,VBFTag_2"),       "Flashgg category names to consider")
     ;
 
   po::options_description desc2("Options kept for backward compatibility");
@@ -101,22 +102,33 @@ void OptionParser(int argc, char *argv[]){
 map<string,RooDataSet*> getGlobeData(RooWorkspace *work, int ncats, int m_hyp){
 
   map<string,RooDataSet*> result;
-
+  
   for (int cat=0; cat<ncats; cat++){
+    
+    //result.insert(pair<string,RooDataSet*>(Form("cat%d",cat),(RooDataSet*)work->data(Form("sig_higgs_2016_m%3d_cat%d",m_hyp,cat))));
+     
     result.insert(pair<string,RooDataSet*>(Form("cat%d",cat),(RooDataSet*)work->data(Form("sig_mass_m%3d_cat%d",m_hyp,cat))));
+    //result.insert(pair<string,RooDataSet*>(Form("signal_cat%d",cat),(RooDataSet*)work->data(Form("signal_mass_m%3d_cat%d",m_hyp,cat))));
+  
+    std::cout << Form("sig_mass_m%3d_cat%d",m_hyp,cat) << std::cout;
   }
-  result.insert(pair<string,RooDataSet*>("all",(RooDataSet*)work->data(Form("sig_mass_m%3d_AllCats",m_hyp))));
-
+  //  result.insert(pair<string,RooDataSet*>("all",(RooDataSet*)work->data(Form("sig_mass_m%3d_AllCats",m_hyp))));
   return result;
+
 }
+
 map<string,RooDataSet*> getFlashggData(RooWorkspace *work, int ncats, int m_hyp){
 
   map<string,RooDataSet*> result;
 
   for (int cat=0; cat<ncats; cat++){
-    result.insert(pair<string,RooDataSet*>(Form("%s",flashggCats_[cat].c_str()),(RooDataSet*)work->data(Form("sig_mass_m%3d_%s",m_hyp,flashggCats_[cat].c_str()))));
+  cout << (Form("sig_m%3d_%s",m_hyp,flashggCats_[cat].c_str())) << endl;
+
+  //    result.insert(pair<string,RooDataSet*>(Form("%s",flashggCats_[cat].c_str()),(RooDataSet*)work->data(Form("sig_higgs_2016_m%3d_%s",m_hyp,flashggCats_[cat].c_str()))));
+  result.insert(pair<string,RooDataSet*>(Form("%s",flashggCats_[cat].c_str()),(RooDataSet*)work->data(Form("sig_mass_m%3d_%s",m_hyp,flashggCats_[cat].c_str()))));
+  //result.insert(pair<string,RooDataSet*>(Form("signal_%s",flashggCats_[cat].c_str()),(RooDataSet*)work->data(Form("signal_mass_m%3d_%s",m_hyp,flashggCats_[cat].c_str()))));
   }
-  result.insert(pair<string,RooDataSet*>("all",(RooDataSet*)work->data(Form("sig_mass_m%3d_AllCats",m_hyp))));
+  //  result.insert(pair<string,RooDataSet*>("all",(RooDataSet*)work->data(Form("sig_mass_m%3d_AllCats",m_hyp))));
 
   return result;
 }
@@ -126,8 +138,12 @@ map<string,RooDataSet*> getFlashggDataGranular(RooWorkspace *work, int ncats, in
   map<string,RooDataSet*> result;
 
   for (int cat=0; cat<ncats; cat++){
-    for (int proc=0; proc < procs_.size() ; proc++){
+    for (unsigned int proc=0; proc < procs_.size() ; proc++){
+
+      cout << Form("%s_%s",procs_[proc].c_str(),flashggCats_[cat].c_str()) << endl;
+
      result.insert(pair<string,RooDataSet*>(Form("%s_%s",procs_[proc].c_str(),flashggCats_[cat].c_str()),(RooDataSet*)work->data(Form("sig_%s_mass_m%3d_%s",procs_[proc].c_str(),m_hyp,flashggCats_[cat].c_str()))));
+     //result.insert(pair<string,RooDataSet*>(Form("signal_%s_%s",procs_[proc].c_str(),flashggCats_[cat].c_str()),(RooDataSet*)work->data(Form("signal_%s_mass_m%3d_%s",procs_[proc].c_str(),m_hyp,flashggCats_[cat].c_str()))));
       assert(work->data(Form("sig_%s_mass_m%3d_%s",procs_[proc].c_str(),m_hyp,flashggCats_[cat].c_str())));
     }
   }
@@ -141,7 +157,7 @@ map<string,RooAddPdf*> getGlobePdfs(RooWorkspace *work, int ncats){
   for (int cat=0; cat<ncats; cat++){
     result.insert(pair<string,RooAddPdf*>(Form("cat%d",cat),(RooAddPdf*)work->pdf(Form("sigpdfrelcat%d_allProcs",cat))));
   }
-  result.insert(pair<string,RooAddPdf*>("all",(RooAddPdf*)work->pdf("sigpdfrelAllCats_allProcs")));
+  //  result.insert(pair<string,RooAddPdf*>("all",(RooAddPdf*)work->pdf("sigpdfrelAllCats_allProcs")));
 
   return result;
 }
@@ -152,7 +168,7 @@ map<string,RooAddPdf*> getFlashggPdfs(RooWorkspace *work, int ncats){
   for (int cat=0; cat<ncats; cat++){
     result.insert(pair<string,RooAddPdf*>(Form("%s",flashggCats_[cat].c_str()),(RooAddPdf*)work->pdf(Form("sigpdfrel%s_allProcs",flashggCats_[cat].c_str()))));
   }
-  result.insert(pair<string,RooAddPdf*>("all",(RooAddPdf*)work->pdf("sigpdfrelAllCats_allProcs")));
+  //  result.insert(pair<string,RooAddPdf*>("all",(RooAddPdf*)work->pdf("sigpdfrelAllCats_allProcs")));
 
   return result;
 }
@@ -161,7 +177,7 @@ map<string,RooAddPdf*> getFlashggPdfsGranular(RooWorkspace *work, int ncats){
 
   map<string,RooAddPdf*> result;
   for (int cat=0; cat<ncats; cat++){
-    for (int proc=0; proc< procs_.size() ; proc++){
+    for (unsigned int proc=0; proc< procs_.size() ; proc++){
       result.insert(pair<string,RooAddPdf*>(Form("%s_%s",procs_[proc].c_str(),flashggCats_[cat].c_str()),(RooAddPdf*)work->pdf((Form("extendhggpdfsmrel_13TeV_%s_%sThisLumi",procs_[proc].c_str(),flashggCats_[cat].c_str())))));
       assert(work->pdf((Form("extendhggpdfsmrel_13TeV_%s_%sThisLumi",procs_[proc].c_str(),flashggCats_[cat].c_str()))));
   }
@@ -197,13 +213,16 @@ pair<double,double> getEffSigmaData(RooRealVar *mass, RooDataHist *dataHist, dou
   //cout << "Computing effSigma FOR DATA...." << endl;
   TStopwatch sw;
   sw.Start();
-  double point=wmin;
+  //  double point=wmin;
   double weight=0; 
   vector<pair<double,double> > points;
   //std::cout << " dataHist " << *dataHist << std::endl;
   double thesum = dataHist->sumEntries();
   for (int i=0 ; i<dataHist->numEntries() ; i++){
-    double mass = dataHist->get(i)->getRealValue("CMS_hgg_mass");
+    double mass = dataHist->get(i)->getRealValue("hgg_mass");
+
+    std::cout << mass << std::endl;
+
     weight += dataHist->weight(); 
     //std::cout << " mass " << mass << " cumulative weight " << weight/thesum << std::endl;
     if (weight > epsilon){
@@ -366,6 +385,7 @@ vector<double> getFWHM(RooRealVar *mass, RooAbsPdf *pdf, RooDataSet *data, doubl
   result.push_back(hm);
   result.push_back(h->GetBinWidth(1));
 
+  std::cout << "got the fwhm " << std::endl;
   delete h;
   return result;
 }
@@ -427,6 +447,11 @@ void performClosure(RooRealVar *mass, RooAbsPdf *pdf, RooDataSet *data, string c
 
 void Plot(RooRealVar *mass, RooDataSet *data, RooAbsPdf *pdf, pair<double,double> sigRange, vector<double> fwhmRange, string title, string savename){
 
+
+  std::cout <<" BIN " << std::endl;
+  std::cout << mass  << std::endl;
+
+  mass->setVal(125.);
   double semin=sigRange.first;
   double semax=sigRange.second;
   double fwmin=fwhmRange[0];
@@ -438,8 +463,8 @@ void Plot(RooRealVar *mass, RooDataSet *data, RooAbsPdf *pdf, pair<double,double
   RooPlot *plot = mass->frame(Bins(binning_),Range("higgsRange"));
   plot->SetMinimum(0.0);
   if (markNegativeBins_){
-  TH1F *rdh = (TH1F*) data->createHistogram("CMS_hgg_mass",*mass,Binning(binning_,105,140));
-    for(unsigned int iBin =0 ; iBin < rdh->GetNbinsX() ; iBin++){
+  TH1F *rdh = (TH1F*) data->createHistogram("hgg_mass",*mass,Binning(binning_,105,140));
+    for(int iBin =0 ; iBin < rdh->GetNbinsX() ; iBin++){
       float content = rdh->GetBinContent(iBin);
       float center = rdh->GetBinCenter(iBin);
       if(content <0) {
@@ -449,6 +474,9 @@ void Plot(RooRealVar *mass, RooDataSet *data, RooAbsPdf *pdf, pair<double,double
       }
     }
   }
+
+  std::cout <<" BINNING " << std::endl;
+
   double offset =0.05;
   if (data) data->plotOn(plot,Invisible());
   pdf->plotOn(plot,NormRange("higgsRange"),Range(semin,semax),FillColor(19),DrawOption("F"),LineWidth(2),FillStyle(1001),VLines(),LineColor(15));
@@ -475,6 +503,27 @@ void Plot(RooRealVar *mass, RooDataSet *data, RooAbsPdf *pdf, pair<double,double
   fwhmText->SetLineColor(kWhite);
   fwhmText->SetTextSize(0.037);
   fwhmText->AddText(Form("FWHM = %1.2f GeV",(fwmax-fwmin)));
+
+  std::cout <<" the hell " << std::endl;
+  data->Print();
+
+  TH1F *integralhisto = (TH1F*) data->createHistogram("hgg_masshisto",*mass,Binning(binning_,122,129));
+  std::cout <<" the hell " << std::endl;
+  TH1F *integralhistoFull = (TH1F*) data->createHistogram("hgg_masshistoFullRange",*mass,Binning(binning_,100,180));
+  std::cout <<" the hell " << std::endl;
+  TH1F *hpdf = new TH1F("hpdf","h",1,122.,129.);
+
+  std::cout <<" the hell " << std::endl;
+  pdf->fillHistogram(hpdf,RooArgList(*mass) );
+
+  //  pdf->fillHistogram(hpdf,RooArgList(*mass),data->sumEntries() );
+
+  std::cout << " [For MT2] " <<  pdf->getNorm() << std::endl;
+  std::cout << " [For MT2 MC integral] " << data->GetName() << "= "  << integralhisto->Integral() << std::endl;
+  std::cout << " [MC integral full check] " << data->GetName() << "= "  << integralhistoFull->Integral() << std::endl;
+  std::cout << " [For MT2 pdf] " <<  hpdf->Integral() << std::endl;
+  //  std::cout << " [For MT2] " << pdf->getNormObj(0,0,Range(122,129)) << std::endl;
+
   std::cout << " [FOR TABLE] Tag " << data->GetName() << "=, Mass " << mass->getVal() << " sigmaEff=" << 0.5*(semax-semin) << "= , FWMH=" << (fwmax-fwmin)/2.35 << "=" << std::endl;
   //std::cout << " [RESOLUTION CHECK] Ta/Procg " << data->GetName() << ", Mass " << mass->getVal() << " sigmaEff=" << 0.5*(semax-semin) << " , FWMH=" << (fwmax-fwmin)/2.35 << "" << std::endl;
 
@@ -485,11 +534,34 @@ void Plot(RooRealVar *mass, RooDataSet *data, RooAbsPdf *pdf, pair<double,double
 
   TString catLabel_humanReadable  = title;
   catLabel_humanReadable.ReplaceAll("_"," ");
+  catLabel_humanReadable.ReplaceAll("mt2 0","M^{lo}_{T2}");
+  catLabel_humanReadable.ReplaceAll("mt2 30","M^{hi}_{T2}");
+  catLabel_humanReadable.ReplaceAll(" m"," m_{#chi}=");
+
   catLabel_humanReadable.ReplaceAll("UntaggedTag","Untagged");
   catLabel_humanReadable.ReplaceAll("VBFTag","VBF Tag");
   catLabel_humanReadable.ReplaceAll("TTHLeptonicTag","TTH Leptonic Tag");
   catLabel_humanReadable.ReplaceAll("TTHHadronicTag","TTH Hadronic Tag");
   catLabel_humanReadable.ReplaceAll("all","All Categories");
+  catLabel_humanReadable.ReplaceAll("HToGG","");
+  catLabel_humanReadable.ReplaceAll("SMS","");
+  catLabel_humanReadable.ReplaceAll("TChi","");
+  catLabel_humanReadable.ReplaceAll("is1Mu","1#mu");
+  catLabel_humanReadable.ReplaceAll("is1El","1e");
+  catLabel_humanReadable.ReplaceAll("pT0","p_{T}^{to75}");
+  catLabel_humanReadable.ReplaceAll("pT1","p_{T}^{to125}");
+  catLabel_humanReadable.ReplaceAll("pT2","p_{T}^{toInf}");
+  catLabel_humanReadable.ReplaceAll("4toInf","#geq4");
+  catLabel_humanReadable.ReplaceAll("2toInf","#geq2");
+  catLabel_humanReadable.ReplaceAll("0toInf","#geq0");
+  catLabel_humanReadable.ReplaceAll("j1to3","1#leq j #leq3");
+  catLabel_humanReadable.ReplaceAll("j0","j=0");
+  catLabel_humanReadable.ReplaceAll("b0","b=0");
+  catLabel_humanReadable.ReplaceAll("b1","b=1");
+  catLabel_humanReadable.ReplaceAll("diBBZ","Z_{bb}");
+  catLabel_humanReadable.ReplaceAll("diBBH","H_{bb}");
+  catLabel_humanReadable.ReplaceAll("diLepZ","Z_{ll}");
+
 
   TLatex lat2(0.93,0.88,catLabel_humanReadable);
   lat2.SetTextAlign(33);
@@ -541,7 +613,8 @@ int main(int argc, char *argv[]){
   setTDRStyle();
   writeExtraText = true;       // if extra text
   extraText  = "";  // default extra text is "Preliminary"
-  lumi_13TeV  = "2.7 fb^{-1}"; // default is "19.7 fb^{-1}"
+  lumi_13TeV  = "77.5 fb^{-1}"; // default is "19.7 fb^{-1}"
+  // lumi_13TeV  = "2.7 fb^{-1}"; // default is "19.7 fb^{-1}"
   lumi_8TeV  = "19.1 fb^{-1}"; // default is "19.7 fb^{-1}"
   lumi_7TeV  = "4.9 fb^{-1}";  // default is "5.1 fb^{-1}"
   lumi_sqrtS = "13 TeV";       // used with iPeriod = 0, e.g. for simulation-only plots (default is an empty string)
@@ -563,16 +636,25 @@ int main(int argc, char *argv[]){
   RooWorkspace *hggWS;
   hggWS = (RooWorkspace*)hggFile->Get(Form("wsig_%dTeV",sqrts_));
 
+
   if (!hggWS) {
     cerr << "Workspace is null" << endl;
     exit(1);
-  }
+  }else
+    cout << "got the WS" << endl;
 
-  RooRealVar *mass= (RooRealVar*)hggWS->var("h_mass");
-
+  RooRealVar *mass= (RooRealVar*)hggWS->var("hgg_mass");
   RooRealVar *mh = (RooRealVar*)hggWS->var("MH");
+
+  cout << "defined the varibles" << endl;
+  mh->Print();
+
+
   mh->setVal(m_hyp_);
   mass->setRange("higgsRange",m_hyp_-20.,m_hyp_+15.);
+
+  mh->setVal(125.);
+  mass->setVal(125.);
 
   map<string,RooDataSet*> dataSets;
   map<string,RooDataSet*> dataSetsGranular;
@@ -586,11 +668,12 @@ int main(int argc, char *argv[]){
     pdfsGranular = getFlashggPdfsGranular(hggWS,ncats_);
   }
   else {
+    
     dataSets = getGlobeData(hggWS,ncats_,m_hyp_);
     pdfs = getGlobePdfs(hggWS,ncats_); 
   }
 
-  //  printInfo(dataSets,pdfs);
+  printInfo(dataSets,pdfs);
 
   map<string,double> sigEffs;
   map<string,double> fwhms;
@@ -601,30 +684,51 @@ int main(int argc, char *argv[]){
 
 
   for (map<string,RooDataSet*>::iterator dataIt=dataSets.begin(); dataIt!=dataSets.end(); dataIt++){
+  
     pair<double,double> thisSigRange = getEffSigma(mass,pdfs[dataIt->first],m_hyp_-10.,m_hyp_+10.);
-    //pair<double,double> thisSigRange = getEffSigBinned(mass,pdf[dataIt->first],m_hyp_-10.,m_hyp_+10);
-    RooDataHist *binned = new RooDataHist("test","test",*mass, (dataIt->second)->createHistogram("test",*mass,RooFit::Binning(1000,m_hyp_-10.,m_hyp_+10.)));
+    //   //pair<double,double> thisSigRange = getEffSigBinned(mass,pdf[dataIt->first],m_hyp_-10.,m_hyp_+10);
+    //   //    RooDataHist *binned = new RooDataHist("test","test",*mass, (dataIt->second)->createHistogram("test",*mass,RooFit::Binning(1000,m_hyp_-10.,m_hyp_+10.)));
     
-    //pair<double,double> thisSigRange = getEffSigmaData(mass,binned,m_hyp_-10.,m_hyp_+10.);
+    //   //pair<double,double> thisSigRange = getEffSigmaData(mass,binned,m_hyp_-10.,m_hyp_+10.);
     
     vector<double> thisFWHMRange = getFWHM(mass,pdfs[dataIt->first],dataIt->second,m_hyp_-10.,m_hyp_+10.);
    
-   sigEffs.insert(pair<string,double>(dataIt->first,(thisSigRange.second-thisSigRange.first)/2.));
+    std::cout << "got it for real" << std::endl;
+
+    sigEffs.insert(pair<string,double>(dataIt->first,(thisSigRange.second-thisSigRange.first)/2.));
+
+    std::cout << "got it for real" << std::endl;
     fwhms.insert(pair<string,double>(dataIt->first,thisFWHMRange[1]-thisFWHMRange[0]));
+    
+    std::cout << "got it for real" << std::endl;
     if (doCrossCheck_) performClosure(mass,pdfs[dataIt->first],dataIt->second,Form("%s/closure_%s.pdf",outfilename_.c_str(),dataIt->first.c_str()),m_hyp_-10.,m_hyp_+10.,thisSigRange.first,thisSigRange.second);
+    std::cout << "got it for real" << std::endl;
     Plot(mass,dataIt->second,pdfs[dataIt->first],thisSigRange,thisFWHMRange,dataIt->first,Form("%s/%s",outfilename_.c_str(),dataIt->first.c_str()));
+
+    std::cout << "got it for real" << std::endl;  
   }
 
   for (map<string,RooDataSet*>::iterator dataIt=dataSetsGranular.begin(); dataIt!=dataSetsGranular.end(); dataIt++){
     RooDataHist *binned = new RooDataHist("test","test",*mass, (dataIt->second)->createHistogram("test",*mass,RooFit::Binning(1000,m_hyp_-10.,m_hyp_+10.)));
     
     //pair<double,double> thisSigRange = getEffSigmaData(mass,binned,m_hyp_-10.,m_hyp_+10.);
+
+    mass->setVal(125);
+
     pair<double,double> thisSigRange = getEffSigma(mass,pdfsGranular[dataIt->first],m_hyp_-10.,m_hyp_+10.);
     //pair<double,double> thisSigRange = getEffSigBinned(mass,pdf[dataIt->first],m_hyp_-10.,m_hyp_+10);
+    mass->setVal(125);
     vector<double> thisFWHMRange = getFWHM(mass,pdfsGranular[dataIt->first],dataIt->second,m_hyp_-10.,m_hyp_+10.);
+
+    mass->setVal(125);
     sigEffs.insert(pair<string,double>(dataIt->first,(thisSigRange.second-thisSigRange.first)/2.));
+
+    mass->setVal(125);
     fwhms.insert(pair<string,double>(dataIt->first,thisFWHMRange[1]-thisFWHMRange[0]));
+
+    mass->setVal(125);
     if (doCrossCheck_) performClosure(mass,pdfsGranular[dataIt->first],dataIt->second,Form("%s/closure_%s.pdf",outfilename_.c_str(),dataIt->first.c_str()),m_hyp_-10.,m_hyp_+10.,thisSigRange.first,thisSigRange.second);
+
     Plot(mass,dataIt->second,pdfsGranular[dataIt->first],thisSigRange,thisFWHMRange,dataIt->first,Form("%s/%s",outfilename_.c_str(),dataIt->first.c_str()));
   }
 

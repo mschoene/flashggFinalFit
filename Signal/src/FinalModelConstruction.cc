@@ -792,18 +792,28 @@ void FinalModelConstruction::buildRvWvPdf(string name, int nGrv, int nGwv, bool 
   if (!rvFractionSet_) getRvFractionFunc(Form("%s_%s_%s_rvFracFunc",name.c_str(),proc_.c_str(),catname.c_str()));
   if (!systematicsSet_) setupSystematics();
   RooFormulaVar *rvFraction = new RooFormulaVar(Form("%s_%s_%s_rvFrac",name.c_str(),proc_.c_str(),catname.c_str()),Form("%s_%s_%s_rvFrac",name.c_str(),proc_.c_str(),catname.c_str()),"TMath::Min(@0+@1,1.0)",RooArgList(*vertexNuisance,*rvFracFunc));
+
   vector<RooAddPdf*> rvPdfs = buildPdf(name,nGrv,recursive,rvSplines,Form("_rv_%dTeV",sqrts_)); 
-  vector<RooAddPdf*> wvPdfs = buildPdf(name,nGwv,recursive,wvSplines,Form("_wv_%dTeV",sqrts_)); 
-  finalPdf = new RooAddPdf(Form("%s_%s_%s",name.c_str(),proc_.c_str(),catname.c_str()),Form("%s_%s_%s",name.c_str(),proc_.c_str(),catname.c_str()),RooArgList(*rvPdfs[0],*wvPdfs[0]),RooArgList(*rvFraction));
+  //  vector<RooAddPdf*> wvPdfs = buildPdf(name,nGwv,recursive,wvSplines,Form("_wv_%dTeV",sqrts_)); 
+
+  
+  finalPdf = new RooAddPdf(Form("%s_%s_%s",name.c_str(),proc_.c_str(),catname.c_str()),Form("%s_%s_%s",name.c_str(),proc_.c_str(),catname.c_str()),RooArgList(*rvPdfs[0]),RooArgList(*rvFraction));
+  //  finalPdf = new RooAddPdf(Form("%s_%s_%s",name.c_str(),proc_.c_str(),catname.c_str()),Form("%s_%s_%s",name.c_str(),proc_.c_str(),catname.c_str()),RooArgList(*rvPdfs[0],*wvPdfs[0]),RooArgList(*rvFraction));
+
   if (doSecondaryModels){
     assert(secondaryModelVarsSet);
     RooFormulaVar *rvFraction_SM = new RooFormulaVar(Form("%s_%s_%s_rvFrac_SM",name.c_str(),proc_.c_str(),catname.c_str()),Form("%s_%s_%s_rvFrac",name.c_str(),proc_.c_str(),catname.c_str()),"TMath::Min(@0+@1,1.0)",RooArgList(*vertexNuisance,*rvFracFunc_SM));
     RooFormulaVar *rvFraction_2 = new RooFormulaVar(Form("%s_%s_%s_rvFrac_2",name.c_str(),proc_.c_str(),catname.c_str()),Form("%s_%s_%s_rvFrac",name.c_str(),proc_.c_str(),catname.c_str()),"TMath::Min(@0+@1,1.0)",RooArgList(*vertexNuisance,*rvFracFunc_2));
     RooFormulaVar *rvFraction_NW = new RooFormulaVar(Form("%s_%s_%s_rvFrac_NW",name.c_str(),proc_.c_str(),catname.c_str()),Form("%s_%s_%s_rvFrac",name.c_str(),proc_.c_str(),catname.c_str()),"TMath::Min(@0+@1,1.0)",RooArgList(*vertexNuisance,*rvFracFunc_NW));
     // buildNew Pdfs
-    finalPdf_SM = new RooAddPdf(Form("%s_%s_%s_SM",name.c_str(),proc_.c_str(),catname.c_str()),Form("%s_%s_%s_SM",name.c_str(),proc_.c_str(),catname.c_str()),RooArgList(*rvPdfs[1],*wvPdfs[1]),RooArgList(*rvFraction_SM));
-    finalPdf_2 = new RooAddPdf(Form("%s_%s_%s_2",name.c_str(),proc_.c_str(),catname.c_str()),Form("%s_%s_%s_2",name.c_str(),proc_.c_str(),catname.c_str()),RooArgList(*rvPdfs[2],*wvPdfs[2]),RooArgList(*rvFraction_2));
-    finalPdf_NW = new RooAddPdf(Form("%s_%s_%s_NW",name.c_str(),proc_.c_str(),catname.c_str()),Form("%s_%s_%s_NW",name.c_str(),proc_.c_str(),catname.c_str()),RooArgList(*rvPdfs[3],*wvPdfs[3]),RooArgList(*rvFraction_NW));
+
+    finalPdf_SM = new RooAddPdf(Form("%s_%s_%s_SM",name.c_str(),proc_.c_str(),catname.c_str()),Form("%s_%s_%s_SM",name.c_str(),proc_.c_str(),catname.c_str()),RooArgList(*rvPdfs[1]),RooArgList(*rvFraction_SM));
+    finalPdf_2 = new RooAddPdf(Form("%s_%s_%s_2",name.c_str(),proc_.c_str(),catname.c_str()),Form("%s_%s_%s_2",name.c_str(),proc_.c_str(),catname.c_str()),RooArgList(*rvPdfs[2]),RooArgList(*rvFraction_2));
+    finalPdf_NW = new RooAddPdf(Form("%s_%s_%s_NW",name.c_str(),proc_.c_str(),catname.c_str()),Form("%s_%s_%s_NW",name.c_str(),proc_.c_str(),catname.c_str()),RooArgList(*rvPdfs[3]),RooArgList(*rvFraction_NW));
+
+    // finalPdf_SM = new RooAddPdf(Form("%s_%s_%s_SM",name.c_str(),proc_.c_str(),catname.c_str()),Form("%s_%s_%s_SM",name.c_str(),proc_.c_str(),catname.c_str()),RooArgList(*rvPdfs[1],*wvPdfs[1]),RooArgList(*rvFraction_SM));
+    // finalPdf_2 = new RooAddPdf(Form("%s_%s_%s_2",name.c_str(),proc_.c_str(),catname.c_str()),Form("%s_%s_%s_2",name.c_str(),proc_.c_str(),catname.c_str()),RooArgList(*rvPdfs[2],*wvPdfs[2]),RooArgList(*rvFraction_2));
+    // finalPdf_NW = new RooAddPdf(Form("%s_%s_%s_NW",name.c_str(),proc_.c_str(),catname.c_str()),Form("%s_%s_%s_NW",name.c_str(),proc_.c_str()  ,catname.c_str()),RooArgList(*rvPdfs[3],*wvPdfs[3]),RooArgList(*rvFraction_NW));
   }
 }
 

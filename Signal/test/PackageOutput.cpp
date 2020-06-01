@@ -139,7 +139,7 @@ int main (int argc, char *argv[]){
   //saveWS->import((inWS->allVars()),RecycleConflictNodes());
   //saveWS->import((inWS->allFunctions()),RecycleConflictNodes());
   for (int i=0 ; i < inWS->getWsList().size() ; i++){
-    inWS->getWsList()[i]->Print();
+    //    inWS->getWsList()[i]->Print();
     if (i==0) tmpWS = (RooWorkspace*) inWS->getWsList()[i]->Clone();
     if (!tmpWS){ std::cout << "EXIT" << std::endl;  exit(1);}
     if (i !=0) {
@@ -147,9 +147,9 @@ int main (int argc, char *argv[]){
       tmpWS->merge(*(inWS->getWsList()[i]));
       tmpWS->import(inWS->getWsList()[i]->allVars(),RecycleConflictNodes());
       tmpWS->import(inWS->getWsList()[i]->allFunctions(),RecycleConflictNodes());
-      inWS->getWsList()[i]->allFunctions().Print();
+      //      inWS->getWsList()[i]->allFunctions().Print();
       tmpWS->import(inWS->getWsList()[i]->allPdfs(),RecycleConflictNodes());
-      inWS->getWsList()[i]->allPdfs().Print();
+      //      inWS->getWsList()[i]->allPdfs().Print();
       std::list<RooAbsData*> data =  (inWS->getWsList()[i]->allData()) ;
       for (std::list<RooAbsData*>::const_iterator iterator = data.begin(), end = data.end(); iterator != end; ++iterator )  {
 	tmpWS->import(**iterator);
@@ -172,8 +172,8 @@ int main (int argc, char *argv[]){
   Packager packager(mergedWS, saveWS ,procs_,ncats_,mhLow_,mhHigh_,skipMasses_,/*sqrts*/13,/*skipPlots_*/true,plotDir_,mergeWS,cats_,flashggCats_);
   //Packager packager(mergedWS, saveWS ,procs_,ncats_,mhLow_,mhHigh_,skipMasses_,/*sqrts*/13,/*skipPlots_*/false,plotDir_,mergeWS,cats_,flashggCats_);
   cout << "[INFO] Finished initalising packager." << endl;
-  //  packager.packageOutput(/*split*/ true);
-  packager.packageOutput(/*split*/ false);
+  packager.packageOutput(/*split*/ true);
+  // packager.packageOutput(/*split*/ false);
   cout << "[INFO] Combination complete." << endl;
   cout << "[INFO] cd to output file" << endl;
   outFile->cd();

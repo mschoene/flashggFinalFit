@@ -186,7 +186,8 @@ void InitialFit::printFitParams(){
 void InitialFit::runFits(int ncpu){
 
   int ngausmax = 10; //we assume that we never use more than 10 (very safe) gaussians for a single dataset
-  float n_sigma_constraint = 2.; //constrain sigmas of gaussians at mh!=125 to the values fitted at mh=125, within n_sigma_constraint times the fit uncertainty
+  float n_sigma_constraint = 100; //constrain sigmas of gaussians at mh!=125 to the values fitted at mh=125, within n_sigma_constraint times the fit uncertainty
+  //float n_sigma_constraint = 2.; //constrain sigmas of gaussians at mh!=125 to the values fitted at mh=125, within n_sigma_constraint times the fit uncertainty
   //middle point is assumed to be 125 GeV
   int mh = allMH_[(allMH_.size()+1)/2 - 1];
   //  int mh = 125;
